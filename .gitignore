@@ -1,0 +1,28 @@
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+gen/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Mac OS system files
+*.DS_Store
+
+*.iml
+.gradle/*
+build/
+
+.idea/*
+# Share code style and inspection settings between developers
+!.idea/codeStyleSettings.xml
+!.idea/inspectionProfiles/Project_Default.xml
+!.idea/runConfigurations
