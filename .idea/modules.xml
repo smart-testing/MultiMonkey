@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AndroidMonkey/AndroidMonkey.iml" filepath="$PROJECT_DIR$/AndroidMonkey/AndroidMonkey.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DesktopMonkey/DesktopMonkey.iml" filepath="$PROJECT_DIR$/DesktopMonkey/DesktopMonkey.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/MultiMonkey.iml" filepath="$PROJECT_DIR$/.idea/modules/MultiMonkey.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/AndroidMonkey/MultiMonkey.AndroidMonkey.iml" filepath="$PROJECT_DIR$/.idea/modules/AndroidMonkey/MultiMonkey.AndroidMonkey.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/DesktopMonkey/MultiMonkey.DesktopMonkey.iml" filepath="$PROJECT_DIR$/.idea/modules/DesktopMonkey/MultiMonkey.DesktopMonkey.iml" />
