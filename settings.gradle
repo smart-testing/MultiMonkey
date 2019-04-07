@@ -1,0 +1,5 @@
+rootProject.name = 'MultiMonkey'
+
+include 'AndroidMonkey'
+include 'DesktopMonkey'
+include 'AndroidMonkey:app'

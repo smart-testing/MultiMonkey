@@ -6,6 +6,8 @@
       <module name="DesktopMonkey.test" target="1.8" />
       <module name="DesktopMonkeyClient.main" target="1.8" />
       <module name="DesktopMonkeyClient.test" target="1.8" />
+      <module name="MultiMonkey.DesktopMonkey.main" target="1.8" />
+      <module name="MultiMonkey.DesktopMonkey.test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
