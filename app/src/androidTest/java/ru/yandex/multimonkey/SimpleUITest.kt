@@ -1,4 +1,4 @@
-package com.xrater.monkeyTest
+package ru.yandex.multimonkey
 
 import android.content.Context
 import android.content.Intent
@@ -6,10 +6,10 @@ import android.content.Intent
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import androidx.test.uiautomator.*
-import com.xrater.monkeyTest.system.SystemMonkey
 
 import org.junit.Before
 import org.junit.Test
+import ru.yandex.multimonkey.system.SystemMonkey
 
 class SimpleUiTest {
 
