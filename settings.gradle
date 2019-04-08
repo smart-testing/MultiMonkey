@@ -1,5 +1,6 @@
 rootProject.name = 'MultiMonkey'
 
-include 'DesktopMonkey'
+include 'desktop-monkey'
 include ':app'
 include 'core'
+include 'http-server'

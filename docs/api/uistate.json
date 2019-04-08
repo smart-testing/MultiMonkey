@@ -1,0 +1,25 @@
+{
+  "elements": [
+    {
+      "id": "AAAAFFAFASF",
+      "attributes": {
+        "isCheckable": true,
+        "resourceName": "pizza",
+        "center": {}
+      },
+      "possibleActions": [
+        "click", "swipe", "input"
+      ]
+    }
+  ],
+  "global": {
+    "screenSize": {
+      "width": 1000,
+      "height": 1000
+    },
+    "screenshot": "asADSDDASDDASDADSASDFFNASNN",
+    "possibleActions": [
+      "rotate", "click", "sleep", "exit"
+    ]
+  }
+}

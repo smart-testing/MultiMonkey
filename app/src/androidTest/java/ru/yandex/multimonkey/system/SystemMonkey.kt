@@ -1,7 +1,7 @@
-package com.xrater.monkeyTest.system
+package ru.yandex.multimonkey.system
 
 import androidx.test.uiautomator.*
-import com.xrater.monkeyTest.SimpleUiTest
+import ru.yandex.multimonkey.SimpleUiTest
 import ru.yandex.multimonkey.net.NetElement
 import ru.yandex.multimonkey.net.Monkey
 import ru.yandex.multimonkey.`state-monkey`.StateModelMonkey

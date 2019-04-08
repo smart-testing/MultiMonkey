@@ -1,4 +1,4 @@
-package com.xrater.monkeyTest.system
+package ru.yandex.multimonkey.system
 
 interface AndroidMonkey {
 

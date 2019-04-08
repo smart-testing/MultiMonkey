@@ -1,4 +1,4 @@
-package net.netau.vasyoid
+package ru.yandex.multimonkey
 
 import org.json.JSONObject
 import org.openqa.selenium.Dimension as DimensionS

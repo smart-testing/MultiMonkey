@@ -1,4 +1,4 @@
-package com.xrater.monkeyTest.system
+package ru.yandex.multimonkey.system
 
 import androidx.test.uiautomator.*
 import ru.yandex.multimonkey.net.NetAction

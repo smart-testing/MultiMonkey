@@ -1,4 +1,4 @@
-package net.netau.vasyoid
+package ru.yandex.multimonkey
 
 import org.json.JSONArray
 import org.openqa.selenium.By
