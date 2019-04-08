@@ -1,21 +1,21 @@
 package ru.yandex.multimonkey.`state-monkey`.`action-generator`
 
 import org.json.JSONObject
-import ru.yandex.multimonkey.net.NetAction
-import ru.yandex.multimonkey.net.NetElement
-import ru.yandex.multimonkey.net.NetState
+import ru.yandex.multimonkey.net.UiAction
+import ru.yandex.multimonkey.net.UiElement
+import ru.yandex.multimonkey.net.UiState
 
 class StateActionsGeneratorImpl : StateActionsGenerator {
 
-    override fun getActions(state: NetState) : List<NetAction> {
-        val actions = mutableListOf<NetAction>()
+    override fun getActions(state: UiState) : List<UiAction> {
+        val actions = mutableListOf<UiAction>()
         state.elements.stream()
             .forEach  { element -> addActionsToList(actions, element) }
-        actions.add(NetAction(JSONObject(mapOf("type" to "SKIP"))))
+        actions.add(UiAction(JSONObject(mapOf("type" to "SKIP"))))
         return actions
     }
 
-    private fun addActionsToList(actions: MutableList<NetAction>, element: NetElement) {
+    private fun addActionsToList(actions: MutableList<UiAction>, element: UiElement) {
         if (element.isClickable) {
             val center = element.center
             val json = JSONObject()
@@ -24,7 +24,7 @@ class StateActionsGeneratorImpl : StateActionsGenerator {
             positionJson.put("y", center.y)
             json.put("position", positionJson)
             json.put("type", "TAP")
-            actions.add(NetAction(json))
+            actions.add(UiAction(json))
         }
     }
 

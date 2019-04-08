@@ -1,14 +1,14 @@
 package ru.yandex.multimonkey.system
 
 import androidx.test.uiautomator.*
-import ru.yandex.multimonkey.net.NetElement
+import ru.yandex.multimonkey.net.UiElement
 import ru.yandex.multimonkey.net.Point
 
 class SystemElement(val obj: UiObject2) {
 
-    fun buildNetElement() : NetElement {
+    fun buildUiElement() : UiElement {
         val center = obj.visibleCenter
-        return NetElement(
+        return UiElement(
             Point(center.x, center.y),
             obj.isCheckable,
             obj.isClickable,

@@ -1,6 +1,6 @@
 package ru.yandex.multimonkey.`state-monkey`.`state-model`
 
-import ru.yandex.multimonkey.net.NetAction
+import ru.yandex.multimonkey.net.UiAction
 import ru.yandex.multimonkey.`state-monkey`.`state-identifier`.StateId
 import ru.yandex.multimonkey.`state-monkey`.`state-model`.strategies.RandomStrategy
 import ru.yandex.multimonkey.`state-monkey`.`state-model`.strategies.Strategy
@@ -18,17 +18,17 @@ class StateModel {
         return states.containsKey(id)
     }
 
-    fun registerState(id: StateId, netActions: List<NetAction>) {
+    fun registerState(id: StateId, uiActions: List<UiAction>) {
         if (states.containsKey(id)) {
             throw Exception("Duplicate state found")
         }
         val state = strategy.initNewState()
-        netActions.forEach { state.addFromAction(Action(state, null, it)) }
+        uiActions.forEach { state.addFromAction(Action(state, null, it)) }
         state.update()
         states[id] = state
     }
 
-    fun generateAction(id: StateId): NetAction {
+    fun generateAction(id: StateId): UiAction {
         val state = states.getOrElse(id) { throw IllegalArgumentException() }
 
         // temporary fix until feedback impl
@@ -43,7 +43,7 @@ class StateModel {
 
         val action = strategy.generateAction(state)
         previousAction = action
-        return action.netAction
+        return action.uiAction
     }
 
     private fun unlink(action: Action) {

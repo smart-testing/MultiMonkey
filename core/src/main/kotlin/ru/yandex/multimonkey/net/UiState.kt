@@ -4,12 +4,12 @@ import org.apache.commons.lang3.builder.EqualsBuilder
 import org.apache.commons.lang3.builder.HashCodeBuilder
 
 
-class NetState(unsortedElements: List<NetElement>) {
+class UiState(unsortedElements: List<UiElement>) {
 
     val elements = unsortedElements.sorted()
 
     override fun equals(other: Any?): Boolean {
-        return if (other is NetState) {
+        return if (other is UiState) {
             EqualsBuilder()
                 .append(elements, other.elements)
                 .isEquals

@@ -8,11 +8,11 @@ class NetMonkeyClient : Monkey {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun generateAction(netState: NetState): NetAction {
+    override fun generateAction(uiState: UiState): UiAction {
         val headers = mapOf("Content-Type" to "application/json")
-        val json = netState.elements
+        val json = uiState.elements
         val response = httpPost(HOST, headers = headers, json = json)
-        return NetAction(response.jsonObject)
+        return UiAction(response.jsonObject)
     }
 
     companion object {

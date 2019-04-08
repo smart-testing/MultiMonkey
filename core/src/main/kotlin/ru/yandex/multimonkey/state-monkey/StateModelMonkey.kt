@@ -2,8 +2,8 @@ package ru.yandex.multimonkey.`state-monkey`
 
 import ru.yandex.multimonkey.`state-monkey`.`state-model`.StateModel
 import ru.yandex.multimonkey.net.Monkey
-import ru.yandex.multimonkey.net.NetAction
-import ru.yandex.multimonkey.net.NetState
+import ru.yandex.multimonkey.net.UiAction
+import ru.yandex.multimonkey.net.UiState
 import ru.yandex.multimonkey.`state-monkey`.`action-generator`.StateActionsGenerator
 import ru.yandex.multimonkey.`state-monkey`.`action-generator`.StateActionsGeneratorImpl
 import ru.yandex.multimonkey.`state-monkey`.`state-identifier`.DefaultStateIdGenerator
@@ -16,11 +16,11 @@ class StateModelMonkey : Monkey {
     private val stateIdGenerator : StateIdGenerator<StateId> = DefaultStateIdGenerator()
     private val stateActionsGenerator : StateActionsGenerator = StateActionsGeneratorImpl()
 
-    override fun generateAction(netState: NetState): NetAction {
-        val stateId : StateId = stateIdGenerator.getId(netState)
+    override fun generateAction(uiState: UiState): UiAction {
+        val stateId : StateId = stateIdGenerator.getId(uiState)
         if (!model.hasState(stateId)) {
-            val netActions = stateActionsGenerator.getActions(netState)
-            model.registerState(stateId, netActions)
+            val uiActions = stateActionsGenerator.getActions(uiState)
+            model.registerState(stateId, uiActions)
         }
         return model.generateAction(stateId)
     }

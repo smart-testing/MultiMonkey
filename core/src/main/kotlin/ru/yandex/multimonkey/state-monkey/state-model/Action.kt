@@ -1,8 +1,8 @@
 package ru.yandex.multimonkey.`state-monkey`.`state-model`
 
-import ru.yandex.multimonkey.net.NetAction
+import ru.yandex.multimonkey.net.UiAction
 
-class Action(val from: State, var to: State?, val netAction : NetAction) {
+class Action(val from: State, var to: State?, val uiAction : UiAction) {
 
 //    val interest: Int
 //        get() = to?.metric ?: 0
