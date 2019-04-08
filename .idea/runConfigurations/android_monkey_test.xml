@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="AndroidMonkeyTest" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" singleton="true">
+  <configuration default="false" name="android-monkey-test" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" singleton="true">
     <module name="app" />
     <option name="TESTING_TYPE" value="2" />
     <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
