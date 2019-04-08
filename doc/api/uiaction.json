@@ -1,0 +1,19 @@
+{
+  "action": {
+    "id": "AAAAFFAFASF",
+    "action": "input",
+    "attributes": {
+      "text": "pastapizza"
+    }
+  },
+  "action2": {
+    // у global id-шки нет
+    "action": "click",
+    "attributes": {
+      "position": {
+        "x": 111,
+        "y": 222
+      }
+    }
+  }
+}
