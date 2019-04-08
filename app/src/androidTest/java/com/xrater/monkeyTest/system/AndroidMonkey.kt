@@ -1,6 +1,6 @@
 package com.xrater.monkeyTest.system
 
-interface Monkey {
+interface AndroidMonkey {
 
     fun generateAction() : SystemAction?
 

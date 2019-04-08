@@ -1,10 +1,13 @@
-package ru.yandex.multimonkey.net
+package ru.yandex.multimonkey.`state-monkey`.`action-generator`
 
 import org.json.JSONObject
+import ru.yandex.multimonkey.net.NetAction
+import ru.yandex.multimonkey.net.NetElement
+import ru.yandex.multimonkey.net.NetState
 
-class StateProcessor {
+class StateActionsGeneratorImpl : StateActionsGenerator {
 
-    fun getActions(state: NetState) : List<NetAction> {
+    override fun getActions(state: NetState) : List<NetAction> {
         val actions = mutableListOf<NetAction>()
         state.elements.stream()
             .forEach  { element -> addActionsToList(actions, element) }

@@ -2,7 +2,11 @@ package ru.yandex.multimonkey.net
 
 import khttp.post as httpPost
 
-class NetMonkeyClient : NetMonkey {
+class NetMonkeyClient : Monkey {
+
+    override fun feedback() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override fun generateAction(netState: NetState): NetAction {
         val headers = mapOf("Content-Type" to "application/json")

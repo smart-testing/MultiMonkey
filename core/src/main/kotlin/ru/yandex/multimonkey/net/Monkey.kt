@@ -1,6 +1,8 @@
 package ru.yandex.multimonkey.net
 
-interface NetMonkey {
+interface Monkey {
 
     fun generateAction(netState: NetState): NetAction
+
+    fun feedback()
 }

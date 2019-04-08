@@ -3,15 +3,15 @@ package com.xrater.monkeyTest.system
 import androidx.test.uiautomator.*
 import com.xrater.monkeyTest.SimpleUiTest
 import ru.yandex.multimonkey.net.NetElement
-import ru.yandex.multimonkey.net.NetMonkey
-import ru.yandex.multimonkey.net.NetMonkeyImpl
+import ru.yandex.multimonkey.net.Monkey
+import ru.yandex.multimonkey.`state-monkey`.StateModelMonkey
 import ru.yandex.multimonkey.net.NetState
 import java.util.stream.Collectors
 
 
-class SystemMonkey(private val device: UiDevice) : Monkey {
+class SystemMonkey(private val device: UiDevice) : AndroidMonkey {
 
-    private val model: NetMonkey = NetMonkeyImpl()
+    private val model: Monkey = StateModelMonkey()
 
     override fun generateAction(): SystemAction? {
         val netState: NetState
