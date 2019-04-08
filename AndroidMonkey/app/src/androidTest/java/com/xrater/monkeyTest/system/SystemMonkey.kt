@@ -2,10 +2,10 @@ package com.xrater.monkeyTest.system
 
 import androidx.test.uiautomator.*
 import com.xrater.monkeyTest.SimpleUiTest
-import com.xrater.monkeyTest.net.NetElement
-import com.xrater.monkeyTest.net.NetMonkey
-import com.xrater.monkeyTest.net.NetMonkeyImpl
-import com.xrater.monkeyTest.net.NetState
+import ru.yandex.multimonkey.net.NetElement
+import ru.yandex.multimonkey.net.NetMonkey
+import ru.yandex.multimonkey.net.NetMonkeyImpl
+import ru.yandex.multimonkey.net.NetState
 import java.util.stream.Collectors
 
 

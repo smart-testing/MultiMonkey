@@ -1,6 +1,6 @@
-package com.xrater.monkeyTest.model
+package ru.yandex.multimonkey.model
 
-import com.xrater.monkeyTest.net.NetAction
+import ru.yandex.multimonkey.net.NetAction
 
 class Action(val netAction : NetAction): Comparable<Action> {
     var from: State? = null

@@ -1,4 +1,4 @@
-package com.xrater.monkeyTest.net
+package ru.yandex.multimonkey.net
 
 interface NetMonkey {
 

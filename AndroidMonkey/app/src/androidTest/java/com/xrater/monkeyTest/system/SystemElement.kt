@@ -1,13 +1,15 @@
 package com.xrater.monkeyTest.system
 
 import androidx.test.uiautomator.*
-import com.xrater.monkeyTest.net.NetElement
+import ru.yandex.multimonkey.net.NetElement
+import ru.yandex.multimonkey.net.Point
 
 class SystemElement(val obj: UiObject2) {
 
     fun buildNetElement() : NetElement {
+        val center = obj.visibleCenter
         return NetElement(
-            obj.visibleCenter,
+            Point(center.x, center.y),
             obj.isCheckable,
             obj.isClickable,
             obj.isFocusable,

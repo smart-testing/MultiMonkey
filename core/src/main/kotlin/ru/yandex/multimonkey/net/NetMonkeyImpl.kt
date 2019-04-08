@@ -1,6 +1,6 @@
-package com.xrater.monkeyTest.net
+package ru.yandex.multimonkey.net
 
-import com.xrater.monkeyTest.model.Model
+import ru.yandex.multimonkey.model.Model
 
 class NetMonkeyImpl : NetMonkey {
 

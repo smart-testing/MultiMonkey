@@ -1,7 +1,7 @@
 package com.xrater.monkeyTest.system
 
 import androidx.test.uiautomator.*
-import com.xrater.monkeyTest.net.NetAction
+import ru.yandex.multimonkey.net.NetAction
 import org.json.JSONObject
 
 class SystemAction(action: NetAction, private val device: UiDevice) {

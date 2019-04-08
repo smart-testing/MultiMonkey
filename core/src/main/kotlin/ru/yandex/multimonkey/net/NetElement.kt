@@ -1,7 +1,5 @@
-package com.xrater.monkeyTest.net
+package ru.yandex.multimonkey.net
 
-import android.graphics.Point
-import com.xrater.monkeyTest.system.SystemElement
 import org.apache.commons.lang3.builder.CompareToBuilder
 import org.apache.commons.lang3.builder.EqualsBuilder
 import org.apache.commons.lang3.builder.HashCodeBuilder

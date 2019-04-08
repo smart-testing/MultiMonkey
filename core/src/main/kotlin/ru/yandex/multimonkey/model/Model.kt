@@ -1,7 +1,7 @@
-package com.xrater.monkeyTest.model
+package ru.yandex.multimonkey.model
 
-import com.xrater.monkeyTest.net.NetAction
-import com.xrater.monkeyTest.net.NetState
+import ru.yandex.multimonkey.net.NetAction
+import ru.yandex.multimonkey.net.NetState
 
 
 class Model {
