@@ -1,15 +1,12 @@
-package ru.yandex.multimonkey.`state-monkey`.`state-model`
+package ru.yandex.multimonkey.monkeys.state.model
 
 import ru.yandex.multimonkey.net.UiAction
-import ru.yandex.multimonkey.`state-monkey`.`state-identifier`.StateId
-import ru.yandex.multimonkey.`state-monkey`.`state-model`.strategies.RandomStrategy
-import ru.yandex.multimonkey.`state-monkey`.`state-model`.strategies.Strategy
+import ru.yandex.multimonkey.monkeys.state.identifier.StateId
 import java.lang.IllegalArgumentException
 
 
 class StateModel {
 
-    private val strategy: Strategy = RandomStrategy()
     private val states: MutableMap<StateId, State> = mutableMapOf()
 
     private var previousAction: Action? = null
@@ -22,9 +19,9 @@ class StateModel {
         if (states.containsKey(id)) {
             throw Exception("Duplicate state found")
         }
-        val state = strategy.initNewState()
+        val state = State()
         uiActions.forEach { state.addFromAction(Action(state, null, it)) }
-        state.update()
+        ModelConfig.METRIC.updateMetric(state)
         states[id] = state
     }
 
@@ -34,23 +31,27 @@ class StateModel {
         // temporary fix until feedback impl
         val previousActionSnapshot = previousAction
         if (previousActionSnapshot != null) {
-            if (previousActionSnapshot.to == null) {
-                linkStates(previousActionSnapshot.from, state, previousActionSnapshot)
-            } else if (previousActionSnapshot.to != state) {
-                unlink(previousActionSnapshot)
+            when {
+                previousActionSnapshot.to == null -> linkStates(previousActionSnapshot.from, state, previousActionSnapshot)
+                previousActionSnapshot.to != state -> unlink(previousActionSnapshot)
+                else -> ModelConfig.METRIC.updateMetric(previousActionSnapshot.to)
             }
         }
 
-        val action = strategy.generateAction(state)
-        previousAction = action
-        return action.uiAction
+        val action = ModelConfig.STRATEGY.generateAction(state)
+        if (action == null) {
+            throw Exception("No actions found")
+        } else {
+            previousAction = action
+            return action.uiAction
+        }
     }
 
     private fun unlink(action: Action) {
         action.to?.removeToAction(action)
-        action.to?.update()
+        ModelConfig.METRIC.updateMetric(action.to)
         action.to = null
-        action.from.update()
+        ModelConfig.METRIC.updateMetric(action.from)
     }
 
     private fun linkStates(from: State, to: State, action: Action) {
@@ -62,8 +63,8 @@ class StateModel {
         }
         action.to = to
         to.addToAction(action)
-        from.update()
-        to.update()
+        ModelConfig.METRIC.updateMetric(action.from)
+        ModelConfig.METRIC.updateMetric(action.to)
     }
 
 }

@@ -1,14 +1,14 @@
-package ru.yandex.multimonkey.`state-monkey`
+package ru.yandex.multimonkey.monkeys.state
 
-import ru.yandex.multimonkey.`state-monkey`.`state-model`.StateModel
+import ru.yandex.multimonkey.monkeys.state.model.StateModel
 import ru.yandex.multimonkey.net.Monkey
 import ru.yandex.multimonkey.net.UiAction
 import ru.yandex.multimonkey.net.UiState
-import ru.yandex.multimonkey.`state-monkey`.`action-generator`.StateActionsGenerator
-import ru.yandex.multimonkey.`state-monkey`.`action-generator`.StateActionsGeneratorImpl
-import ru.yandex.multimonkey.`state-monkey`.`state-identifier`.DefaultStateIdGenerator
-import ru.yandex.multimonkey.`state-monkey`.`state-identifier`.StateId
-import ru.yandex.multimonkey.`state-monkey`.`state-identifier`.StateIdGenerator
+import ru.yandex.multimonkey.monkeys.state.actionGenerators.StateActionsGenerator
+import ru.yandex.multimonkey.monkeys.state.actionGenerators.StateActionsGeneratorImpl
+import ru.yandex.multimonkey.monkeys.state.identifier.DefaultStateIdGenerator
+import ru.yandex.multimonkey.monkeys.state.identifier.StateId
+import ru.yandex.multimonkey.monkeys.state.identifier.StateIdGenerator
 
 class StateModelMonkey : Monkey {
 

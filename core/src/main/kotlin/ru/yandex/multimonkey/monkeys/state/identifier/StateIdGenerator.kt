@@ -1,4 +1,4 @@
-package ru.yandex.multimonkey.`state-monkey`.`state-identifier`
+package ru.yandex.multimonkey.monkeys.state.identifier
 
 import ru.yandex.multimonkey.net.UiState
 

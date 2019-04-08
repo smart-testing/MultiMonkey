@@ -4,7 +4,7 @@ import androidx.test.uiautomator.*
 import ru.yandex.multimonkey.SimpleUiTest
 import ru.yandex.multimonkey.net.UiElement
 import ru.yandex.multimonkey.net.Monkey
-import ru.yandex.multimonkey.`state-monkey`.StateModelMonkey
+import ru.yandex.multimonkey.monkeys.state.StateModelMonkey
 import ru.yandex.multimonkey.net.UiState
 import java.util.stream.Collectors
 

@@ -1,4 +1,4 @@
-package ru.yandex.multimonkey.`state-monkey`.`action-generator`
+package ru.yandex.multimonkey.monkeys.state.actionGenerators
 
 import org.json.JSONObject
 import ru.yandex.multimonkey.net.UiAction
