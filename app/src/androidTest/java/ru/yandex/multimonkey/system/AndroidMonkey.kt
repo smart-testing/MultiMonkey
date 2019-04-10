@@ -1,6 +1,6 @@
 package ru.yandex.multimonkey.system
 
-interface Monkey {
+interface AndroidMonkey {
 
     fun generateAction() : SystemAction?
 

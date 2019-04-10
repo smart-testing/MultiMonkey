@@ -5,7 +5,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder
 import org.apache.commons.lang3.builder.HashCodeBuilder
 
 
-data class NetElement(
+data class UiElement(
     val center : Point,
     val isCheckable: Boolean,
     val isClickable: Boolean,
@@ -13,10 +13,10 @@ data class NetElement(
     val isLongClickable: Boolean,
     val resourceName: String?,
     val className: String?
-): Comparable<NetElement> {
+): Comparable<UiElement> {
 
     override fun equals(other: Any?): Boolean {
-        return if (other is NetElement) {
+        return if (other is UiElement) {
             EqualsBuilder()
                 .append(this.isCheckable, other.isCheckable)
                 .append(this.isClickable, other.isClickable)
@@ -42,7 +42,7 @@ data class NetElement(
             .build()
     }
 
-    override fun compareTo(other: NetElement): Int {
+    override fun compareTo(other: UiElement): Int {
         return CompareToBuilder()
             .append(this.isCheckable, other.isCheckable)
             .append(this.isClickable, other.isClickable)

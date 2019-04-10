@@ -3,4 +3,4 @@ package ru.yandex.multimonkey.net
 import org.json.JSONObject
 
 
-data class NetAction(val data: JSONObject)
+data class UiAction(val data: JSONObject)
