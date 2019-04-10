@@ -2,34 +2,34 @@ package ru.yandex.multimonkey.system
 
 import androidx.test.uiautomator.*
 import ru.yandex.multimonkey.SimpleUiTest
-import ru.yandex.multimonkey.net.NetElement
-import ru.yandex.multimonkey.net.NetMonkey
-import ru.yandex.multimonkey.net.NetMonkeyImpl
-import ru.yandex.multimonkey.net.NetState
+import ru.yandex.multimonkey.net.UiElement
+import ru.yandex.multimonkey.net.Monkey
+import ru.yandex.multimonkey.monkeys.state.StateModelMonkey
+import ru.yandex.multimonkey.net.UiState
 import java.util.stream.Collectors
 
 
-class SystemMonkey(private val device: UiDevice) : Monkey {
+class SystemMonkey(private val device: UiDevice) : AndroidMonkey {
 
-    private val model: NetMonkey = NetMonkeyImpl()
+    private val model: Monkey = StateModelMonkey()
 
     override fun generateAction(): SystemAction? {
-        val netState: NetState
+        val uiState: UiState
         try {
-             netState = buildState()
+             uiState = buildState()
         } catch (e: StaleObjectException) { return null }
-        val action = model.generateAction(netState)
+        val action = model.generateAction(uiState)
         return SystemAction(action, device)
     }
 
-    private fun buildState() : NetState {
-        return NetState(collectElements())
+    private fun buildState() : UiState {
+        return UiState(collectElements())
     }
 
-    private fun collectElements(): MutableList<NetElement> {
+    private fun collectElements(): MutableList<UiElement> {
         val elements = device.findObjects(By.pkg(SimpleUiTest.APPLICATION_PACKAGE))
         return elements.stream()
-            .map { element -> SystemElement(element).buildNetElement() }
+            .map { element -> SystemElement(element).buildUiElement() }
             .collect(Collectors.toList())
     }
 

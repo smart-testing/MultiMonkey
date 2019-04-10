@@ -1,10 +1,10 @@
 package ru.yandex.multimonkey.system
 
 import androidx.test.uiautomator.*
-import ru.yandex.multimonkey.net.NetAction
+import ru.yandex.multimonkey.net.UiAction
 import org.json.JSONObject
 
-class SystemAction(action: NetAction, private val device: UiDevice) {
+class SystemAction(action: UiAction, private val device: UiDevice) {
 
     private val activity : () -> Unit
 
