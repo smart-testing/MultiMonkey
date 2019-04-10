@@ -1,6 +1,6 @@
 package ru.yandex.multimonkey.monkeys.state.model
 
-import ru.yandex.multimonkey.net.UiAction
+import ru.yandex.multimonkey.ui.UiAction
 import ru.yandex.multimonkey.monkeys.state.identifier.StateId
 import java.lang.IllegalArgumentException
 

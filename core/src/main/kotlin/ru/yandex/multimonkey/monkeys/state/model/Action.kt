@@ -1,6 +1,6 @@
 package ru.yandex.multimonkey.monkeys.state.model
 
-import ru.yandex.multimonkey.net.UiAction
+import ru.yandex.multimonkey.ui.UiAction
 
 class Action(val from: State, var to: State?, val uiAction : UiAction) {
 

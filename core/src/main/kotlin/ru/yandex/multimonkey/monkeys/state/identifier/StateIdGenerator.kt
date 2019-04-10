@@ -1,6 +1,6 @@
 package ru.yandex.multimonkey.monkeys.state.identifier
 
-import ru.yandex.multimonkey.net.UiState
+import ru.yandex.multimonkey.ui.UiState
 
 
 interface StateIdGenerator<out T : StateId> {
