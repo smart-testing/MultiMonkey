@@ -30,8 +30,8 @@ class SystemMonkey(private val device: UiDevice) : AndroidMonkey {
         return SystemAction(action, element, device)
     }
 
-    private fun buildGlobal(): String {
-        return ""
+    private fun buildGlobal(): Map<String, Any> {
+        return mapOf()
     }
 
     private fun constructElements(elements: List<UiObject2>): MutableList<UiElement> {

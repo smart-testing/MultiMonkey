@@ -9,7 +9,7 @@ import ru.yandex.multimonkey.ui.UiState
 
 fun deserializeState(json: JSONObject): UiState {
     val elements = deserializeElements(json.getJSONArray("elements"))
-    val global = json.getString("global")
+    val global = deserializeJSONObject(json.getJSONObject("global"))
     return UiState(elements, global)
 }
 

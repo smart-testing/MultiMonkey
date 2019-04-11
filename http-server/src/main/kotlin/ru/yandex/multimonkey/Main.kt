@@ -6,6 +6,7 @@ import io.ktor.application.install
 import io.ktor.features.ContentNegotiation
 import io.ktor.gson.gson
 import io.ktor.request.receive
+import io.ktor.request.receiveText
 import io.ktor.response.respond
 import io.ktor.routing.post
 import io.ktor.routing.routing
@@ -23,7 +24,7 @@ fun Application.main() {
     }
     routing {
         post("/generate-action") {
-            val jsonState = call.receive<JSONObject>()
+            val jsonState = JSONObject(call.receiveText())
             val uiState = deserializeState(jsonState)
             val action = model.generateAction(uiState)
             call.respond(serializeAction(action))
