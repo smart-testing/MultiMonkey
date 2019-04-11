@@ -7,7 +7,7 @@ import io.ktor.features.ContentNegotiation
 import io.ktor.gson.gson
 import io.ktor.request.receive
 import io.ktor.response.respond
-import io.ktor.routing.get
+import io.ktor.routing.post
 import io.ktor.routing.routing
 import org.json.JSONObject
 import ru.yandex.multimonkey.monkeys.state.StateModelMonkey
@@ -22,7 +22,7 @@ fun Application.main() {
         }
     }
     routing {
-        get("/") {
+        post("/generate-action") {
             val jsonState = call.receive<JSONObject>()
             val uiState = deserializeState(jsonState)
             val action = model.generateAction(uiState)
