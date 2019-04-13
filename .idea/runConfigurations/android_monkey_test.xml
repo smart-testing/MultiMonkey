@@ -1,10 +1,10 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="android-monkey-test" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" singleton="true">
+  <configuration default="false" name="android-monkey-test" type="AndroidTestRunConfigurationType" singleton="true">
     <module name="app" />
     <option name="TESTING_TYPE" value="2" />
     <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
     <option name="METHOD_NAME" value="" />
-    <option name="CLASS_NAME" value="ru.yandex.multimonkey.SimpleUiTest" />
+    <option name="CLASS_NAME" value="ru.yandex.testopithecus.SimpleUiTest" />
     <option name="PACKAGE_NAME" value="" />
     <option name="EXTRA_OPTIONS" value="" />
     <option name="CLEAR_LOGCAT" value="false" />
@@ -18,6 +18,8 @@
     <Java />
     <Profilers>
       <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+      <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+      <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
     </Profilers>
     <method v="2">
       <option name="Android.Gradle.BeforeRunTask" enabled="true" />
