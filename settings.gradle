@@ -1,4 +1,4 @@
-rootProject.name = 'MultiMonkey'
+rootProject.name = 'testopithecus'
 
 include 'desktop-monkey'
 include ':app'
