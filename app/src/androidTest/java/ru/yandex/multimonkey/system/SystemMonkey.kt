@@ -2,12 +2,11 @@ package ru.yandex.multimonkey.system
 
 import androidx.test.uiautomator.*
 import ru.yandex.multimonkey.SimpleUiTest
-import ru.yandex.multimonkey.net.UiElement
-import ru.yandex.multimonkey.net.Monkey
+import ru.yandex.multimonkey.ui.UiElement
+import ru.yandex.multimonkey.ui.Monkey
 import ru.yandex.multimonkey.monkeys.state.StateModelMonkey
-import ru.yandex.multimonkey.net.UiState
+import ru.yandex.multimonkey.ui.UiState
 import java.util.stream.Collectors
-
 
 class SystemMonkey(private val device: UiDevice) : AndroidMonkey {
 
@@ -15,22 +14,31 @@ class SystemMonkey(private val device: UiDevice) : AndroidMonkey {
 
     override fun generateAction(): SystemAction? {
         val uiState: UiState
+        val elements: List<UiObject2>
         try {
-             uiState = buildState()
+            elements = device.findObjects(By.pkg(SimpleUiTest.APPLICATION_PACKAGE))
+            uiState = UiState(constructElements(elements), buildGlobal())
         } catch (e: StaleObjectException) { return null }
         val action = model.generateAction(uiState)
-        return SystemAction(action, device)
+        val id = action.id?.toInt()
+        val element: UiObject2?
+        if (id == null) {
+            element = null
+        } else {
+            element = elements[id]
+        }
+        return SystemAction(action, element, device)
     }
 
-    private fun buildState() : UiState {
-        return UiState(collectElements())
+    private fun buildGlobal(): Map<String, Any> {
+        return mapOf()
     }
 
-    private fun collectElements(): MutableList<UiElement> {
-        val elements = device.findObjects(By.pkg(SimpleUiTest.APPLICATION_PACKAGE))
+    private fun constructElements(elements: List<UiObject2>): MutableList<UiElement> {
+        var id = 0
         return elements.stream()
-            .map { element -> SystemElement(element).buildUiElement() }
-            .collect(Collectors.toList())
+                .map { element -> SystemElement(element).buildUiElement(id.toString()) }
+                .peek { id++ }
+                .collect(Collectors.toList())
     }
-
 }

@@ -1,19 +1,19 @@
 package ru.yandex.multimonkey.monkeys.state
 
 import ru.yandex.multimonkey.monkeys.state.model.StateModel
-import ru.yandex.multimonkey.net.Monkey
-import ru.yandex.multimonkey.net.UiAction
-import ru.yandex.multimonkey.net.UiState
+import ru.yandex.multimonkey.ui.Monkey
+import ru.yandex.multimonkey.ui.UiAction
+import ru.yandex.multimonkey.ui.UiState
 import ru.yandex.multimonkey.monkeys.state.actionGenerators.StateActionsGenerator
 import ru.yandex.multimonkey.monkeys.state.actionGenerators.StateActionsGeneratorImpl
-import ru.yandex.multimonkey.monkeys.state.identifier.DefaultStateIdGenerator
+import ru.yandex.multimonkey.monkeys.state.identifier.ElementsStateIdGenerator
 import ru.yandex.multimonkey.monkeys.state.identifier.StateId
 import ru.yandex.multimonkey.monkeys.state.identifier.StateIdGenerator
 
 class StateModelMonkey : Monkey {
 
     private val model = StateModel()
-    private val stateIdGenerator : StateIdGenerator<StateId> = DefaultStateIdGenerator()
+    private val stateIdGenerator : StateIdGenerator<StateId> = ElementsStateIdGenerator()
     private val stateActionsGenerator : StateActionsGenerator = StateActionsGeneratorImpl()
 
     override fun generateAction(uiState: UiState): UiAction {

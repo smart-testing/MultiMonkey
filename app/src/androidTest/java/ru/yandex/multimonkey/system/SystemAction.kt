@@ -1,26 +1,24 @@
 package ru.yandex.multimonkey.system
 
 import androidx.test.uiautomator.*
-import ru.yandex.multimonkey.net.UiAction
-import org.json.JSONObject
+import ru.yandex.multimonkey.ui.UiAction
 
-class SystemAction(action: UiAction, private val device: UiDevice) {
+class SystemAction(action: UiAction, element: UiObject2?, private val device: UiDevice) {
 
     private val activity : () -> Unit
 
     init {
-        val type = action.data.get("type")
+        val type = action.action
         activity = when (type) {
-            "TAP" -> parseTap(action.data)
+            "TAP" -> parseTap(element)
             else -> {
                 {}
             }
         }
     }
 
-    private fun parseTap(data: JSONObject): () -> Unit {
-        val position = data.getJSONObject("position")
-        return { device.click(position.getInt("x"), position.getInt("y")) }
+    private fun parseTap(element: UiObject2?): () -> Unit {
+        return { element?.click() }
     }
 
     fun perform() {
