@@ -9,7 +9,7 @@ import androidx.test.uiautomator.*
 
 import org.junit.Before
 import org.junit.Test
-import ru.yandex.testopithecus.system.SystemMonkey
+import ru.yandex.testopithecus.system.AndroidMonkey
 
 class SimpleUiTest {
 
@@ -23,13 +23,10 @@ class SimpleUiTest {
 
     @Test
     fun testApplication() {
-        val monkey = SystemMonkey(device)
+        val monkey = AndroidMonkey(device)
         for (step in 0 until STEPS_NUMBER) {
             openApplicationIfRequired()
-            val action = monkey.generateAction() ?: continue
-            try {
-                action.perform()
-            } catch (e: StaleObjectException) {}
+            monkey.performAction()
         }
     }
 
