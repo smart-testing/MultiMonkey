@@ -42,7 +42,10 @@ class SimpleUiTest {
     private fun openApplication() {
         device.pressHome()
         val intent = context.packageManager.getLaunchIntentForPackage(APPLICATION_PACKAGE)
-        intent!!.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        if (intent == null) {
+            throw IllegalArgumentException("No application '$APPLICATION_PACKAGE'")
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         context.startActivity(intent)
         device.wait(Until.hasObject(By.pkg(APPLICATION_PACKAGE).depth(0)), LONG_WAIT)
     }
