@@ -49,7 +49,7 @@ class SimpleUiTest {
 
     companion object {
         // TODO add package name
-        const val APPLICATION_PACKAGE = "ru.yandex.mail"
+        const val APPLICATION_PACKAGE = "ru.yandex.mail.beta"
         const val STEPS_NUMBER = 500
         const val LONG_WAIT = 5000L
     }

@@ -9,11 +9,17 @@ repositories {
     jcenter()
 }
 
+test {
+    useJUnitPlatform()
+}
+
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
     compile group: 'org.json', name: 'json', version: '20180813'
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+
+    testImplementation 'io.kotlintest:kotlintest-runner-junit5:3.3.2'
 }
 
 compileKotlin {
