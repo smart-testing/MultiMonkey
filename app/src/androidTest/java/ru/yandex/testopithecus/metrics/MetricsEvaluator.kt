@@ -71,6 +71,10 @@ class MetricsEvaluator {
         worker.interrupt()
         Log.i(LOG_TAG,"interrupting worker")
         worker.join()
+        if (metrics.crashes > 0) {
+            metrics.meanSteps /= metrics.crashes
+            metrics.meanTime /= metrics.crashes
+        }
         return metrics
     }
 
