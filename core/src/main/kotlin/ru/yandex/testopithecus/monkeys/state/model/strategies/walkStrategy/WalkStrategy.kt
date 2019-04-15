@@ -1,11 +1,12 @@
 package ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy
 
-import ru.yandex.testopithecus.monkeys.state.model.graph.Edge
-import ru.yandex.testopithecus.monkeys.state.model.graph.Vertex
+import org.jgrapht.Graph
+import ru.yandex.testopithecus.monkeys.state.model.Action
+import ru.yandex.testopithecus.monkeys.state.model.State
 
 
 interface WalkStrategy {
 
-    fun getEdge(vertex: Vertex): Pair<Edge, Vertex?>
+    fun getAction(graph: Graph<State?, Action>, state: State): Action
 
 }

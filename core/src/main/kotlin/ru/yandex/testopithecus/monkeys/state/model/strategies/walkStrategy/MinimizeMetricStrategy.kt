@@ -1,21 +1,21 @@
 package ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy
 
-import ru.yandex.testopithecus.monkeys.state.model.graph.Edge
-import ru.yandex.testopithecus.monkeys.state.model.graph.Vertex
+import org.jgrapht.Graph
+import ru.yandex.testopithecus.monkeys.state.model.Action
+import ru.yandex.testopithecus.monkeys.state.model.State
 
 class MinimizeMetricStrategy: WalkStrategy {
 
-    override fun getEdge(vertex: Vertex): Pair<Edge, Vertex?> {
-        val edges = vertex.getOutgoingEdges()
-        return edges.entries.stream()
-                .map { e -> e.toPair() }
-                .min { e1, e2 -> compareMetric(e1, e2) }
+    override fun getAction(graph: Graph<State?, Action>, state: State): Action {
+        val edges = graph.outgoingEdgesOf(state)
+        return edges.stream()
+                .min { e1, e2 -> compareMetric(graph, e1, e2) }
                 .orElse(null)
     }
 
-    private fun compareMetric(p1: Pair<Edge, Vertex?>, p2: Pair<Edge, Vertex?>): Int {
-        val firstValue = p1.second?.metric
-        val secondValue = p2.second?.metric
+    private fun compareMetric(graph: Graph<State?, Action>, a1: Action, a2: Action): Int {
+        val firstValue = graph.getEdgeTarget(a1)?.metric
+        val secondValue = graph.getEdgeTarget(a2)?.metric
         if (firstValue == null) {
             return -1
         }
