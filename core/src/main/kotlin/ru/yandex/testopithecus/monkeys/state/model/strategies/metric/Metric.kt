@@ -6,6 +6,6 @@ import ru.yandex.testopithecus.monkeys.state.model.State
 
 interface Metric {
 
-    fun updateMetric(graph: Graph<State?, Action>, state: State?)
+    fun updateMetric(graph: Graph<State, Action>, state: State)
 
 }

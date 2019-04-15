@@ -15,12 +15,16 @@ class StateModel {
     private val states: MutableMap<StateId, State> = mutableMapOf()
     private val actions: MutableMap<Action, UiAction> = mutableMapOf()
 
-    private val graph: Graph<State?, Action> = DirectedMultigraph(null, { Action() }, false)
+    private val graph: Graph<State, Action> = DirectedMultigraph(null, { Action() }, false)
 
     private val strategy: WalkStrategy = MinimizeMetricStrategy()
     private val metric: Metric = DistanceToUnknownState()
 
     private var previousAction: Action? = null
+
+    init {
+        graph.addVertex(State.NULL_STATE)
+    }
 
     fun hasState(id: StateId): Boolean {
         return states.contains(id)
@@ -38,7 +42,7 @@ class StateModel {
         uiActions.forEach {
             val action = Action()
             actions[action] = it
-            graph.addEdge(state, null, action)
+            graph.addEdge(state, State.NULL_STATE, action)
         }
         metric.updateMetric(graph, state)
     }
@@ -52,8 +56,8 @@ class StateModel {
             val previousSource = graph.getEdgeSource(previousEdgeSnapshot)
             val previousTarget = graph.getEdgeTarget(previousEdgeSnapshot)
             when {
-                previousTarget == null -> graph.changeEdge(previousEdgeSnapshot, previousTarget, previousSource)
-                previousTarget != state -> graph.changeEdge(previousEdgeSnapshot, previousTarget, null)
+                previousTarget == State.NULL_STATE -> graph.changeEdge(previousEdgeSnapshot, previousTarget, previousSource)
+                previousTarget != state -> graph.changeEdge(previousEdgeSnapshot, previousTarget, State.NULL_STATE)
                 else -> metric.updateMetric(graph, state)
             }
         }
