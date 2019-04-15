@@ -1,71 +1,71 @@
 package ru.yandex.testopithecus.monkeys.state.model
 
+import org.jgrapht.Graph
+import org.jgrapht.graph.DirectedMultigraph
 import ru.yandex.testopithecus.ui.UiAction
 import ru.yandex.testopithecus.monkeys.state.identifier.StateId
-import ru.yandex.testopithecus.monkeys.state.model.graph.Edge
-import ru.yandex.testopithecus.monkeys.state.model.graph.Graph
-import ru.yandex.testopithecus.monkeys.state.model.graph.Turn
-import ru.yandex.testopithecus.monkeys.state.model.graph.Vertex
 import ru.yandex.testopithecus.monkeys.state.model.strategies.metric.DistanceToUnknownState
 import ru.yandex.testopithecus.monkeys.state.model.strategies.metric.Metric
-import ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy.RandomStrategy
+import ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy.MinimizeMetricStrategy
 import ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy.WalkStrategy
 
 
 class StateModel {
 
-    private val ids: MutableMap<StateId, Vertex> = mutableMapOf()
-    private val states: MutableMap<Vertex, State> = mutableMapOf()
-    private val actions: MutableMap<Edge, UiAction> = mutableMapOf()
+    private val states: MutableMap<StateId, State> = mutableMapOf()
+    private val actions: MutableMap<Action, UiAction> = mutableMapOf()
 
-    private val graph = Graph()
+    private val graph: Graph<State?, Action> = DirectedMultigraph(null, { Action() }, false)
 
-    private val strategy: WalkStrategy = RandomStrategy()
+    private val strategy: WalkStrategy = MinimizeMetricStrategy()
     private val metric: Metric = DistanceToUnknownState()
 
-    private var previousTurn: Turn? = null
+    private var previousAction: Action? = null
 
     fun hasState(id: StateId): Boolean {
-        return ids.contains(id)
+        return states.contains(id)
     }
 
     fun registerState(id: StateId, uiActions: List<UiAction>) {
-        if (ids.contains(id)) {
+        if (states.contains(id)) {
             throw Exception("Duplicate state found")
         }
         println("Creating new state with id $id")
         val state = State(id)
-        val vertex = Vertex(graph)
-        ids[id] = vertex
+        states[id] = state
+        graph.addVertex(state)
 
-        states[vertex] = state
-        graph.addVertex(vertex)
         uiActions.forEach {
-            val edge = Edge(graph)
-            actions[edge] = it
-            graph.addEdge(edge, vertex, null)
+            val action = Action()
+            actions[action] = it
+            graph.addEdge(state, null, action)
         }
-        metric.updateMetric(vertex)
+        metric.updateMetric(graph, state)
     }
 
     fun generateAction(id: StateId): UiAction {
-        val vertex = ids.getOrElse(id) { throw NoSuchElementException() }
+        val state = states.getOrElse(id) { throw NoSuchElementException() }
 
         // temporary fix until feedback impl
-        val previousTurnSnapshot = previousTurn
-        if (previousTurnSnapshot != null) {
-            val previousFrom = previousTurnSnapshot.from
-            val previousEdge = previousTurnSnapshot.edge
+        val previousEdgeSnapshot = previousAction
+        if (previousEdgeSnapshot != null) {
+            val previousSource = graph.getEdgeSource(previousEdgeSnapshot)
+            val previousTarget = graph.getEdgeTarget(previousEdgeSnapshot)
             when {
-                previousTurnSnapshot.to == null -> graph.changeToVertex(previousEdge, previousFrom, vertex)
-                previousTurnSnapshot.to != vertex -> graph.changeToVertex(previousEdge, previousFrom, null)
-                else -> metric.updateMetric(vertex)
+                previousTarget == null -> graph.changeEdge(previousEdgeSnapshot, previousTarget, previousSource)
+                previousTarget != state -> graph.changeEdge(previousEdgeSnapshot, previousTarget, null)
+                else -> metric.updateMetric(graph, state)
             }
         }
 
-        val (edge, to) = strategy.getEdge(vertex)
-        previousTurn = Turn(edge, vertex, to)
-        return actions.getOrElse(edge) { throw NoSuchElementException() }
+        val action = strategy.getAction(graph, state)
+        previousAction = action
+        return actions.getOrElse(action) { throw NoSuchElementException() }
     }
 
+}
+
+fun <V, E> Graph<V, E>.changeEdge(edge: E, source: V, target: V) {
+    removeEdge(edge)
+    addEdge(source, target, edge)
 }

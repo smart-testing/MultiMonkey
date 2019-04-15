@@ -18,6 +18,7 @@ dependencies {
 
     compile group: 'org.json', name: 'json', version: '20180813'
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+    implementation group: 'org.jgrapht', name: 'jgrapht-core', version: '1.2.0'
 
     testImplementation 'io.kotlintest:kotlintest-runner-junit5:3.3.2'
 }

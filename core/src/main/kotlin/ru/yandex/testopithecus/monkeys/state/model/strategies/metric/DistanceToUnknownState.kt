@@ -1,39 +1,42 @@
 package ru.yandex.testopithecus.monkeys.state.model.strategies.metric
 
-import ru.yandex.testopithecus.monkeys.state.model.graph.Vertex
+import org.jgrapht.Graph
+import ru.yandex.testopithecus.monkeys.state.model.Action
+import ru.yandex.testopithecus.monkeys.state.model.State
 
 
 class DistanceToUnknownState: Metric {
 
-    override fun updateMetric(vertex: Vertex?) {
-        updateMetricWithDepth(vertex, 2)
+    override fun updateMetric(graph: Graph<State?, Action>, state: State?) {
+        updateMetricWithDepth(graph, state, 2)
     }
 
-    private fun updateMetricWithDepth(vertex: Vertex?, depth: Int) {
-        if (vertex == null || depth <= 0) {
+    private fun updateMetricWithDepth(graph: Graph<State?, Action>, state: State?, depth: Int) {
+        if (state == null || depth <= 0) {
             return
         }
-        val metric = vertex.metric
-        val newMetric = evaluateMetric(vertex)
+        val metric = state.metric
+        val newMetric = evaluateMetric(graph, state)
         if (newMetric != metric) {
-            vertex.metric = newMetric
-            vertex.getIncomingEdges().forEach { updateMetricWithDepth(it.value, depth - 1) }
+            state.metric = newMetric
+            graph.incomingEdgesOf(state).forEach {
+                updateMetricWithDepth(graph, graph.getEdgeSource(it), depth - 1)
+            }
         }
     }
 
-    private fun evaluateMetric(vertex: Vertex?): Int {
-        if (vertex == null) {
+    private fun evaluateMetric(graph: Graph<State?, Action>, state: State?): Int {
+        if (state == null) {
             return 0
         }
-        return vertex.getOutgoingEdges().entries
-                .stream()
-                .mapToInt { getMetric(it.value) + 1 }
+        return graph.outgoingEdgesOf(state).stream()
+                .mapToInt { getMetric(graph.getEdgeTarget(it)) + 1 }
                 .min()
                 .orElse(Int.MAX_VALUE)
     }
 
-    private fun getMetric(vertex: Vertex?): Int {
-        return vertex?.metric ?: 0
+    private fun getMetric(state: State?): Int {
+        return state?.metric ?: 0
     }
 
 }
