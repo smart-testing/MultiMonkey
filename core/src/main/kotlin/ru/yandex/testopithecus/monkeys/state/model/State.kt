@@ -1,8 +1,9 @@
 package ru.yandex.testopithecus.monkeys.state.model
 
+import ru.yandex.testopithecus.monkeys.state.identifier.StateId
 import java.lang.Exception
 
-class State {
+class State(val id: StateId) {
 
     private val toActions: MutableList<Action> = mutableListOf()
     private val fromActions: MutableList<Action> = mutableListOf()
