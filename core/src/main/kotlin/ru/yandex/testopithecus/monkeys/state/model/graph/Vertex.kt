@@ -3,11 +3,13 @@ package ru.yandex.testopithecus.monkeys.state.model.graph
 
 class Vertex(val graph: Graph) {
 
-    fun getIncomingEdges(): MutableMap<Edge, Vertex> {
+    var metric: Int? = null
+
+    fun getIncomingEdges(): Map<Edge, Vertex> {
         return graph.getIncomingEdges(this)
     }
 
-    fun getOutgoingEdges(): MutableMap<Edge, Vertex?> {
+    fun getOutgoingEdges(): Map<Edge, Vertex?> {
         return graph.getOutgoingEdges(this)
     }
 

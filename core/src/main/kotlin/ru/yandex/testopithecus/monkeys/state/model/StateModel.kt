@@ -4,9 +4,12 @@ import ru.yandex.testopithecus.ui.UiAction
 import ru.yandex.testopithecus.monkeys.state.identifier.StateId
 import ru.yandex.testopithecus.monkeys.state.model.graph.Edge
 import ru.yandex.testopithecus.monkeys.state.model.graph.Graph
+import ru.yandex.testopithecus.monkeys.state.model.graph.Turn
 import ru.yandex.testopithecus.monkeys.state.model.graph.Vertex
-import ru.yandex.testopithecus.monkeys.state.model.strategies.RandomStrategy
-import ru.yandex.testopithecus.monkeys.state.model.strategies.Strategy
+import ru.yandex.testopithecus.monkeys.state.model.strategies.metric.DistanceToUnknownState
+import ru.yandex.testopithecus.monkeys.state.model.strategies.metric.Metric
+import ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy.RandomStrategy
+import ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy.WalkStrategy
 
 
 class StateModel {
@@ -17,9 +20,10 @@ class StateModel {
 
     private val graph = Graph()
 
-    private val strategy: Strategy = RandomStrategy()
+    private val strategy: WalkStrategy = RandomStrategy()
+    private val metric: Metric = DistanceToUnknownState()
 
-    private var previousEdge: Edge? = null
+    private var previousTurn: Turn? = null
 
     fun hasState(id: StateId): Boolean {
         return ids.contains(id)
@@ -29,6 +33,7 @@ class StateModel {
         if (ids.contains(id)) {
             throw Exception("Duplicate state found")
         }
+        println("Creating new state with id $id")
         val state = State(id)
         val vertex = Vertex(graph)
         ids[id] = vertex
@@ -38,46 +43,29 @@ class StateModel {
         uiActions.forEach {
             val edge = Edge(graph)
             actions[edge] = it
-            graph.addEdge(vertex, null, edge)
+            graph.addEdge(edge, vertex, null)
         }
+        metric.updateMetric(vertex)
     }
 
     fun generateAction(id: StateId): UiAction {
         val vertex = ids.getOrElse(id) { throw NoSuchElementException() }
 
         // temporary fix until feedback impl
-//        val previousEdgeSnapshot = previousEdge
-//        if (previousEdgeSnapshot != null) {
-//            when {
-//                previousEdgeSnapshot.to == null -> linkStates(previousEdgeSnapshot.from, state, previousEdgeSnapshot)
-//                previousEdgeSnapshot.to != state -> unlink(previousEdgeSnapshot)
-//                else -> ModelConfig.METRIC.updateMetric(previousEdgeSnapshot.to)
-//            }
-//        }
+        val previousTurnSnapshot = previousTurn
+        if (previousTurnSnapshot != null) {
+            val previousFrom = previousTurnSnapshot.from
+            val previousEdge = previousTurnSnapshot.edge
+            when {
+                previousTurnSnapshot.to == null -> graph.changeToVertex(previousEdge, previousFrom, vertex)
+                previousTurnSnapshot.to != vertex -> graph.changeToVertex(previousEdge, previousFrom, null)
+                else -> metric.updateMetric(vertex)
+            }
+        }
 
-        val edge = strategy.getEdge(vertex)
-        previousEdge = edge
+        val (edge, to) = strategy.getEdge(vertex)
+        previousTurn = Turn(edge, vertex, to)
         return actions.getOrElse(edge) { throw NoSuchElementException() }
     }
-
-//    private fun unlink(action: Action) {
-//        action.to?.removeToAction(action)
-//        ModelConfig.METRIC.updateMetric(action.to)
-//        action.to = null
-//        ModelConfig.METRIC.updateMetric(action.from)
-//    }
-//
-//    private fun linkStates(from: State, to: State, action: Action) {
-//        if (action.from != from) {
-//            throw Exception("Action has different from state")
-//        }
-//        if (action.to != null) {
-//            throw Exception("Action already have linked to sate")
-//        }
-//        action.to = to
-//        to.addToAction(action)
-//        ModelConfig.METRIC.updateMetric(action.from)
-//        ModelConfig.METRIC.updateMetric(action.to)
-//    }
 
 }

@@ -1,34 +1,42 @@
 package ru.yandex.testopithecus.monkeys.state.model.graph
 
-import java.lang.Exception
-
-
 class Graph {
 
     private val vertices: MutableSet<Vertex> = mutableSetOf()
 
-    private val ingoingEdges: MutableMap<Vertex, MutableMap<Edge, Vertex>> = mutableMapOf()
-    private val outcomingEdges: MutableMap<Vertex, MutableMap<Edge, Vertex?>> = mutableMapOf()
+    private val incomingEdges: MutableMap<Vertex, MutableMap<Edge, Vertex>> = mutableMapOf()
+    private val outgoingEdges: MutableMap<Vertex, MutableMap<Edge, Vertex?>> = mutableMapOf()
 
     fun addVertex(v: Vertex) {
+        println("Adding new vertex $v")
         vertices.add(v)
-        ingoingEdges[v] = mutableMapOf()
-        outcomingEdges[v] = mutableMapOf()
+        incomingEdges[v] = mutableMapOf()
+        outgoingEdges[v] = mutableMapOf()
     }
 
-    fun addEdge(from: Vertex, to: Vertex?, edge: Edge) {
-        outcomingEdges[from]?.put(edge, to)
+    fun addEdge(edge: Edge, from: Vertex, to: Vertex?) {
+        println("Adding edge $edge from $from to $to")
+        outgoingEdges[from]?.put(edge, to)
         if (to !== null) {
-            ingoingEdges[to]?.put(edge, from)
+            incomingEdges[to]?.put(edge, from)
         }
     }
 
+    fun changeToVertex(edge: Edge, from: Vertex, newTo: Vertex?) {
+        val to = from.getOutgoingEdges()[edge]
+        println("Changing end for $edge. Was $to; now $newTo")
+        if (to != null) {
+            incomingEdges[to]?.remove(edge)
+        }
+        addEdge(edge, from, newTo)
+    }
+
     fun getIncomingEdges(v: Vertex): MutableMap<Edge, Vertex> {
-        return ingoingEdges.getOrElse(v) { throw NoSuchElementException() }
+        return incomingEdges.getOrElse(v) { throw NoSuchElementException() }
     }
 
     fun getOutgoingEdges(v: Vertex): MutableMap<Edge, Vertex?> {
-        return outcomingEdges.getOrElse(v) { throw NoSuchElementException() }
+        return outgoingEdges.getOrElse(v) { throw NoSuchElementException() }
     }
 
 }

@@ -1,42 +1,39 @@
 package ru.yandex.testopithecus.monkeys.state.model.strategies.metric
 
-import ru.yandex.testopithecus.monkeys.state.model.State
+import ru.yandex.testopithecus.monkeys.state.model.graph.Vertex
 
 
 class DistanceToUnknownState: Metric {
-    override fun getInitialMetric(): Int {
-        return Int.MAX_VALUE
+
+    override fun updateMetric(vertex: Vertex?) {
+        updateMetricWithDepth(vertex, 2)
     }
 
-    override fun getMetricForNull(): Int {
-        return 0
-    }
-
-    override fun evaluateMetric(state: State?): Int {
-        if (state == null) {
-            return getMetricForNull()
+    private fun updateMetricWithDepth(vertex: Vertex?, depth: Int) {
+        if (vertex == null || depth <= 0) {
+            return
         }
-        return state.getFromActions()
+        val metric = vertex.metric
+        val newMetric = evaluateMetric(vertex)
+        if (newMetric != metric) {
+            vertex.metric = newMetric
+            vertex.getIncomingEdges().forEach { updateMetricWithDepth(it.value, depth - 1) }
+        }
+    }
+
+    private fun evaluateMetric(vertex: Vertex?): Int {
+        if (vertex == null) {
+            return 0
+        }
+        return vertex.getOutgoingEdges().entries
                 .stream()
-                .min { a1, a2 -> a1.compareTo(a2) }
-                .map { a -> a.metric + 1 }
+                .mapToInt { getMetric(it.value) + 1 }
+                .min()
                 .orElse(Int.MAX_VALUE)
     }
 
-    override fun updateMetric(state: State?) {
-        updateMetricWithDepth(state, 2)
-    }
-
-    private fun updateMetricWithDepth(state: State?, depth: Int) {
-        if (state == null || depth <= 0) {
-            return
-        }
-        val metric = state.metric
-        val newMetric = evaluateMetric(state)
-        if (newMetric != metric) {
-            state.metric = newMetric
-            state.getToActions().forEach { updateMetricWithDepth(it.from, depth - 1) }
-        }
+    private fun getMetric(vertex: Vertex?): Int {
+        return vertex?.metric ?: 0
     }
 
 }

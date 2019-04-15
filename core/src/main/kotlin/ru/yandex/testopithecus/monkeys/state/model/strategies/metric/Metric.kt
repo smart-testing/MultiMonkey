@@ -1,15 +1,10 @@
 package ru.yandex.testopithecus.monkeys.state.model.strategies.metric
 
-import ru.yandex.testopithecus.monkeys.state.model.State
+import ru.yandex.testopithecus.monkeys.state.model.graph.Vertex
 
 
 interface Metric {
 
-    fun getInitialMetric(): Int
+    fun updateMetric(vertex: Vertex?)
 
-    fun evaluateMetric(state: State?): Int
-
-    fun getMetricForNull(): Int
-
-    fun updateMetric(state: State?)
 }
