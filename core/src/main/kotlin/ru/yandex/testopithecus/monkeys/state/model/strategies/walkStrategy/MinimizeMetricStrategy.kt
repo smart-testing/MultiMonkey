@@ -6,7 +6,7 @@ import ru.yandex.testopithecus.monkeys.state.model.State
 
 class MinimizeMetricStrategy: WalkStrategy {
 
-    override fun getAction(graph: Graph<State, Action>, state: State): Action {
+    override fun getAction(graph: Graph<State, Action>, state: State): Action? {
         val edges = graph.outgoingEdgesOf(state)
         return edges.stream()
                 .min { e1, e2 -> compareMetric(graph, e1, e2) }

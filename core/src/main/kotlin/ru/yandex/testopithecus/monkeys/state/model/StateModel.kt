@@ -62,7 +62,7 @@ class StateModel {
             }
         }
 
-        val action = strategy.getAction(graph, state)
+        val action = strategy.getAction(graph, state) ?: throw NoSuchElementException()
         previousAction = action
         return actions.getOrElse(action) { throw NoSuchElementException() }
     }
