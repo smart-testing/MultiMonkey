@@ -3,11 +3,11 @@ package ru.yandex.testopithecus
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-
-import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
-import androidx.test.uiautomator.*
-
+import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
+import androidx.test.uiautomator.By
+import androidx.test.uiautomator.UiDevice
+import androidx.test.uiautomator.Until
 import org.junit.Test
 import ru.yandex.testopithecus.metrics.MetricsEvaluator
 import ru.yandex.testopithecus.system.AndroidMonkey
@@ -29,7 +29,7 @@ class SimpleUiTest {
             val evaluator = MetricsEvaluator()
             evaluator.start()
             runMonkey(pckg)
-            val result = evaluator.result()
+            val result = evaluator.result(true)
             Log.i(METRICS_LOG_TAG, result.toString())
         }
     }
@@ -40,13 +40,14 @@ class SimpleUiTest {
         Log.i(METRICS_LOG_TAG, "clearing $pckg")
         Log.i(METRICS_LOG_TAG, device.executeShellCommand("pm clear $pckg"))
         Log.i(METRICS_LOG_TAG, "installing $pckg")
-        Log.i(METRICS_LOG_TAG, device.executeShellCommand("pm install -t -r /sdcard/$apk"))
+        Log.i(METRICS_LOG_TAG, device.executeShellCommand("pm install -t -r /data/local/tmp/apks/$apk"))
     }
 
     private fun runMonkey(pckg: String) {
         openApplication(pckg)
         val monkey = AndroidMonkey(device, pckg)
         for (step in 0 until STEPS_NUMBER) {
+            Log.d(STEPS_LOG_TAG, "current step: $step")
             openApplicationIfRequired(pckg)
             monkey.performAction()
         }
@@ -68,8 +69,9 @@ class SimpleUiTest {
     }
 
     companion object {
+        const val STEPS_LOG_TAG = "STEP_COUNTER"
         private const val METRICS_LOG_TAG = "METRICS"
-        private const val STEPS_NUMBER = 10
+        private const val STEPS_NUMBER = 100
         private const val LONG_WAIT = 5000L
         private const val DEFAULT_PACKAGE = "ru.yandex.mail"
         private val apps = mapOf(

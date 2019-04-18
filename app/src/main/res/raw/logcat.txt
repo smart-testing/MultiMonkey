@@ -1,0 +1,1008 @@
+2019-04-18 23:09:50.922 I/qemu-props( 1440): start adbd ...
+2019-04-18 23:10:00.014 E/memtrack( 1674): Couldn't load memtrack module
+2019-04-18 23:10:00.015 W/android.os.Debug( 1674): failed to get memory consumption info: -1
+2019-04-18 23:10:00.037 D/hwcomposer( 1434): hw_composer sent 4 syncs in 60s
+2019-04-18 23:10:00.048 E/memtrack( 1674): Couldn't load memtrack module
+2019-04-18 23:10:00.048 W/android.os.Debug( 1674): failed to get memory consumption info: -1
+2019-04-18 23:10:18.326 D/AndroidRuntime(19802): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+2019-04-18 23:10:18.367 W/app_process(19802): Unexpected CPU variant for X86 using defaults: x86
+2019-04-18 23:10:18.379 D/AndroidRuntime(19802): Calling main entry com.android.commands.wm.Wm
+2019-04-18 23:10:18.380 D/AndroidRuntime(19808): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+2019-04-18 23:10:18.380 W/WindowManager( 1674): Permission Denial: dismissKeyguard from pid=19802, uid=2000 requires android.permission.CONTROL_KEYGUARD
+2019-04-18 23:10:18.380 D/AndroidRuntime(19802): Shutting down VM
+2019-04-18 23:10:18.410 W/app_process(19808): Unexpected CPU variant for X86 using defaults: x86
+2019-04-18 23:10:18.425 D/AndroidRuntime(19808): Calling main entry com.android.commands.pm.Pm
+2019-04-18 23:10:18.427 E/asset   (19825): setgid: Operation not permitted
+2019-04-18 23:10:18.555 I/PackageManager.DexOptimizer( 1674): Running dexopt (dexoptNeeded=1) on: /data/app/vmdl218025662.tmp/base.apk pkg=ru.yandex.testopithecus isa=x86 dexoptFlags=boot_complete,debuggable,public target-filter=quicken oatDir=/data/app/vmdl218025662.tmp/oat sharedLibraries=null
+2019-04-18 23:10:18.562 W/dex2oat (19830): Unexpected CPU variant for X86 using defaults: x86
+2019-04-18 23:10:18.562 W/dex2oat (19830): Mismatch between dex2oat instruction set features (ISA: X86 Feature string: -ssse3,-sse4.1,-sse4.2,-avx,-avx2,-popcnt) and those of dex2oat executable (ISA: X86 Feature string: ssse3,-sse4.1,-sse4.2,-avx,-avx2,-popcnt) for the command line:
+2019-04-18 23:10:18.562 W/dex2oat (19830): /system/bin/dex2oat --zip-fd=8 --zip-location=base.apk --input-vdex-fd=-1 --output-vdex-fd=10 --oat-fd=9 --oat-location=/data/app/vmdl218025662.tmp/oat/x86/base.odex --instruction-set=x86 --instruction-set-variant=x86 --instruction-set-features=default --runtime-arg -Xms64m --runtime-arg -Xmx512m --compiler-filter=quicken --swap-fd=11 --debuggable --classpath-dir=/data/app/vmdl218025662.tmp
+2019-04-18 23:10:18.562 I/dex2oat (19830): /system/bin/dex2oat --input-vdex-fd=-1 --output-vdex-fd=10 --compiler-filter=quicken --debuggable --classpath-dir=/data/app/vmdl218025662.tmp
+2019-04-18 23:10:18.853 I/dex2oat (19830): dex2oat took 291.736ms (687.091ms cpu) (threads: 4) arena alloc=8KB (8552B) java alloc=1865KB (1910680B) native alloc=3MB (3840440B) free=2MB (2451016B)
+2019-04-18 23:10:18.856 I/ActivityManager( 1674): Force stopping ru.yandex.testopithecus appid=10131 user=-1: installPackageLI
+2019-04-18 23:10:18.876 I/PackageManager( 1674): Package ru.yandex.testopithecus codePath changed from /data/app/ru.yandex.testopithecus-xKU0moamuRSvNkI00ouweA== to /data/app/ru.yandex.testopithecus-8-rJJREhMZSmMcbgihPfRw==; Retaining data and using new
+2019-04-18 23:10:18.876 W/PackageManager( 1674): Code path for ru.yandex.testopithecus changing from /data/app/ru.yandex.testopithecus-xKU0moamuRSvNkI00ouweA== to /data/app/ru.yandex.testopithecus-8-rJJREhMZSmMcbgihPfRw==
+2019-04-18 23:10:18.876 W/PackageManager( 1674): Resource path for ru.yandex.testopithecus changing from /data/app/ru.yandex.testopithecus-xKU0moamuRSvNkI00ouweA== to /data/app/ru.yandex.testopithecus-8-rJJREhMZSmMcbgihPfRw==
+2019-04-18 23:10:18.978 I/zygote  ( 1674): Explicit concurrent copying GC freed 121885(5MB) AllocSpace objects, 15(300KB) LOS objects, 34% free, 11MB/17MB, paused 521us total 56.556ms
+2019-04-18 23:10:18.981 E/        ( 1520): Couldn't opendir /data/app/vmdl218025662.tmp: No such file or directory
+2019-04-18 23:10:18.981 E/installd( 1520): Failed to delete /data/app/vmdl218025662.tmp: No such file or directory
+2019-04-18 23:10:18.982 I/Pm      (19808): Package ru.yandex.testopithecus installed in 557 ms
+2019-04-18 23:10:18.983 I/ActivityManager( 1674): Force stopping ru.yandex.testopithecus appid=10131 user=0: pkg removed
+2019-04-18 23:10:19.003 I/app_process(19808): System.exit called, status: 0
+2019-04-18 23:10:19.003 I/AndroidRuntime(19808): VM exiting with result code 0.
+2019-04-18 23:10:19.005 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:ru.yandex.testopithecus flg=0x4000010 (has extras) } to com.android.vending/com.google.android.finsky.packagemanager.impl.PackageMonitorReceiverImpl$RegisteredReceiver
+2019-04-18 23:10:19.005 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:ru.yandex.testopithecus flg=0x4000010 (has extras) } to com.android.vending/com.google.android.finsky.instantapps.appmanagement.InstantAppRemoveMonitor
+2019-04-18 23:10:19.005 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:ru.yandex.testopithecus flg=0x4000010 (has extras) } to com.google.android.gms/.games.chimera.GamesSystemBroadcastReceiverProxy
+2019-04-18 23:10:19.005 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:ru.yandex.testopithecus flg=0x4000010 (has extras) } to com.google.android.gms/.photos.autobackup.PhotosAppUninstalledReceiver
+2019-04-18 23:10:19.006 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:ru.yandex.testopithecus flg=0x4000010 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+2019-04-18 23:10:19.006 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:ru.yandex.testopithecus flg=0x4000010 (has extras) } to com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher
+2019-04-18 23:10:19.009 I/InputReader( 1674): Reconfiguring input devices.  changes=0x00000010
+2019-04-18 23:10:19.024 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:ru.yandex.testopithecus flg=0x4000010 (has extras) } to com.android.vending/com.google.android.finsky.packagemanager.impl.PackageMonitorReceiverImpl$RegisteredReceiver
+2019-04-18 23:10:19.024 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:ru.yandex.testopithecus flg=0x4000010 (has extras) } to com.google.android.gms/.games.chimera.GamesSystemBroadcastReceiverProxy
+2019-04-18 23:10:19.024 I/Finsky  (13829): [2] com.google.android.finsky.packagemanager.impl.PackageMonitorReceiverImpl.a(4): PackageMonitor received: android.intent.action.PACKAGE_ADDED
+2019-04-18 23:10:19.024 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:ru.yandex.testopithecus flg=0x4000010 (has extras) } to com.google.android.gms/.gass.chimera.PackageChangeBroadcastReceiver
+2019-04-18 23:10:19.025 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:ru.yandex.testopithecus flg=0x4000010 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+2019-04-18 23:10:19.025 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:ru.yandex.testopithecus flg=0x4000010 (has extras) } to com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher
+2019-04-18 23:10:19.026 I/InputReader( 1674): Reconfiguring input devices.  changes=0x00000010
+2019-04-18 23:10:19.026 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REPLACED dat=package:ru.yandex.testopithecus flg=0x4000010 (has extras) } to com.google.android.apps.photos/.account.full.FetchAccountPropertiesAppUpgradeBroadcastReceiver
+2019-04-18 23:10:19.026 I/Finsky  (13829): [2] uqq.a(11): Do not start WearSupportService due to Wear service optimization
+2019-04-18 23:10:19.026 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REPLACED dat=package:ru.yandex.testopithecus flg=0x4000010 (has extras) } to com.google.android.apps.photos/.account.full.SyncAccountsForLoginBroadcastReceiver
+2019-04-18 23:10:19.026 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REPLACED dat=package:ru.yandex.testopithecus flg=0x4000010 (has extras) } to com.google.android.apps.photos/.experiments.phenotype.full.PhenotypeAppUpgradeBroadcastReceiver
+2019-04-18 23:10:19.027 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REPLACED dat=package:ru.yandex.testopithecus flg=0x4000010 (has extras) } to com.google.android.apps.photos/.notificationchannels.AppUpdateBroadcastReceiver
+2019-04-18 23:10:19.027 I/InputReader( 1674): Reconfiguring input devices.  changes=0x00000010
+2019-04-18 23:10:19.027 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REPLACED dat=package:ru.yandex.testopithecus flg=0x4000010 (has extras) } to com.google.android.gms/.gass.chimera.PackageChangeBroadcastReceiver
+2019-04-18 23:10:19.027 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REPLACED dat=package:ru.yandex.testopithecus flg=0x4000010 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+2019-04-18 23:10:19.027 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REPLACED dat=package:ru.yandex.testopithecus flg=0x4000010 (has extras) } to com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher
+2019-04-18 23:10:19.052 I/Finsky  (13829): [2] mwa.b(2): Frosting ID looked up on UI thread. Caller should move to a background thread.
+2019-04-18 23:10:19.053 I/GamesBroadcastStub( 2147): Ignorning broadcast; requires Play Games
+2019-04-18 23:10:19.058 I/GamesBroadcastStub( 2147): Ignorning broadcast; requires Play Games
+2019-04-18 23:10:19.063 I/Finsky  (13829): [2] iki.run(4): Package state data is missing for ru.yandex.testopithecus
+2019-04-18 23:10:19.064 I/Telecom ( 1674): DefaultDialerCache: Refreshing default dialer for user 0: now com.google.android.dialer: DDC.oR@Akk
+2019-04-18 23:10:19.069 W/ResourceType( 1674): ResTable_typeSpec entry count inconsistent: given 30, previously 38
+2019-04-18 23:10:19.079 I/Finsky  (13829): [849] mvz.run(16): Wrote row to frosting DB: 560
+2019-04-18 23:10:19.086 I/ProvidersCache(14935): Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+2019-04-18 23:10:19.117 I/Auth    ( 2147): [SupervisedAccountIntentOperation] onHandleIntent(): android.intent.action.PACKAGE_ADDED
+2019-04-18 23:10:19.117 I/Auth    ( 2147): [SupervisedAccountIntentOperation] This operation is disabled
+2019-04-18 23:10:19.120 I/ChromeSync( 2147): [Sync,SyncIntentOperation] Handling the intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:ru.yandex.testopithecus flg=0x4000010 cmp=com.google.android.gms/.chimera.GmsIntentOperationService (has extras) }.
+2019-04-18 23:10:19.124 I/FontsPackageChangeOp( 2147): Package ru.yandex.testopithecus has no metadata
+2019-04-18 23:10:19.133 I/PeopleContactsSync( 2147): triggerPendingContactsCleanup: no accounts
+2019-04-18 23:10:19.158 D/CarrierSvcBindHelper( 1905): No carrier app for: 0
+2019-04-18 23:10:19.159 D/CarrierSvcBindHelper( 1905): No carrier app for: 0
+2019-04-18 23:10:19.161 I/ProvidersCache(14935): Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+2019-04-18 23:10:19.164 D/ImsResolver( 1905): maybeAddedImsService, packageName: ru.yandex.testopithecus
+2019-04-18 23:10:19.167 D/CarrierConfigLoader( 1905): mHandler: 9 phoneId: 0
+2019-04-18 23:10:19.195 I/Icing   ( 2147): IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=SEARCH_QUERIES
+2019-04-18 23:10:19.196 I/Icing   ( 2147): IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=SEARCH_CORPORA
+2019-04-18 23:10:19.261 I/Icing   ( 2147): Usage reports ok 1, Failed Usage reports 0, indexed 0, rejected 0, imm upload false
+2019-04-18 23:10:19.269 I/Icing   ( 2147): Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0, imm upload false
+2019-04-18 23:10:19.276 I/Icing   ( 2147): IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=SEARCH_CORPORA
+2019-04-18 23:10:19.284 I/Finsky  (13829): [2] pfx.b(7): Jobs in database: 1-1337 3-31 12-1 23-0 24-77777777 26-1414141414
+2019-04-18 23:10:19.284 I/Icing   ( 2147): IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=SEARCH_QUERIES
+2019-04-18 23:10:19.285 I/Finsky  (13829): [2] pdk.a(66): ConstraintMapping: 24-77777777,  -> L: 0ms, D: 73514195ms, C: false, I: true, N: NET_NONE
+2019-04-18 23:10:19.285 I/Finsky  (13829): [2] pdk.a(66): ConstraintMapping: 1-1337, 12-1, 23-0,  -> L: 14777ms, D: 43177394ms, C: false, I: false, N: NET_ANY
+2019-04-18 23:10:19.285 I/Finsky  (13829): [2] pdk.a(66): ConstraintMapping: 3-31,  -> L: 0ms, D: 78457638ms, C: true, I: true, N: NET_UNMETERED
+2019-04-18 23:10:19.285 I/Finsky  (13829): [2] pdk.a(66): ConstraintMapping: 26-1414141414,  -> L: 33889068ms, D: 34789068ms, C: false, I: false, N: NET_NONE
+2019-04-18 23:10:19.288 I/Finsky  (13829): [2] com.google.android.finsky.scheduler.JobSchedulerEngine.a(42): Cancelling existing job with id: 9007
+2019-04-18 23:10:19.290 I/Finsky  (13829): [2] com.google.android.finsky.scheduler.JobSchedulerEngine.a(42): Cancelling existing job with id: 9002
+2019-04-18 23:10:19.291 I/Finsky  (13829): [2] com.google.android.finsky.scheduler.JobSchedulerEngine.a(42): Cancelling existing job with id: 9005
+2019-04-18 23:10:19.292 I/Finsky  (13829): [2] com.google.android.finsky.scheduler.JobSchedulerEngine.a(42): Cancelling existing job with id: 9000
+2019-04-18 23:10:19.294 I/Finsky  (13829): [2] com.google.android.finsky.scheduler.JobSchedulerEngine.a(4): Scheduling job Id: 9001, L: 0, D: 73514195, C: false, I: true, N: 0
+2019-04-18 23:10:19.294 I/Finsky  (13829): [2] com.google.android.finsky.scheduler.JobSchedulerEngine.a(4): Scheduling job Id: 9003, L: 14777, D: 43177394, C: false, I: false, N: 1
+2019-04-18 23:10:19.295 I/Finsky  (13829): [2] com.google.android.finsky.scheduler.JobSchedulerEngine.a(4): Scheduling job Id: 9004, L: 0, D: 78457638, C: true, I: true, N: 2
+2019-04-18 23:10:19.296 I/Finsky  (13829): [2] com.google.android.finsky.scheduler.JobSchedulerEngine.a(4): Scheduling job Id: 9006, L: 33889068, D: 34789068, C: false, I: false, N: 0
+2019-04-18 23:10:19.296 I/Icing   ( 2147): Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0, imm upload false
+2019-04-18 23:10:19.305 I/Icing   ( 2147): Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0, imm upload false
+2019-04-18 23:10:19.361 D/AndroidRuntime(19898): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+2019-04-18 23:10:19.389 W/app_process(19898): Unexpected CPU variant for X86 using defaults: x86
+2019-04-18 23:10:19.401 D/AndroidRuntime(19898): Calling main entry com.android.commands.pm.Pm
+2019-04-18 23:10:19.403 E/asset   (19907): setgid: Operation not permitted
+2019-04-18 23:10:19.441 I/PackageManager.DexOptimizer( 1674): Running dexopt (dexoptNeeded=1) on: /data/app/vmdl953013622.tmp/base.apk pkg=ru.yandex.testopithecus.test isa=x86 dexoptFlags=boot_complete,debuggable,public target-filter=quicken oatDir=/data/app/vmdl953013622.tmp/oat sharedLibraries=/system/framework/android.test.runner.jar
+2019-04-18 23:10:19.446 W/dex2oat (19909): Unexpected CPU variant for X86 using defaults: x86
+2019-04-18 23:10:19.447 W/dex2oat (19909): Mismatch between dex2oat instruction set features (ISA: X86 Feature string: -ssse3,-sse4.1,-sse4.2,-avx,-avx2,-popcnt) and those of dex2oat executable (ISA: X86 Feature string: ssse3,-sse4.1,-sse4.2,-avx,-avx2,-popcnt) for the command line:
+2019-04-18 23:10:19.447 W/dex2oat (19909): /system/bin/dex2oat --zip-fd=8 --zip-location=base.apk --input-vdex-fd=-1 --output-vdex-fd=10 --oat-fd=9 --oat-location=/data/app/vmdl953013622.tmp/oat/x86/base.odex --instruction-set=x86 --instruction-set-variant=x86 --instruction-set-features=default --runtime-arg -Xms64m --runtime-arg -Xmx512m --compiler-filter=quicken --swap-fd=11 --debuggable --runtime-arg -classpath --runtime-arg /system/framework/android.test.runner.jar --classpath-dir=/data/app/vmdl953013622.tmp
+2019-04-18 23:10:19.447 I/dex2oat (19909): /system/bin/dex2oat --input-vdex-fd=-1 --output-vdex-fd=10 --compiler-filter=quicken --debuggable --classpath-dir=/data/app/vmdl953013622.tmp
+2019-04-18 23:10:19.496 W/dex2oat (19909): Rejecting class androidx.test.uiautomator.UiAutomatorInstrumentationTestRunner that attempts to sub-type erroneous class android.test.InstrumentationTestRunner in base.apk:classes2.dex
+2019-04-18 23:10:19.529 I/dex2oat (19909): dex2oat took 82.768ms (142.505ms cpu) (threads: 4) arena alloc=24KB (25480B) java alloc=437KB (448408B) native alloc=1498KB (1534832B) free=2MB (2659472B)
+2019-04-18 23:10:19.532 I/ActivityManager( 1674): Force stopping ru.yandex.testopithecus.test appid=10132 user=-1: installPackageLI
+2019-04-18 23:10:19.550 I/PackageManager( 1674): Package ru.yandex.testopithecus.test codePath changed from /data/app/ru.yandex.testopithecus.test-txufGahbRXSlXWK4OfcKHQ== to /data/app/ru.yandex.testopithecus.test-_NmcclnfAzRgfBbvJZZ4_g==; Retaining data and using new
+2019-04-18 23:10:19.550 W/PackageManager( 1674): Code path for ru.yandex.testopithecus.test changing from /data/app/ru.yandex.testopithecus.test-txufGahbRXSlXWK4OfcKHQ== to /data/app/ru.yandex.testopithecus.test-_NmcclnfAzRgfBbvJZZ4_g==
+2019-04-18 23:10:19.550 W/PackageManager( 1674): Resource path for ru.yandex.testopithecus.test changing from /data/app/ru.yandex.testopithecus.test-txufGahbRXSlXWK4OfcKHQ== to /data/app/ru.yandex.testopithecus.test-_NmcclnfAzRgfBbvJZZ4_g==
+2019-04-18 23:10:19.616 I/zygote  ( 1674): Explicit concurrent copying GC freed 72318(3MB) AllocSpace objects, 19(380KB) LOS objects, 34% free, 11MB/17MB, paused 179us total 28.588ms
+2019-04-18 23:10:19.617 E/        ( 1520): Couldn't opendir /data/app/vmdl953013622.tmp: No such file or directory
+2019-04-18 23:10:19.617 E/installd( 1520): Failed to delete /data/app/vmdl953013622.tmp: No such file or directory
+2019-04-18 23:10:19.618 I/ActivityManager( 1674): Force stopping ru.yandex.testopithecus.test appid=10132 user=0: pkg removed
+2019-04-18 23:10:19.618 I/Pm      (19898): Package ru.yandex.testopithecus.test installed in 216 ms
+2019-04-18 23:10:19.621 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:ru.yandex.testopithecus.test flg=0x4000010 (has extras) } to com.android.vending/com.google.android.finsky.packagemanager.impl.PackageMonitorReceiverImpl$RegisteredReceiver
+2019-04-18 23:10:19.621 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:ru.yandex.testopithecus.test flg=0x4000010 (has extras) } to com.android.vending/com.google.android.finsky.instantapps.appmanagement.InstantAppRemoveMonitor
+2019-04-18 23:10:19.621 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:ru.yandex.testopithecus.test flg=0x4000010 (has extras) } to com.google.android.gms/.games.chimera.GamesSystemBroadcastReceiverProxy
+2019-04-18 23:10:19.621 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:ru.yandex.testopithecus.test flg=0x4000010 (has extras) } to com.google.android.gms/.photos.autobackup.PhotosAppUninstalledReceiver
+2019-04-18 23:10:19.621 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:ru.yandex.testopithecus.test flg=0x4000010 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+2019-04-18 23:10:19.621 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:ru.yandex.testopithecus.test flg=0x4000010 (has extras) } to com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher
+2019-04-18 23:10:19.622 I/InputReader( 1674): Reconfiguring input devices.  changes=0x00000010
+2019-04-18 23:10:19.622 I/app_process(19898): System.exit called, status: 0
+2019-04-18 23:10:19.622 I/AndroidRuntime(19898): VM exiting with result code 0.
+2019-04-18 23:10:19.628 I/GamesBroadcastStub( 2147): Ignorning broadcast; requires Play Games
+2019-04-18 23:10:19.628 I/Finsky  (13829): [2] com.google.android.finsky.packagemanager.impl.PackageMonitorReceiverImpl.a(4): PackageMonitor received: android.intent.action.PACKAGE_ADDED
+2019-04-18 23:10:19.628 I/InputReader( 1674): Reconfiguring input devices.  changes=0x00000010
+2019-04-18 23:10:19.628 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:ru.yandex.testopithecus.test flg=0x4000010 (has extras) } to com.android.vending/com.google.android.finsky.packagemanager.impl.PackageMonitorReceiverImpl$RegisteredReceiver
+2019-04-18 23:10:19.629 I/InputReader( 1674): Reconfiguring input devices.  changes=0x00000010
+2019-04-18 23:10:19.630 I/Finsky  (13829): [2] uqq.a(11): Do not start WearSupportService due to Wear service optimization
+2019-04-18 23:10:19.630 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:ru.yandex.testopithecus.test flg=0x4000010 (has extras) } to com.google.android.gms/.games.chimera.GamesSystemBroadcastReceiverProxy
+2019-04-18 23:10:19.630 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:ru.yandex.testopithecus.test flg=0x4000010 (has extras) } to com.google.android.gms/.gass.chimera.PackageChangeBroadcastReceiver
+2019-04-18 23:10:19.630 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:ru.yandex.testopithecus.test flg=0x4000010 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+2019-04-18 23:10:19.630 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:ru.yandex.testopithecus.test flg=0x4000010 (has extras) } to com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher
+2019-04-18 23:10:19.630 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REPLACED dat=package:ru.yandex.testopithecus.test flg=0x4000010 (has extras) } to com.google.android.apps.photos/.account.full.FetchAccountPropertiesAppUpgradeBroadcastReceiver
+2019-04-18 23:10:19.630 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REPLACED dat=package:ru.yandex.testopithecus.test flg=0x4000010 (has extras) } to com.google.android.apps.photos/.account.full.SyncAccountsForLoginBroadcastReceiver
+2019-04-18 23:10:19.631 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REPLACED dat=package:ru.yandex.testopithecus.test flg=0x4000010 (has extras) } to com.google.android.apps.photos/.experiments.phenotype.full.PhenotypeAppUpgradeBroadcastReceiver
+2019-04-18 23:10:19.631 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REPLACED dat=package:ru.yandex.testopithecus.test flg=0x4000010 (has extras) } to com.google.android.apps.photos/.notificationchannels.AppUpdateBroadcastReceiver
+2019-04-18 23:10:19.631 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REPLACED dat=package:ru.yandex.testopithecus.test flg=0x4000010 (has extras) } to com.google.android.gms/.gass.chimera.PackageChangeBroadcastReceiver
+2019-04-18 23:10:19.632 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REPLACED dat=package:ru.yandex.testopithecus.test flg=0x4000010 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+2019-04-18 23:10:19.633 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REPLACED dat=package:ru.yandex.testopithecus.test flg=0x4000010 (has extras) } to com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher
+2019-04-18 23:10:19.633 I/Finsky  (13829): [2] mwa.b(2): Frosting ID looked up on UI thread. Caller should move to a background thread.
+2019-04-18 23:10:19.635 I/Finsky  (13829): [2] iki.run(4): Package state data is missing for ru.yandex.testopithecus.test
+2019-04-18 23:10:19.637 I/GamesBroadcastStub( 2147): Ignorning broadcast; requires Play Games
+2019-04-18 23:10:19.650 I/Telecom ( 1674): DefaultDialerCache: Refreshing default dialer for user 0: now com.google.android.dialer: DDC.oR@Ak4
+2019-04-18 23:10:19.652 I/Auth    ( 2147): [SupervisedAccountIntentOperation] onHandleIntent(): android.intent.action.PACKAGE_ADDED
+2019-04-18 23:10:19.652 I/Auth    ( 2147): [SupervisedAccountIntentOperation] This operation is disabled
+2019-04-18 23:10:19.654 I/ChromeSync( 2147): [Sync,SyncIntentOperation] Handling the intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:ru.yandex.testopithecus.test flg=0x4000010 cmp=com.google.android.gms/.chimera.GmsIntentOperationService (has extras) }.
+2019-04-18 23:10:19.655 W/ResourceType( 1674): ResTable_typeSpec entry count inconsistent: given 30, previously 38
+2019-04-18 23:10:19.664 I/Finsky  (13829): [849] mvz.run(16): Wrote row to frosting DB: 561
+2019-04-18 23:10:19.679 I/FontsPackageChangeOp( 2147): Package ru.yandex.testopithecus.test has no metadata
+2019-04-18 23:10:19.680 I/ProvidersCache(14935): Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+2019-04-18 23:10:19.684 I/PeopleContactsSync( 2147): triggerPendingContactsCleanup: no accounts
+2019-04-18 23:10:19.686 I/ProvidersCache(14935): Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+2019-04-18 23:10:19.693 I/Icing   ( 2147): IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=SEARCH_QUERIES
+2019-04-18 23:10:19.694 I/Icing   ( 2147): IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=SEARCH_CORPORA
+2019-04-18 23:10:19.695 D/CarrierSvcBindHelper( 1905): No carrier app for: 0
+2019-04-18 23:10:19.696 D/CarrierSvcBindHelper( 1905): No carrier app for: 0
+2019-04-18 23:10:19.699 D/ImsResolver( 1905): maybeAddedImsService, packageName: ru.yandex.testopithecus.test
+2019-04-18 23:10:19.699 D/CarrierConfigLoader( 1905): mHandler: 9 phoneId: 0
+2019-04-18 23:10:19.718 I/Icing   ( 2147): Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0, imm upload false
+2019-04-18 23:10:19.724 I/Icing   ( 2147): Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0, imm upload false
+2019-04-18 23:10:19.729 I/Icing   ( 2147): IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=SEARCH_CORPORA
+2019-04-18 23:10:19.733 I/Icing   ( 2147): IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=SEARCH_QUERIES
+2019-04-18 23:10:19.738 I/Icing   ( 2147): Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0, imm upload false
+2019-04-18 23:10:19.743 I/Icing   ( 2147): Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0, imm upload false
+2019-04-18 23:10:19.876 D/AndroidRuntime(19924): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+2019-04-18 23:10:19.900 W/app_process(19924): Unexpected CPU variant for X86 using defaults: x86
+2019-04-18 23:10:19.911 D/AndroidRuntime(19924): Calling main entry com.android.commands.am.Am
+2019-04-18 23:10:19.913 I/ActivityManager( 1674): Force stopping ru.yandex.testopithecus appid=10131 user=0: start instr
+2019-04-18 23:10:19.917 I/zygote  (19933): Not late-enabling -Xcheck:jni (already on)
+2019-04-18 23:10:19.921 W/zygote  (19933): Unexpected CPU variant for X86 using defaults: x86
+2019-04-18 23:10:19.924 I/ActivityManager( 1674): Start proc 19933:ru.yandex.testopithecus/u0a131 for added application ru.yandex.testopithecus
+2019-04-18 23:10:19.936 W/System  (19933): ClassLoader referenced unknown path:
+2019-04-18 23:10:19.943 I/MonitoringInstr(19933): Instrumentation started!
+2019-04-18 23:10:19.944 I/MonitoringInstr(19933): Setting context classloader to 'dalvik.system.PathClassLoader[DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/data/app/ru.yandex.testopithecus.test-_NmcclnfAzRgfBbvJZZ4_g==/base.apk", zip file "/data/app/ru.yandex.testopithecus-8-rJJREhMZSmMcbgihPfRw==/base.apk"],nativeLibraryDirectories=[/data/app/ru.yandex.testopithecus.test-_NmcclnfAzRgfBbvJZZ4_g==/lib/x86, /data/app/ru.yandex.testopithecus-8-rJJREhMZSmMcbgihPfRw==/lib/x86, /system/lib, /vendor/lib]]]', Original: 'dalvik.system.PathClassLoader[DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/data/app/ru.yandex.testopithecus.test-_NmcclnfAzRgfBbvJZZ4_g==/base.apk", zip file "/data/app/ru.yandex.testopithecus-8-rJJREhMZSmMcbgihPfRw==/base.apk"],nativeLibraryDirectories=[/data/app/ru.yandex.testopithecus.test-_NmcclnfAzRgfBbvJZZ4_g==/lib/x86, /data/app/ru.yandex.testopithecus-8-rJJREhMZSmMcbgihPfRw==/lib/x86, /system/lib, /vendor/lib]]]'
+2019-04-18 23:10:19.945 I/MonitoringInstr(19933): No JSBridge.
+2019-04-18 23:10:19.946 I/MonitoringInstr(19933): Setting context classloader to 'dalvik.system.PathClassLoader[DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/data/app/ru.yandex.testopithecus.test-_NmcclnfAzRgfBbvJZZ4_g==/base.apk", zip file "/data/app/ru.yandex.testopithecus-8-rJJREhMZSmMcbgihPfRw==/base.apk"],nativeLibraryDirectories=[/data/app/ru.yandex.testopithecus.test-_NmcclnfAzRgfBbvJZZ4_g==/lib/x86, /data/app/ru.yandex.testopithecus-8-rJJREhMZSmMcbgihPfRw==/lib/x86, /system/lib, /vendor/lib]]]', Original: 'dalvik.system.PathClassLoader[DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/data/app/ru.yandex.testopithecus.test-_NmcclnfAzRgfBbvJZZ4_g==/base.apk", zip file "/data/app/ru.yandex.testopithecus-8-rJJREhMZSmMcbgihPfRw==/base.apk"],nativeLibraryDirectories=[/data/app/ru.yandex.testopithecus.test-_NmcclnfAzRgfBbvJZZ4_g==/lib/x86, /data/app/ru.yandex.testopithecus-8-rJJREhMZSmMcbgihPfRw==/lib/x86, /system/lib, /vendor/lib]]]'
+2019-04-18 23:10:19.948 D/InfraTrack(19933): Tracking disabled due to lack of internet permissions
+2019-04-18 23:10:19.948 I/UsageTrackerFacilitator(19933): Usage tracking disabled
+2019-04-18 23:10:19.953 D/TestExecutor(19933): Adding listener androidx.test.internal.runner.listener.LogRunListener
+2019-04-18 23:10:19.953 D/TestExecutor(19933): Adding listener androidx.test.internal.runner.listener.InstrumentationResultPrinter
+2019-04-18 23:10:19.954 D/TestExecutor(19933): Adding listener androidx.test.internal.runner.listener.ActivityFinisherRunListener
+2019-04-18 23:10:19.955 I/TestRunner(19933): run started: 1 tests
+2019-04-18 23:10:19.961 I/TestRunner(19933): started: calculateMetrics(ru.yandex.testopithecus.SimpleUiTest)
+2019-04-18 23:10:19.962 I/MonitoringInstr(19933): Activities that are still in CREATED to STOPPED: 0
+2019-04-18 23:10:19.962 I/METRICS (19933): uninstalling com.avjindersinghsekhon.minimaltodo
+2019-04-18 23:10:20.087 D/AndroidRuntime(19952): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+2019-04-18 23:10:20.113 W/app_process(19952): Unexpected CPU variant for X86 using defaults: x86
+2019-04-18 23:10:20.124 D/AndroidRuntime(19952): Calling main entry com.android.commands.pm.Pm
+2019-04-18 23:10:20.126 I/ActivityManager( 1674): Force stopping com.avjindersinghsekhon.minimaltodo appid=10155 user=-1: deletePackageX
+2019-04-18 23:10:20.216 I/keystore( 1521): clear_uid 10155
+2019-04-18 23:10:20.271 I/zygote  ( 1674): Explicit concurrent copying GC freed 38018(2MB) AllocSpace objects, 9(180KB) LOS objects, 33% free, 11MB/17MB, paused 981us total 53.770ms
+2019-04-18 23:10:20.273 I/ActivityManager( 1674): Force stopping com.avjindersinghsekhon.minimaltodo appid=10155 user=0: pkg removed
+2019-04-18 23:10:20.276 W/MessageQueue(19952): Handler (android.os.Handler) {7ac40a3} sending message to a Handler on a dead thread
+2019-04-18 23:10:20.276 W/MessageQueue(19952): java.lang.IllegalStateException: Handler (android.os.Handler) {7ac40a3} sending message to a Handler on a dead thread
+2019-04-18 23:10:20.276 W/MessageQueue(19952): 	at android.os.MessageQueue.enqueueMessage(MessageQueue.java:545)
+2019-04-18 23:10:20.276 W/MessageQueue(19952): 	at android.os.Handler.enqueueMessage(Handler.java:661)
+2019-04-18 23:10:20.276 W/MessageQueue(19952): 	at android.os.Handler.sendMessageAtTime(Handler.java:630)
+2019-04-18 23:10:20.276 W/MessageQueue(19952): 	at android.os.Handler.sendMessageDelayed(Handler.java:600)
+2019-04-18 23:10:20.276 W/MessageQueue(19952): 	at android.os.Handler.post(Handler.java:356)
+2019-04-18 23:10:20.276 W/MessageQueue(19952): 	at android.os.ResultReceiver$MyResultReceiver.send(ResultReceiver.java:57)
+2019-04-18 23:10:20.276 W/MessageQueue(19952): 	at com.android.internal.os.IResultReceiver$Stub.onTransact(IResultReceiver.java:58)
+2019-04-18 23:10:20.276 W/MessageQueue(19952): 	at android.os.Binder.execTransact(Binder.java:674)
+2019-04-18 23:10:20.277 I/app_process(19952): System.exit called, status: 0
+2019-04-18 23:10:20.277 I/AndroidRuntime(19952): VM exiting with result code 0.
+2019-04-18 23:10:20.277 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:com.avjindersinghsekhon.minimaltodo flg=0x4000010 (has extras) } to com.android.vending/com.google.android.finsky.packagemanager.impl.PackageMonitorReceiverImpl$RegisteredReceiver
+2019-04-18 23:10:20.278 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:com.avjindersinghsekhon.minimaltodo flg=0x4000010 (has extras) } to com.android.vending/com.google.android.finsky.instantapps.appmanagement.InstantAppRemoveMonitor
+2019-04-18 23:10:20.278 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:com.avjindersinghsekhon.minimaltodo flg=0x4000010 (has extras) } to com.google.android.gms/.games.chimera.GamesSystemBroadcastReceiverProxy
+2019-04-18 23:10:20.278 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:com.avjindersinghsekhon.minimaltodo flg=0x4000010 (has extras) } to com.google.android.gms/.photos.autobackup.PhotosAppUninstalledReceiver
+2019-04-18 23:10:20.278 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:com.avjindersinghsekhon.minimaltodo flg=0x4000010 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+2019-04-18 23:10:20.278 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:com.avjindersinghsekhon.minimaltodo flg=0x4000010 (has extras) } to com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher
+2019-04-18 23:10:20.279 I/InputReader( 1674): Reconfiguring input devices.  changes=0x00000010
+2019-04-18 23:10:20.287 I/GamesBroadcastStub( 2147): Ignorning broadcast; requires Play Games
+2019-04-18 23:10:20.287 I/GeofencerStateMachine( 2013): removeGeofences: removeRequest=RemoveGeofencingRequest[REMOVE_ALL packageName=com.avjindersinghsekhon.minimaltodo]
+2019-04-18 23:10:20.304 I/METRICS (19933): Success
+2019-04-18 23:10:20.304 I/METRICS (19933): clearing com.avjindersinghsekhon.minimaltodo
+2019-04-18 23:10:20.309 I/LocationSettingsChecker( 2147): Removing dialog suppression flag for package com.avjindersinghsekhon.minimaltodo
+2019-04-18 23:10:20.314 I/ContentMaintenance( 2147): Internal cache bytes used: 0; limit: 100000000; download size: 0
+2019-04-18 23:10:20.315 I/PeopleContactsSync( 2147): triggerPendingContactsCleanup: no accounts
+2019-04-18 23:10:20.317 D/CarrierSvcBindHelper( 1905): No carrier app for: 0
+2019-04-18 23:10:20.318 I/Finsky  (13829): [2] com.google.android.finsky.packagemanager.impl.PackageMonitorReceiverImpl.a(4): PackageMonitor received: android.intent.action.PACKAGE_FULLY_REMOVED
+2019-04-18 23:10:20.318 I/Finsky  (13829): [2] uqq.a(11): Do not start WearSupportService due to Wear service optimization
+2019-04-18 23:10:20.319 I/Finsky  (13829): [2] uqq.a(11): Do not start WearSupportService due to Wear service optimization
+2019-04-18 23:10:20.320 I/Finsky  (13829): [853] kkn.run(2): Cleaning dev-triggered-update data on package uninstall for com.avjindersinghsekhon.minimaltodo.
+2019-04-18 23:10:20.320 I/Finsky  (13829): [2] nfd.j(7): Package no longer installed: com.avjindersinghsekhon.minimaltodo
+2019-04-18 23:10:20.322 I/Icing   ( 2147): Indexing com.google.android.gms-apps from com.google.android.gms
+2019-04-18 23:10:20.329 I/Finsky  (13829): [855] kkq.run(2): Finished dev-triggered-update cleaning.
+2019-04-18 23:10:20.338 I/Finsky  (13829): [857] qhs.run(2): Cleaned old sessions for com.avjindersinghsekhon.minimaltodo.
+2019-04-18 23:10:20.339 I/ProvidersCache(14935): Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+2019-04-18 23:10:20.342 I/Icing   ( 2147): IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=SEARCH_QUERIES
+2019-04-18 23:10:20.344 I/Finsky  (13829): [849] mwe.run(16): Frosting DB delete succeeded: true
+2019-04-18 23:10:20.346 I/RealtimeCacheCleanup( 2147): Beginning Realtime garbage collection.
+2019-04-18 23:10:20.346 I/RealtimeCacheCleanup( 2147): Finished Realtime garbage collection.
+2019-04-18 23:10:20.351 I/Finsky  (13829): [675] kfw.b(40): No matching installs to run
+2019-04-18 23:10:20.352 I/Icing   ( 2147): IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=SEARCH_CORPORA
+2019-04-18 23:10:20.352 W/ResourceType( 1674): ResTable_typeSpec entry count inconsistent: given 30, previously 38
+2019-04-18 23:10:20.365 I/Icing   ( 2147): doRemovePackageData com.avjindersinghsekhon.minimaltodo
+2019-04-18 23:10:20.376 I/Icing   ( 2147): Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0, imm upload false
+2019-04-18 23:10:20.379 I/Icing   ( 2147): Indexing done com.google.android.gms-apps
+2019-04-18 23:10:20.384 I/Icing   ( 2147): Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0, imm upload false
+2019-04-18 23:10:20.446 D/AndroidRuntime(19967): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+2019-04-18 23:10:20.471 W/app_process(19967): Unexpected CPU variant for X86 using defaults: x86
+2019-04-18 23:10:20.482 D/AndroidRuntime(19967): Calling main entry com.android.commands.pm.Pm
+2019-04-18 23:10:20.484 W/ActivityManager( 1674): Invalid packageName: com.avjindersinghsekhon.minimaltodo
+2019-04-18 23:10:20.484 I/app_process(19967): System.exit called, status: 1
+2019-04-18 23:10:20.484 I/AndroidRuntime(19967): VM exiting with result code 1.
+2019-04-18 23:10:20.487 I/METRICS (19933):
+2019-04-18 23:10:20.487 I/METRICS (19933): installing com.avjindersinghsekhon.minimaltodo
+2019-04-18 23:10:20.605 D/AndroidRuntime(19993): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+2019-04-18 23:10:20.629 W/app_process(19993): Unexpected CPU variant for X86 using defaults: x86
+2019-04-18 23:10:20.640 D/AndroidRuntime(19993): Calling main entry com.android.commands.pm.Pm
+2019-04-18 23:10:20.642 E/asset   (20003): setgid: Operation not permitted
+2019-04-18 23:10:20.701 I/PackageManager.DexOptimizer( 1674): Running dexopt (dexoptNeeded=1) on: /data/app/vmdl804226833.tmp/base.apk pkg=com.avjindersinghsekhon.minimaltodo isa=x86 dexoptFlags=boot_complete,debuggable,public target-filter=quicken oatDir=/data/app/vmdl804226833.tmp/oat sharedLibraries=null
+2019-04-18 23:10:20.706 W/dex2oat (20005): Unexpected CPU variant for X86 using defaults: x86
+2019-04-18 23:10:20.706 W/dex2oat (20005): Mismatch between dex2oat instruction set features (ISA: X86 Feature string: -ssse3,-sse4.1,-sse4.2,-avx,-avx2,-popcnt) and those of dex2oat executable (ISA: X86 Feature string: ssse3,-sse4.1,-sse4.2,-avx,-avx2,-popcnt) for the command line:
+2019-04-18 23:10:20.706 W/dex2oat (20005): /system/bin/dex2oat --zip-fd=8 --zip-location=base.apk --input-vdex-fd=-1 --output-vdex-fd=10 --oat-fd=9 --oat-location=/data/app/vmdl804226833.tmp/oat/x86/base.odex --instruction-set=x86 --instruction-set-variant=x86 --instruction-set-features=default --runtime-arg -Xms64m --runtime-arg -Xmx512m --compiler-filter=quicken --swap-fd=11 --debuggable --classpath-dir=/data/app/vmdl804226833.tmp
+2019-04-18 23:10:20.706 I/dex2oat (20005): /system/bin/dex2oat --input-vdex-fd=-1 --output-vdex-fd=10 --compiler-filter=quicken --debuggable --classpath-dir=/data/app/vmdl804226833.tmp
+2019-04-18 23:10:20.729 I/Icing   ( 2147): Indexing com.google.android.gms-apps from com.google.android.gms
+2019-04-18 23:10:20.730 I/Icing   ( 2147): Indexing done com.google.android.gms-apps
+2019-04-18 23:10:20.748 I/Icing   ( 2147): Indexing com.google.android.gms-apps from com.google.android.gms
+2019-04-18 23:10:20.749 I/Icing   ( 2147): Indexing done com.google.android.gms-apps
+2019-04-18 23:10:20.962 I/dex2oat (20005): dex2oat took 255.720ms (717.314ms cpu) (threads: 4) arena alloc=687KB (703968B) java alloc=2MB (2854152B) native alloc=3MB (4038600B) free=3MB (3301432B)
+2019-04-18 23:10:20.999 D/installd( 1520): Applied hard quotas for 10156
+2019-04-18 23:10:20.999 V/BackupManagerService( 1674): restoreAtInstall pkg=com.avjindersinghsekhon.minimaltodo token=5d restoreSet=0
+2019-04-18 23:10:20.999 V/BackupManagerService( 1674): Finishing install immediately
+2019-04-18 23:10:21.003 E/        ( 1520): Couldn't opendir /data/app/vmdl804226833.tmp: No such file or directory
+2019-04-18 23:10:21.003 E/installd( 1520): Failed to delete /data/app/vmdl804226833.tmp: No such file or directory
+2019-04-18 23:10:21.004 I/Pm      (19993): Package com.avjindersinghsekhon.minimaltodo installed in 363 ms
+2019-04-18 23:10:21.004 D/PackageInstaller( 1674): Ignoring abandon after commit relinquished control
+2019-04-18 23:10:21.004 I/app_process(19993): System.exit called, status: 0
+2019-04-18 23:10:21.004 I/AndroidRuntime(19993): VM exiting with result code 0.
+2019-04-18 23:10:21.008 I/METRICS (19933): Success
+2019-04-18 23:10:21.012 I/ActivityManager( 1674): START u0 {act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10200000 cmp=com.google.android.apps.nexuslauncher/.NexusLauncherActivity (has extras)} from uid 1000
+2019-04-18 23:10:21.015 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.avjindersinghsekhon.minimaltodo flg=0x4000010 (has extras) } to com.android.vending/com.google.android.finsky.packagemanager.impl.PackageMonitorReceiverImpl$RegisteredReceiver
+2019-04-18 23:10:21.015 I/Finsky  (13829): [2] com.google.android.finsky.packagemanager.impl.PackageMonitorReceiverImpl.a(4): PackageMonitor received: android.intent.action.PACKAGE_ADDED
+2019-04-18 23:10:21.016 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.avjindersinghsekhon.minimaltodo flg=0x4000010 (has extras) } to com.google.android.gms/.games.chimera.GamesSystemBroadcastReceiverProxy
+2019-04-18 23:10:21.016 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.avjindersinghsekhon.minimaltodo flg=0x4000010 (has extras) } to com.google.android.gms/.gass.chimera.PackageChangeBroadcastReceiver
+2019-04-18 23:10:21.016 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.avjindersinghsekhon.minimaltodo flg=0x4000010 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+2019-04-18 23:10:21.016 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.avjindersinghsekhon.minimaltodo flg=0x4000010 (has extras) } to com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher
+2019-04-18 23:10:21.017 I/Finsky  (13829): [2] uqq.a(11): Do not start WearSupportService due to Wear service optimization
+2019-04-18 23:10:21.017 I/InputReader( 1674): Reconfiguring input devices.  changes=0x00000010
+2019-04-18 23:10:21.021 I/Finsky  (13829): [2] uqq.a(11): Do not start WearSupportService due to Wear service optimization
+2019-04-18 23:10:21.021 I/Finsky  (13829): [853] kko.run(2): Cleaning dev-triggered-update data on package install for com.avjindersinghsekhon.minimaltodo.
+2019-04-18 23:10:21.021 I/Finsky  (13829): [855] kkq.run(2): Finished dev-triggered-update cleaning.
+2019-04-18 23:10:21.025 I/Finsky  (13829): [2] mwa.b(2): Frosting ID looked up on UI thread. Caller should move to a background thread.
+2019-04-18 23:10:21.025 I/GamesBroadcastStub( 2147): Ignorning broadcast; requires Play Games
+2019-04-18 23:10:21.031 I/Telecom ( 1674): DefaultDialerCache: Refreshing default dialer for user 0: now com.google.android.dialer: DDC.oR@AlQ
+2019-04-18 23:10:21.037 I/ChromeSync( 2147): [Sync,SyncIntentOperation] Handling the intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.avjindersinghsekhon.minimaltodo flg=0x4000010 cmp=com.google.android.gms/.chimera.GmsIntentOperationService (has extras) }.
+2019-04-18 23:10:21.037 I/Auth    ( 2147): [SupervisedAccountIntentOperation] onHandleIntent(): android.intent.action.PACKAGE_ADDED
+2019-04-18 23:10:21.037 I/Auth    ( 2147): [SupervisedAccountIntentOperation] This operation is disabled
+2019-04-18 23:10:21.048 D/ImsResolver( 1905): maybeAddedImsService, packageName: com.avjindersinghsekhon.minimaltodo
+2019-04-18 23:10:21.054 I/PeopleContactsSync( 2147): triggerPendingContactsCleanup: no accounts
+2019-04-18 23:10:21.055 D/CarrierSvcBindHelper( 1905): No carrier app for: 0
+2019-04-18 23:10:21.056 I/Finsky  (13829): [849] mvz.run(16): Wrote row to frosting DB: 562
+2019-04-18 23:10:21.060 D/CarrierConfigLoader( 1905): mHandler: 9 phoneId: 0
+2019-04-18 23:10:21.073 I/ProvidersCache(14935): Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+2019-04-18 23:10:21.089 I/Icing   ( 2147): IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=SEARCH_CORPORA
+2019-04-18 23:10:21.090 I/Icing   ( 2147): IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=SEARCH_QUERIES
+2019-04-18 23:10:21.101 I/Icing   ( 2147): Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0, imm upload false
+2019-04-18 23:10:21.115 I/Icing   ( 2147): Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0, imm upload false
+2019-04-18 23:10:21.392 I/Icing   ( 2147): Indexing com.google.android.gms-apps from com.google.android.gms
+2019-04-18 23:10:21.413 I/Icing   ( 2147): Indexing com.google.android.gms-internal.3p:MobileApplication from com.google.android.gms
+2019-04-18 23:10:21.417 I/Icing   ( 2147): Indexing done com.google.android.gms-apps
+2019-04-18 23:10:21.418 I/Icing   ( 2147): Indexing com.google.android.gms-internal.3p:Photograph from com.google.android.gms
+2019-04-18 23:10:21.425 I/Icing   ( 2147): Indexing done com.google.android.gms-internal.3p:MobileApplication
+2019-04-18 23:10:21.427 I/Icing   ( 2147): Indexing done com.google.android.gms-internal.3p:Photograph
+2019-04-18 23:10:22.015 W/InteractionController(19933): runAndwaitForEvents timed out waiting for events
+2019-04-18 23:10:22.020 I/ActivityManager( 1674): START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 pkg=com.avjindersinghsekhon.minimaltodo cmp=com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.Main.MainActivity} from uid 10131
+2019-04-18 23:10:22.023 W/ActivityManager( 1674): Activity start request from 10131 stopped
+2019-04-18 23:10:22.142 I/Icing   ( 2147): Indexing com.google.android.gms-apps from com.google.android.gms
+2019-04-18 23:10:22.146 I/Icing   ( 2147): Indexing done com.google.android.gms-apps
+2019-04-18 23:10:22.152 I/Icing   ( 2147): Indexing com.google.android.gms-internal.3p:MobileApplication from com.google.android.gms
+2019-04-18 23:10:22.156 I/Icing   ( 2147): Indexing done com.google.android.gms-internal.3p:MobileApplication
+2019-04-18 23:10:22.163 I/Icing   ( 2147): Indexing com.google.android.gms-internal.3p:Photograph from com.google.android.gms
+2019-04-18 23:10:22.167 I/Icing   ( 2147): Indexing done com.google.android.gms-internal.3p:Photograph
+2019-04-18 23:10:25.700 I/zygote  (19933): Do partial code cache collection, code=29KB, data=16KB
+2019-04-18 23:10:25.700 I/zygote  (19933): After code cache collection, code=29KB, data=16KB
+2019-04-18 23:10:25.700 I/zygote  (19933): Increasing code cache capacity to 128KB
+2019-04-18 23:10:26.039 I/zygote  (20018): Not late-enabling -Xcheck:jni (already on)
+2019-04-18 23:10:26.043 I/ActivityManager( 1674): Start proc 20018:com.avjindersinghsekhon.minimaltodo/u0a156 for activity com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.Main.MainActivity
+2019-04-18 23:10:26.056 W/zygote  (20018): Unexpected CPU variant for X86 using defaults: x86
+2019-04-18 23:10:26.062 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:26.111 D/EGL_emulation( 2228): eglMakeCurrent: 0x9e746f00: ver 2 0 (tinfo 0x9e8ff920)
+2019-04-18 23:10:26.111 D/EGL_emulation( 2280): eglMakeCurrent: 0xa1106c20: ver 2 0 (tinfo 0xa1103ae0)
+2019-04-18 23:10:26.130 I/MicroDetector( 2280): Keeping mic open: false
+2019-04-18 23:10:26.131 I/DeviceStateChecker( 2280): DeviceStateChecker cancelled
+2019-04-18 23:10:26.132 I/MicroRecognitionRunner( 2280): Stopping hotword detection.
+2019-04-18 23:10:26.132 I/MicroRecognitionRunner( 2280): Detection finished
+2019-04-18 23:10:26.133 I/AudioController( 2280): internalShutdown
+2019-04-18 23:10:26.147 W/asset   ( 1774): Asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:26.147 E/ResourcesManager( 1774): failed to add asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk
+2019-04-18 23:10:26.148 W/PackageManager( 1774): Failure retrieving resources for com.android.vending
+2019-04-18 23:10:26.149 W/asset   ( 1774): Asset path /data/app/com.avjindersinghsekhon.minimaltodo-y9y4TDH88up715G50gXeAg==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:26.149 E/ResourcesManager( 1774): failed to add asset path /data/app/com.avjindersinghsekhon.minimaltodo-y9y4TDH88up715G50gXeAg==/base.apk
+2019-04-18 23:10:26.149 W/PackageManager( 1774): Failure retrieving resources for com.avjindersinghsekhon.minimaltodo
+2019-04-18 23:10:26.149 W/asset   ( 1774): Asset path /data/app/com.avjindersinghsekhon.minimaltodo-y9y4TDH88up715G50gXeAg==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:26.149 E/ResourcesManager( 1774): failed to add asset path /data/app/com.avjindersinghsekhon.minimaltodo-y9y4TDH88up715G50gXeAg==/base.apk
+2019-04-18 23:10:26.149 W/PackageManager( 1774): Failure retrieving resources for com.avjindersinghsekhon.minimaltodo
+2019-04-18 23:10:26.149 W/asset   ( 1774): Asset path /data/app/com.avjindersinghsekhon.minimaltodo-y9y4TDH88up715G50gXeAg==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:26.149 E/ResourcesManager( 1774): failed to add asset path /data/app/com.avjindersinghsekhon.minimaltodo-y9y4TDH88up715G50gXeAg==/base.apk
+2019-04-18 23:10:26.149 W/PackageManager( 1774): Failure retrieving resources for com.avjindersinghsekhon.minimaltodo
+2019-04-18 23:10:26.149 W/asset   ( 1774): Asset path /data/app/com.avjindersinghsekhon.minimaltodo-y9y4TDH88up715G50gXeAg==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:26.149 E/ResourcesManager( 1774): failed to add asset path /data/app/com.avjindersinghsekhon.minimaltodo-y9y4TDH88up715G50gXeAg==/base.apk
+2019-04-18 23:10:26.149 W/PackageManager( 1774): Failure retrieving resources for com.avjindersinghsekhon.minimaltodo
+2019-04-18 23:10:26.150 W/asset   ( 1774): Asset path /data/app/com.avjindersinghsekhon.minimaltodo-y9y4TDH88up715G50gXeAg==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:26.150 E/ResourcesManager( 1774): failed to add asset path /data/app/com.avjindersinghsekhon.minimaltodo-y9y4TDH88up715G50gXeAg==/base.apk
+2019-04-18 23:10:26.150 W/PackageManager( 1774): Failure retrieving resources for com.avjindersinghsekhon.minimaltodo
+2019-04-18 23:10:26.150 I/MicrophoneInputStream( 2280): mic_close  SR : 16000 CC : 16 SO : 1999
+2019-04-18 23:10:26.150 E/AudioSource( 2280): Stop listening is called on already closed AudioSource
+2019-04-18 23:10:26.171 I/GAv4    (20018): Google Analytics 7.8.95 is starting up. To enable debug logging on a device run:
+2019-04-18 23:10:26.171 I/GAv4    (20018):   adb shell setprop log.tag.GAv4 DEBUG
+2019-04-18 23:10:26.171 I/GAv4    (20018):   adb logcat -s GAv4
+2019-04-18 23:10:26.174 W/GAv4    (20018): AnalyticsReceiver is not registered or is disabled. Register the receiver for reliable dispatching on non-Google Play devices. See http://goo.gl/8Rd3yj for instructions.
+2019-04-18 23:10:26.178 W/GAv4    (20018): CampaignTrackingReceiver is not registered, not exported or is disabled. Installation campaign tracking is not possible. See http://goo.gl/8Rd3yj for instructions.
+2019-04-18 23:10:26.184 E/SurfaceFlinger( 1442): ro.sf.lcd_density must be defined as a build property
+2019-04-18 23:10:26.184 D/OpenGLRenderer(20018): HWUI GL Pipeline
+2019-04-18 23:10:26.186 W/GAv4    (20018): AnalyticsService not registered in the app manifest. Hits might not be delivered reliably. See http://goo.gl/8Rd3yj for instructions.
+2019-04-18 23:10:26.204 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:26.205 D/        (20018): HostConnection::get() New Host Connection established 0xa0e646c0, tid 20041
+2019-04-18 23:10:26.205 I/OpenGLRenderer(20018): Initialized EGL, version 1.4
+2019-04-18 23:10:26.206 D/OpenGLRenderer(20018): Swap behavior 1
+2019-04-18 23:10:26.206 W/OpenGLRenderer(20018): Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+2019-04-18 23:10:26.206 D/OpenGLRenderer(20018): Swap behavior 0
+2019-04-18 23:10:26.211 D/EGL_emulation(20018): eglCreateContext: 0xa1105420: maj 2 min 0 rcv 2
+2019-04-18 23:10:26.212 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:26.219 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:26.219 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:26.247 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:26.277 I/ActivityManager( 1674): Displayed com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.Main.MainActivity: +249ms
+2019-04-18 23:10:26.848 I/PBSessionCacheImpl( 2280): Deleted sessionId[1183787282337] from persistence.
+2019-04-18 23:10:26.851 W/SearchServiceCore( 2280): Abort, client detached.
+2019-04-18 23:10:26.876 W/SurfaceFlinger( 1442): couldn't log to binary event log: overflow.
+2019-04-18 23:10:26.877 W/SurfaceFlinger( 1442): couldn't log to binary event log: overflow.
+2019-04-18 23:10:27.462 D/STEP_COUNTER(19933): current step: 0
+2019-04-18 23:10:27.471 I/zygote  (20018): Do partial code cache collection, code=29KB, data=24KB
+2019-04-18 23:10:27.471 I/zygote  (20018): After code cache collection, code=29KB, data=24KB
+2019-04-18 23:10:27.471 I/zygote  (20018): Increasing code cache capacity to 128KB
+2019-04-18 23:10:27.523 D/STEP_COUNTER(19933): current step: 1
+2019-04-18 23:10:27.540 W/audio_hw_generic( 1427): Not supplying enough data to HAL, expected position 9355123 , only wrote 9354960
+2019-04-18 23:10:27.561 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 1150976
+2019-04-18 23:10:27.563 I/chatty  ( 1433): uid=1000(system) allocator@2.0-s identical 1 line
+2019-04-18 23:10:27.565 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 1150976
+2019-04-18 23:10:27.585 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:27.593 I/zygote  (20018): Do partial code cache collection, code=49KB, data=50KB
+2019-04-18 23:10:27.593 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:27.593 I/zygote  (20018): After code cache collection, code=49KB, data=50KB
+2019-04-18 23:10:27.593 I/zygote  (20018): Increasing code cache capacity to 256KB
+2019-04-18 23:10:27.594 I/zygote  (20018): JIT allocated 71KB for compiled code of void android.widget.TextView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+2019-04-18 23:10:27.594 I/zygote  (20018): Compiler allocated 4MB to compile void android.widget.TextView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+2019-04-18 23:10:27.610 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:27.746 I/chatty  (20018): uid=10156(u0_a156) RenderThread identical 13 lines
+2019-04-18 23:10:27.759 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:27.760 I/zygote  (20018): Do full code cache collection, code=122KB, data=71KB
+2019-04-18 23:10:27.760 I/zygote  (20018): After code cache collection, code=107KB, data=46KB
+2019-04-18 23:10:27.763 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:27.826 I/chatty  (20018): uid=10156(u0_a156) RenderThread identical 7 lines
+2019-04-18 23:10:27.830 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:28.402 D/STEP_COUNTER(19933): current step: 2
+2019-04-18 23:10:28.415 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:28.467 I/ActivityManager( 1674): START u0 {cmp=com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.Settings.SettingsActivity} from uid 10156
+2019-04-18 23:10:28.541 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:28.545 I/chatty  ( 1433): uid=1000(system) allocator@2.0-s identical 1 line
+2019-04-18 23:10:28.548 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:28.560 I/zygote  (20018): Do partial code cache collection, code=120KB, data=76KB
+2019-04-18 23:10:28.560 I/zygote  (20018): After code cache collection, code=120KB, data=76KB
+2019-04-18 23:10:28.560 I/zygote  (20018): Increasing code cache capacity to 512KB
+2019-04-18 23:10:28.579 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:28.585 I/zygote  (20018): JIT allocated 56KB for compiled code of void android.view.View.<init>(android.content.Context, android.util.AttributeSet, int, int)
+2019-04-18 23:10:28.590 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:28.595 W/asset   ( 1774): Asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:28.595 I/ActivityManager( 1674): Displayed com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.Settings.SettingsActivity: +105ms
+2019-04-18 23:10:28.595 E/ResourcesManager( 1774): failed to add asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk
+2019-04-18 23:10:28.595 W/PackageManager( 1774): Failure retrieving resources for com.android.vending
+2019-04-18 23:10:28.597 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:28.601 I/chatty  (20018): uid=10156(u0_a156) RenderThread identical 1 line
+2019-04-18 23:10:28.605 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:28.606 D/OpenGLRenderer(20018): endAllActiveAnimators on 0x8e2be180 (ListPopupWindow$DropDownListView) with handle 0xa1103c00
+2019-04-18 23:10:28.986 W/SurfaceFlinger( 1442): couldn't log to binary event log: overflow.
+2019-04-18 23:10:29.474 D/STEP_COUNTER(19933): current step: 3
+2019-04-18 23:10:29.492 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:29.514 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:29.518 I/chatty  ( 1433): uid=1000(system) allocator@2.0-s identical 1 line
+2019-04-18 23:10:29.522 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:29.538 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:29.543 I/chatty  (20018): uid=10156(u0_a156) RenderThread identical 1 line
+2019-04-18 23:10:29.561 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:29.561 D/OpenGLRenderer(20018): endAllActiveAnimators on 0x8e362380 (RippleDrawable) with handle 0xa11037c0
+2019-04-18 23:10:29.603 W/asset   ( 1774): Asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:29.603 E/ResourcesManager( 1774): failed to add asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk
+2019-04-18 23:10:29.603 W/PackageManager( 1774): Failure retrieving resources for com.android.vending
+2019-04-18 23:10:29.828 W/SurfaceFlinger( 1442): couldn't log to binary event log: overflow.
+2019-04-18 23:10:30.166 I/zygote  (20018): Do full code cache collection, code=249KB, data=141KB
+2019-04-18 23:10:30.166 I/zygote  (20018): After code cache collection, code=178KB, data=93KB
+2019-04-18 23:10:30.224 D/STEP_COUNTER(19933): current step: 4
+2019-04-18 23:10:30.234 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:30.250 I/ActivityManager( 1674): START u0 {cmp=com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.AddToDo.AddToDoActivity (has extras)} from uid 10156
+2019-04-18 23:10:30.354 D/OskarSchindler(20018): Light Theme
+2019-04-18 23:10:30.363 D/OskarSchindler(20018): Imagined Date: Fri Apr 19 00:00:30 GMT+03:00 2019
+2019-04-18 23:10:30.370 I/zygote  (20018): Do partial code cache collection, code=183KB, data=131KB
+2019-04-18 23:10:30.370 I/zygote  (20018): After code cache collection, code=183KB, data=131KB
+2019-04-18 23:10:30.370 I/zygote  (20018): Increasing code cache capacity to 1024KB
+2019-04-18 23:10:30.371 I/zygote  (20018): JIT allocated 71KB for compiled code of void android.widget.TextView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+2019-04-18 23:10:30.371 I/zygote  (20018): Compiler allocated 4MB to compile void android.widget.TextView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+2019-04-18 23:10:30.375 W/asset   ( 1774): Asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:30.375 E/ResourcesManager( 1774): failed to add asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk
+2019-04-18 23:10:30.376 W/PackageManager( 1774): Failure retrieving resources for com.android.vending
+2019-04-18 23:10:30.405 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:30.409 I/chatty  ( 1433): uid=1000(system) allocator@2.0-s identical 1 line
+2019-04-18 23:10:30.413 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:30.461 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:30.471 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:30.476 I/ActivityManager( 1674): Displayed com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.AddToDo.AddToDoActivity: +208ms
+2019-04-18 23:10:30.485 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:30.490 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:30.498 W/View    (20018): dispatchProvideAutofillStructure(): not laid out, ignoring
+2019-04-18 23:10:30.499 W/Binder  ( 1674): Outgoing transactions from this process must be FLAG_ONEWAY
+2019-04-18 23:10:30.499 W/Binder  ( 1674): java.lang.Throwable
+2019-04-18 23:10:30.499 W/Binder  ( 1674): 	at android.os.BinderProxy.transact(Binder.java:736)
+2019-04-18 23:10:30.499 W/Binder  ( 1674): 	at android.app.assist.AssistStructure$ParcelTransferReader.fetchData(AssistStructure.java:407)
+2019-04-18 23:10:30.499 W/Binder  ( 1674): 	at android.app.assist.AssistStructure$ParcelTransferReader.go(AssistStructure.java:343)
+2019-04-18 23:10:30.499 W/Binder  ( 1674): 	at android.app.assist.AssistStructure.ensureData(AssistStructure.java:2096)
+2019-04-18 23:10:30.499 W/Binder  ( 1674): 	at com.android.server.autofill.Session$1.send(Session.java:200)
+2019-04-18 23:10:30.499 W/Binder  ( 1674): 	at com.android.server.am.ActivityManagerService.reportAssistContextExtras(ActivityManagerService.java:13137)
+2019-04-18 23:10:30.499 W/Binder  ( 1674): 	at android.app.IActivityManager$Stub.onTransact(IActivityManager.java:2466)
+2019-04-18 23:10:30.499 W/Binder  ( 1674): 	at com.android.server.am.ActivityManagerService.onTransact(ActivityManagerService.java:2935)
+2019-04-18 23:10:30.499 W/Binder  ( 1674): 	at android.os.Binder.execTransact(Binder.java:674)
+2019-04-18 23:10:30.501 I/AssistStructure(20018): Flattened final assist data: 5036 bytes, containing 1 windows, 19 views
+2019-04-18 23:10:30.505 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:30.506 D/OpenGLRenderer(20018): endAllActiveAnimators on 0x8dd5d400 (RippleDrawable) with handle 0xa11038c0
+2019-04-18 23:10:30.513 I/KeyboardViewUtil( 1767): systemKeyboardHeightRatio:1.000000; userKeyboardHeightRatio:1.000000.
+2019-04-18 23:10:30.514 I/AndroidIME( 1767): DummyIme.onActivate() : EditorInfo = Package = com.avjindersinghsekhon.minimaltodo : Type = Text : Learning = Disable : Suggestion = Show : AutoCorrection = Disable : Microphone = Show : NoPersonalizedLearning = Disable
+2019-04-18 23:10:30.516 I/Conv2QueryExtension( 1767): Current locale: en_US, config allows these locales: de,en,es,fr,it,ms,pt,ta
+2019-04-18 23:10:30.516 I/Conv2QueryExtension( 1767): Conv2Query not enabled due to current app [com.avjindersinghsekhon.minimaltodo] not in whitelist
+2019-04-18 23:10:30.516 I/Conv2QueryExtension( 1767): onActivate() : Disabled by unsupported host app
+2019-04-18 23:10:30.516 I/AssistStructure( 1674): Flattened final assist data: 4812 bytes, containing 1 windows, 19 views
+2019-04-18 23:10:30.519 I/LstmTrainingCache( 1767): getCacheConfig()
+2019-04-18 23:10:30.533 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8024064
+2019-04-18 23:10:30.538 I/FC2QTrainingCache( 1767): getCacheConfig()
+2019-04-18 23:10:30.540 D/EGL_emulation( 1774): eglMakeCurrent: 0xa1105300: ver 2 0 (tinfo 0xa11034d0)
+2019-04-18 23:10:30.541 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8024064
+2019-04-18 23:10:30.546 I/FC2QTrainingCache( 1767): getCacheConfig()
+2019-04-18 23:10:30.550 I/FederatedC2QExtension( 1767): Federated Conv2Query inferencing disabled, switching to baseline
+2019-04-18 23:10:30.550 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8024064
+2019-04-18 23:10:30.568 I/PhenotypeExpConfig( 1767): refreshConfiguration() : Force = false : UpdateAvailable = false : Age = 112 minutes : MaxAge = 720 minutes
+2019-04-18 23:10:30.568 I/AndroidIME( 1767): DummyIme.onDeactivate()
+2019-04-18 23:10:30.595 I/KeyboardViewUtil( 1767): systemKeyboardHeightRatio:1.000000; userKeyboardHeightRatio:1.000000.
+2019-04-18 23:10:30.595 I/AndroidIME( 1767): DummyIme.onActivate() : EditorInfo = Package = com.avjindersinghsekhon.minimaltodo : Type = Text : Learning = Enable : Suggestion = Show : AutoCorrection = Enable : Microphone = Show : NoPersonalizedLearning = Disable
+2019-04-18 23:10:30.597 I/Conv2QueryExtension( 1767): Current locale: en_US, config allows these locales: de,en,es,fr,it,ms,pt,ta
+2019-04-18 23:10:30.597 I/Conv2QueryExtension( 1767): Conv2Query not enabled due to current app [com.avjindersinghsekhon.minimaltodo] not in whitelist
+2019-04-18 23:10:30.597 I/Conv2QueryExtension( 1767): onActivate() : Disabled by unsupported host app
+2019-04-18 23:10:30.597 I/FederatedC2QExtension( 1767): Federated Conv2Query inferencing disabled, switching to baseline
+2019-04-18 23:10:30.601 I/FederatedC2QTrainer( 1767): Training cancelled successfully
+2019-04-18 23:10:30.602 D/EGL_emulation( 1767): eglMakeCurrent: 0x8a77d480: ver 2 0 (tinfo 0x8a4fb3a0)
+2019-04-18 23:10:30.608 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:30.639 I/LstmTrainer( 1767): Training configuration succeeded for LstmTrainingClientFederation
+2019-04-18 23:10:30.645 I/zygote  (18774): Do partial code cache collection, code=123KB, data=52KB
+2019-04-18 23:10:30.645 I/zygote  (18774): After code cache collection, code=123KB, data=52KB
+2019-04-18 23:10:30.645 I/zygote  (18774): Increasing code cache capacity to 512KB
+2019-04-18 23:10:30.671 I/FederatedC2QTrainer( 1767): Training configuration succeeded
+2019-04-18 23:10:30.871 W/SurfaceFlinger( 1442): couldn't log to binary event log: overflow.
+2019-04-18 23:10:31.439 W/System.err(19933): null
+2019-04-18 23:10:31.439 D/STEP_COUNTER(19933): current step: 5
+2019-04-18 23:10:31.533 D/STEP_COUNTER(19933): current step: 6
+2019-04-18 23:10:31.569 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:31.574 I/chatty  ( 1433): uid=1000(system) allocator@2.0-s identical 1 line
+2019-04-18 23:10:31.578 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:31.587 I/PhenotypeExpConfig( 1767): refreshConfiguration() : Force = false : UpdateAvailable = false : Age = 112 minutes : MaxAge = 720 minutes
+2019-04-18 23:10:31.592 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:31.598 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:31.599 W/IInputConnectionWrapper(20018): requestCursorAnchorInfo on inactive InputConnection
+2019-04-18 23:10:31.599 I/AndroidIME( 1767): DummyIme.onDeactivate()
+2019-04-18 23:10:31.614 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:31.614 D/OpenGLRenderer(20018): endAllActiveAnimators on 0x8e3bc100 (RippleDrawable) with handle 0xa1103ee0
+2019-04-18 23:10:31.619 I/KeyboardViewUtil( 1767): systemKeyboardHeightRatio:1.000000; userKeyboardHeightRatio:1.000000.
+2019-04-18 23:10:31.619 I/AndroidIME( 1767): DummyIme.onActivate() : EditorInfo = Package = com.avjindersinghsekhon.minimaltodo : Type = Text : Learning = Disable : Suggestion = Show : AutoCorrection = Disable : Microphone = Show : NoPersonalizedLearning = Disable
+2019-04-18 23:10:31.619 I/Conv2QueryExtension( 1767): Current locale: en_US, config allows these locales: de,en,es,fr,it,ms,pt,ta
+2019-04-18 23:10:31.619 I/Conv2QueryExtension( 1767): Conv2Query not enabled due to current app [com.avjindersinghsekhon.minimaltodo] not in whitelist
+2019-04-18 23:10:31.619 I/Conv2QueryExtension( 1767): onActivate() : Disabled by unsupported host app
+2019-04-18 23:10:31.620 I/FederatedC2QExtension( 1767): Federated Conv2Query inferencing disabled, switching to baseline
+2019-04-18 23:10:31.654 W/asset   ( 1774): Asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:31.655 E/ResourcesManager( 1774): failed to add asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk
+2019-04-18 23:10:31.655 W/PackageManager( 1774): Failure retrieving resources for com.android.vending
+2019-04-18 23:10:31.881 W/SurfaceFlinger( 1442): couldn't log to binary event log: overflow.
+2019-04-18 23:10:32.200 I/zygote  (19933): Do partial code cache collection, code=60KB, data=41KB
+2019-04-18 23:10:32.201 I/zygote  (19933): After code cache collection, code=60KB, data=41KB
+2019-04-18 23:10:32.201 I/zygote  (19933): Increasing code cache capacity to 256KB
+2019-04-18 23:10:32.239 D/STEP_COUNTER(19933): current step: 7
+2019-04-18 23:10:32.280 D/STEP_COUNTER(19933): current step: 8
+2019-04-18 23:10:32.286 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:32.309 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 1150976
+2019-04-18 23:10:32.311 I/chatty  ( 1433): uid=1000(system) allocator@2.0-s identical 1 line
+2019-04-18 23:10:32.313 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 1150976
+2019-04-18 23:10:32.332 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:32.572 I/chatty  (20018): uid=10156(u0_a156) RenderThread identical 24 lines
+2019-04-18 23:10:32.577 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:33.144 D/STEP_COUNTER(19933): current step: 9
+2019-04-18 23:10:33.161 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:33.210 I/ActivityManager( 1674): START u0 {cmp=com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.About.AboutActivity} from uid 10156
+2019-04-18 23:10:33.231 D/OskarSchindler(20018): One
+2019-04-18 23:10:33.269 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:33.271 I/chatty  ( 1433): uid=1000(system) allocator@2.0-s identical 1 line
+2019-04-18 23:10:33.274 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:33.288 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:33.294 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:33.299 I/PhenotypeExpConfig( 1767): refreshConfiguration() : Force = false : UpdateAvailable = false : Age = 112 minutes : MaxAge = 720 minutes
+2019-04-18 23:10:33.299 I/AndroidIME( 1767): DummyIme.onDeactivate()
+2019-04-18 23:10:33.301 I/ActivityManager( 1674): Displayed com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.About.AboutActivity: +77ms
+2019-04-18 23:10:33.301 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:33.305 I/chatty  (20018): uid=10156(u0_a156) RenderThread identical 1 line
+2019-04-18 23:10:33.313 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:33.314 D/OpenGLRenderer(20018): endAllActiveAnimators on 0x8e40b500 (ListPopupWindow$DropDownListView) with handle 0x8d114100
+2019-04-18 23:10:33.321 I/KeyboardViewUtil( 1767): systemKeyboardHeightRatio:1.000000; userKeyboardHeightRatio:1.000000.
+2019-04-18 23:10:33.321 I/AndroidIME( 1767): DummyIme.onActivate() : EditorInfo = Package = com.avjindersinghsekhon.minimaltodo : Type = Text : Learning = Disable : Suggestion = Show : AutoCorrection = Disable : Microphone = Show : NoPersonalizedLearning = Disable
+2019-04-18 23:10:33.322 I/Conv2QueryExtension( 1767): Current locale: en_US, config allows these locales: de,en,es,fr,it,ms,pt,ta
+2019-04-18 23:10:33.322 I/Conv2QueryExtension( 1767): Conv2Query not enabled due to current app [com.avjindersinghsekhon.minimaltodo] not in whitelist
+2019-04-18 23:10:33.322 I/Conv2QueryExtension( 1767): onActivate() : Disabled by unsupported host app
+2019-04-18 23:10:33.323 I/FederatedC2QExtension( 1767): Federated Conv2Query inferencing disabled, switching to baseline
+2019-04-18 23:10:33.325 W/asset   ( 1774): Asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:33.325 E/ResourcesManager( 1774): failed to add asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk
+2019-04-18 23:10:33.326 W/PackageManager( 1774): Failure retrieving resources for com.android.vending
+2019-04-18 23:10:33.682 W/SurfaceFlinger( 1442): couldn't log to binary event log: overflow.
+2019-04-18 23:10:34.075 I/Finsky  (13829): [2] com.google.android.finsky.scheduler.JobSchedulerEngine$PhoneskyJobSchedulerJobService.onStartJob(3): onJobSchedulerWakeup with jobId 9003
+2019-04-18 23:10:34.076 I/Finsky  (13829): [2] ped.a(21): Scheduling fallback job with id: 9034, and delay: 43200000 ms
+2019-04-18 23:10:34.077 I/Finsky  (13829): [2] ped.a(5): Scheduling fallback in 64799999 (absolute: 76486843)
+2019-04-18 23:10:34.101 I/Finsky  (13829): [2] pen.handleMessage(10): DeviceState: DeviceState{currentTime=1555618234099, isCharging=true, isIdle=false, netAny=true, netNotRoaming=true, netUnmetered=true}
+2019-04-18 23:10:34.103 I/Finsky  (13829): [848] pfx.b(7): Jobs in database: 1-1337 3-31 12-1 23-0 24-77777777 26-1414141414
+2019-04-18 23:10:34.105 I/Finsky  (13829): [2] pek.a(46): Running job: 12-1
+2019-04-18 23:10:34.105 I/Finsky  (13829): [2] com.google.android.finsky.contentsync.ContentSyncJob.a(23): ContentSyncJob started
+2019-04-18 23:10:34.106 I/Finsky  (13829): [2] pen.handleMessage(81): RunningQueue size: 1, PendingQueue size: 0
+2019-04-18 23:10:34.106 I/Finsky  (13829): [2] pen.handleMessage(90): Running queue: 12-1
+2019-04-18 23:10:34.123 I/Finsky  (13829): [860] dff.a(5): Completed 0 account content syncs with 0 successful.
+2019-04-18 23:10:34.123 I/Finsky  (13829): [2] com.google.android.finsky.contentsync.ContentSyncJob.a(21): Installation state replication succeeded.
+2019-04-18 23:10:34.124 I/Finsky  (13829): [2] pfu.a(11): jobFinished: 12-1. TimeElapsed: 18ms
+2019-04-18 23:10:34.124 I/Finsky  (13829): [2] pek.a(10): Job 12-1 finished
+2019-04-18 23:10:34.125 I/Finsky  (13829): [2] pen.handleMessage(81): RunningQueue size: 0, PendingQueue size: 0
+2019-04-18 23:10:34.125 I/Finsky  (13829): [2] pen.handleMessage(27): Executor finished
+2019-04-18 23:10:34.137 I/Finsky  (13829): [2] pfx.b(7): Jobs in database: 1-1337 3-31 23-0 24-77777777 26-1414141414
+2019-04-18 23:10:34.137 I/Finsky  (13829): [2] pdk.a(66): ConstraintMapping: 24-77777777,  -> L: 0ms, D: 73499343ms, C: false, I: true, N: NET_NONE
+2019-04-18 23:10:34.137 I/Finsky  (13829): [2] pdk.a(66): ConstraintMapping: 1-1337, 23-0,  -> L: 5093305ms, D: 43162542ms, C: false, I: false, N: NET_ANY
+2019-04-18 23:10:34.138 I/Finsky  (13829): [2] pdk.a(66): ConstraintMapping: 3-31,  -> L: 0ms, D: 78442786ms, C: true, I: true, N: NET_UNMETERED
+2019-04-18 23:10:34.138 I/Finsky  (13829): [2] pdk.a(66): ConstraintMapping: 26-1414141414,  -> L: 33874215ms, D: 34774215ms, C: false, I: false, N: NET_NONE
+2019-04-18 23:10:34.139 I/Finsky  (13829): [2] com.google.android.finsky.scheduler.JobSchedulerEngine.a(42): Cancelling existing job with id: 9006
+2019-04-18 23:10:34.140 I/Finsky  (13829): [2] com.google.android.finsky.scheduler.JobSchedulerEngine.a(42): Cancelling existing job with id: 9001
+2019-04-18 23:10:34.141 I/Finsky  (13829): [2] com.google.android.finsky.scheduler.JobSchedulerEngine.a(42): Cancelling existing job with id: 9004
+2019-04-18 23:10:34.142 I/Finsky  (13829): [2] com.google.android.finsky.scheduler.JobSchedulerEngine.a(14): Throttling wakeup for job 9000 (expected to run in 0 ms) due to recent wakeup
+2019-04-18 23:10:34.142 I/Finsky  (13829): [2] com.google.android.finsky.scheduler.JobSchedulerEngine.a(4): Scheduling job Id: 9000, L: 30000, D: 73499343, C: false, I: true, N: 0
+2019-04-18 23:10:34.143 I/Finsky  (13829): [2] com.google.android.finsky.scheduler.JobSchedulerEngine.a(4): Scheduling job Id: 9002, L: 5093305, D: 43162542, C: false, I: false, N: 1
+2019-04-18 23:10:34.143 I/Finsky  (13829): [2] com.google.android.finsky.scheduler.JobSchedulerEngine.a(14): Throttling wakeup for job 9005 (expected to run in 0 ms) due to recent wakeup
+2019-04-18 23:10:34.143 I/Finsky  (13829): [2] com.google.android.finsky.scheduler.JobSchedulerEngine.a(4): Scheduling job Id: 9005, L: 30000, D: 78442786, C: true, I: true, N: 2
+2019-04-18 23:10:34.144 I/Finsky  (13829): [2] com.google.android.finsky.scheduler.JobSchedulerEngine.a(4): Scheduling job Id: 9007, L: 33874215, D: 34774215, C: false, I: false, N: 0
+2019-04-18 23:10:34.164 D/STEP_COUNTER(19933): current step: 10
+2019-04-18 23:10:34.171 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:34.195 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:34.198 I/chatty  ( 1433): uid=1000(system) allocator@2.0-s identical 1 line
+2019-04-18 23:10:34.202 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:34.213 I/PhenotypeExpConfig( 1767): refreshConfiguration() : Force = false : UpdateAvailable = false : Age = 112 minutes : MaxAge = 720 minutes
+2019-04-18 23:10:34.213 I/AndroidIME( 1767): DummyIme.onDeactivate()
+2019-04-18 23:10:34.215 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:34.221 I/chatty  (20018): uid=10156(u0_a156) RenderThread identical 1 line
+2019-04-18 23:10:34.239 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:34.241 D/OpenGLRenderer(20018): endAllActiveAnimators on 0x8e4c8b80 (RippleDrawable) with handle 0xa1103440
+2019-04-18 23:10:34.244 I/KeyboardViewUtil( 1767): systemKeyboardHeightRatio:1.000000; userKeyboardHeightRatio:1.000000.
+2019-04-18 23:10:34.244 I/AndroidIME( 1767): DummyIme.onActivate() : EditorInfo = Package = com.avjindersinghsekhon.minimaltodo : Type = Text : Learning = Disable : Suggestion = Show : AutoCorrection = Disable : Microphone = Show : NoPersonalizedLearning = Disable
+2019-04-18 23:10:34.245 I/Conv2QueryExtension( 1767): Current locale: en_US, config allows these locales: de,en,es,fr,it,ms,pt,ta
+2019-04-18 23:10:34.245 I/Conv2QueryExtension( 1767): Conv2Query not enabled due to current app [com.avjindersinghsekhon.minimaltodo] not in whitelist
+2019-04-18 23:10:34.245 I/Conv2QueryExtension( 1767): onActivate() : Disabled by unsupported host app
+2019-04-18 23:10:34.246 I/FederatedC2QExtension( 1767): Federated Conv2Query inferencing disabled, switching to baseline
+2019-04-18 23:10:34.280 W/asset   ( 1774): Asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:34.280 E/ResourcesManager( 1774): failed to add asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk
+2019-04-18 23:10:34.280 W/PackageManager( 1774): Failure retrieving resources for com.android.vending
+2019-04-18 23:10:34.490 W/SurfaceFlinger( 1442): couldn't log to binary event log: overflow.
+2019-04-18 23:10:34.854 W/System.err(19933): null
+2019-04-18 23:10:34.854 D/STEP_COUNTER(19933): current step: 11
+2019-04-18 23:10:34.890 D/STEP_COUNTER(19933): current step: 12
+2019-04-18 23:10:34.894 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:34.918 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 1150976
+2019-04-18 23:10:34.919 I/chatty  ( 1433): uid=1000(system) allocator@2.0-s identical 1 line
+2019-04-18 23:10:34.921 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 1150976
+2019-04-18 23:10:34.936 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:35.531 W/RemoteFillService( 1674): Not handling { when=-5ms what=3 target=com.android.internal.os.HandlerCaller$MyHandler } as service for ComponentInfo{com.google.android.gms/com.google.android.gms.autofill.service.AutofillService} is already destroyed
+2019-04-18 23:10:35.180 I/chatty  (20018): uid=10156(u0_a156) RenderThread identical 24 lines
+2019-04-18 23:10:35.184 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:35.744 D/STEP_COUNTER(19933): current step: 13
+2019-04-18 23:10:35.770 D/STEP_COUNTER(19933): current step: 14
+2019-04-18 23:10:35.786 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:35.835 I/ActivityManager( 1674): START u0 {cmp=com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.Settings.SettingsActivity} from uid 10156
+2019-04-18 23:10:35.894 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:35.898 I/chatty  ( 1433): uid=1000(system) allocator@2.0-s identical 1 line
+2019-04-18 23:10:35.900 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:35.925 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:35.930 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:35.932 I/ActivityManager( 1674): Displayed com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.Settings.SettingsActivity: +89ms
+2019-04-18 23:10:35.933 I/PhenotypeExpConfig( 1767): refreshConfiguration() : Force = false : UpdateAvailable = false : Age = 112 minutes : MaxAge = 720 minutes
+2019-04-18 23:10:35.933 I/AndroidIME( 1767): DummyIme.onDeactivate()
+2019-04-18 23:10:35.939 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:35.945 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:35.947 W/asset   ( 1774): Asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:35.947 E/ResourcesManager( 1774): failed to add asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk
+2019-04-18 23:10:35.947 W/PackageManager( 1774): Failure retrieving resources for com.android.vending
+2019-04-18 23:10:35.955 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:35.955 D/OpenGLRenderer(20018): endAllActiveAnimators on 0x8e4cab00 (ListPopupWindow$DropDownListView) with handle 0x8d1141e0
+2019-04-18 23:10:35.962 I/KeyboardViewUtil( 1767): systemKeyboardHeightRatio:1.000000; userKeyboardHeightRatio:1.000000.
+2019-04-18 23:10:35.962 I/AndroidIME( 1767): DummyIme.onActivate() : EditorInfo = Package = com.avjindersinghsekhon.minimaltodo : Type = Text : Learning = Disable : Suggestion = Show : AutoCorrection = Disable : Microphone = Show : NoPersonalizedLearning = Disable
+2019-04-18 23:10:35.963 I/Conv2QueryExtension( 1767): Current locale: en_US, config allows these locales: de,en,es,fr,it,ms,pt,ta
+2019-04-18 23:10:35.963 I/Conv2QueryExtension( 1767): Conv2Query not enabled due to current app [com.avjindersinghsekhon.minimaltodo] not in whitelist
+2019-04-18 23:10:35.963 I/Conv2QueryExtension( 1767): onActivate() : Disabled by unsupported host app
+2019-04-18 23:10:35.964 I/FederatedC2QExtension( 1767): Federated Conv2Query inferencing disabled, switching to baseline
+2019-04-18 23:10:35.988 I/zygote  (20018): Do full code cache collection, code=497KB, data=316KB
+2019-04-18 23:10:35.989 I/zygote  (20018): After code cache collection, code=493KB, data=268KB
+2019-04-18 23:10:36.095 E/memtrack( 1674): Couldn't load memtrack module
+2019-04-18 23:10:36.095 W/android.os.Debug( 1674): failed to get memory consumption info: -1
+2019-04-18 23:10:36.324 W/SurfaceFlinger( 1442): couldn't log to binary event log: overflow.
+2019-04-18 23:10:36.781 I/zygote  (20018): Do partial code cache collection, code=496KB, data=273KB
+2019-04-18 23:10:36.781 I/zygote  (20018): After code cache collection, code=496KB, data=273KB
+2019-04-18 23:10:36.781 I/zygote  (20018): Increasing code cache capacity to 2MB
+2019-04-18 23:10:36.800 D/STEP_COUNTER(19933): current step: 15
+2019-04-18 23:10:36.813 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:36.852 I/WorkerManager( 2280): dispose()
+2019-04-18 23:10:36.853 W/ThreadPoolDumper( 2280): Queue length for executor EventBus is now 11. Perhaps some tasks are too long, or the pool is too small.
+2019-04-18 23:10:36.934 I/PhenotypeExpConfig( 1767): refreshConfiguration() : Force = false : UpdateAvailable = false : Age = 112 minutes : MaxAge = 720 minutes
+2019-04-18 23:10:36.934 I/AndroidIME( 1767): DummyIme.onDeactivate()
+2019-04-18 23:10:36.939 I/KeyboardViewUtil( 1767): systemKeyboardHeightRatio:1.000000; userKeyboardHeightRatio:1.000000.
+2019-04-18 23:10:36.939 I/AndroidIME( 1767): DummyIme.onActivate() : EditorInfo = Package = com.avjindersinghsekhon.minimaltodo : Type = Text : Learning = Disable : Suggestion = Show : AutoCorrection = Disable : Microphone = Show : NoPersonalizedLearning = Disable
+2019-04-18 23:10:36.940 I/Conv2QueryExtension( 1767): Current locale: en_US, config allows these locales: de,en,es,fr,it,ms,pt,ta
+2019-04-18 23:10:36.940 I/Conv2QueryExtension( 1767): Conv2Query not enabled due to current app [com.avjindersinghsekhon.minimaltodo] not in whitelist
+2019-04-18 23:10:36.940 I/Conv2QueryExtension( 1767): onActivate() : Disabled by unsupported host app
+2019-04-18 23:10:36.941 I/FederatedC2QExtension( 1767): Federated Conv2Query inferencing disabled, switching to baseline
+2019-04-18 23:10:37.549 D/STEP_COUNTER(19933): current step: 16
+2019-04-18 23:10:37.579 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:37.595 W/WindowManager( 1674): Attempted to set replacing window on non-existing app token Token{5c66e2e ActivityRecord{e2358a9 u0 com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.Main.MainActivity t367}}
+2019-04-18 23:10:37.585 I/chatty  ( 1433): uid=1000(system) allocator@2.0-s identical 1 line
+2019-04-18 23:10:37.589 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:37.654 I/PhenotypeExpConfig( 1767): refreshConfiguration() : Force = false : UpdateAvailable = false : Age = 112 minutes : MaxAge = 720 minutes
+2019-04-18 23:10:37.654 I/AndroidIME( 1767): DummyIme.onDeactivate()
+2019-04-18 23:10:37.665 W/asset   ( 1774): Asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:37.665 E/ResourcesManager( 1774): failed to add asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk
+2019-04-18 23:10:37.665 W/PackageManager( 1774): Failure retrieving resources for com.android.vending
+2019-04-18 23:10:37.666 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:37.690 I/chatty  (20018): uid=10156(u0_a156) RenderThread identical 3 lines
+2019-04-18 23:10:37.692 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:37.693 D/OpenGLRenderer(20018): endAllActiveAnimators on 0x8e4c9d00 (RippleDrawable) with handle 0xa1103c80
+2019-04-18 23:10:37.696 I/KeyboardViewUtil( 1767): systemKeyboardHeightRatio:1.000000; userKeyboardHeightRatio:1.000000.
+2019-04-18 23:10:37.696 I/AndroidIME( 1767): DummyIme.onActivate() : EditorInfo = Package = com.avjindersinghsekhon.minimaltodo : Type = Text : Learning = Disable : Suggestion = Show : AutoCorrection = Disable : Microphone = Show : NoPersonalizedLearning = Disable
+2019-04-18 23:10:37.697 I/Conv2QueryExtension( 1767): Current locale: en_US, config allows these locales: de,en,es,fr,it,ms,pt,ta
+2019-04-18 23:10:37.697 I/Conv2QueryExtension( 1767): Conv2Query not enabled due to current app [com.avjindersinghsekhon.minimaltodo] not in whitelist
+2019-04-18 23:10:37.697 I/Conv2QueryExtension( 1767): onActivate() : Disabled by unsupported host app
+2019-04-18 23:10:37.697 I/FederatedC2QExtension( 1767): Federated Conv2Query inferencing disabled, switching to baseline
+2019-04-18 23:10:37.960 W/SurfaceFlinger( 1442): couldn't log to binary event log: overflow.
+2019-04-18 23:10:38.322 D/STEP_COUNTER(19933): current step: 17
+2019-04-18 23:10:38.331 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:38.333 I/ActivityManager( 1674): START u0 {cmp=com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.AddToDo.AddToDoActivity (has extras)} from uid 10156
+2019-04-18 23:10:38.367 D/OskarSchindler(20018): Imagined Date: Fri Apr 19 00:00:38 GMT+03:00 2019
+2019-04-18 23:10:38.381 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:38.388 I/chatty  ( 1433): uid=1000(system) allocator@2.0-s identical 1 line
+2019-04-18 23:10:38.395 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:38.420 I/PhenotypeExpConfig( 1767): refreshConfiguration() : Force = false : UpdateAvailable = false : Age = 112 minutes : MaxAge = 720 minutes
+2019-04-18 23:10:38.420 I/AndroidIME( 1767): DummyIme.onDeactivate()
+2019-04-18 23:10:38.425 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:38.431 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:38.432 W/View    (20018): dispatchProvideAutofillStructure(): not laid out, ignoring
+2019-04-18 23:10:38.433 W/Binder  ( 1674): Outgoing transactions from this process must be FLAG_ONEWAY
+2019-04-18 23:10:38.433 W/Binder  ( 1674): java.lang.Throwable
+2019-04-18 23:10:38.433 W/Binder  ( 1674): 	at android.os.BinderProxy.transact(Binder.java:736)
+2019-04-18 23:10:38.433 W/Binder  ( 1674): 	at android.app.assist.AssistStructure$ParcelTransferReader.fetchData(AssistStructure.java:407)
+2019-04-18 23:10:38.433 W/Binder  ( 1674): 	at android.app.assist.AssistStructure$ParcelTransferReader.go(AssistStructure.java:343)
+2019-04-18 23:10:38.433 W/Binder  ( 1674): 	at android.app.assist.AssistStructure.ensureData(AssistStructure.java:2096)
+2019-04-18 23:10:38.433 W/Binder  ( 1674): 	at com.android.server.autofill.Session$1.send(Session.java:200)
+2019-04-18 23:10:38.433 W/Binder  ( 1674): 	at com.android.server.am.ActivityManagerService.reportAssistContextExtras(ActivityManagerService.java:13137)
+2019-04-18 23:10:38.433 W/Binder  ( 1674): 	at android.app.IActivityManager$Stub.onTransact(IActivityManager.java:2466)
+2019-04-18 23:10:38.433 W/Binder  ( 1674): 	at com.android.server.am.ActivityManagerService.onTransact(ActivityManagerService.java:2935)
+2019-04-18 23:10:38.433 W/Binder  ( 1674): 	at android.os.Binder.execTransact(Binder.java:674)
+2019-04-18 23:10:38.434 I/ActivityManager( 1674): Displayed com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.AddToDo.AddToDoActivity: +94ms
+2019-04-18 23:10:38.434 I/AssistStructure(20018): Flattened final assist data: 5036 bytes, containing 1 windows, 19 views
+2019-04-18 23:10:38.438 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:38.439 I/AssistStructure( 1674): Flattened final assist data: 4812 bytes, containing 1 windows, 19 views
+2019-04-18 23:10:38.442 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:38.443 W/asset   ( 1774): Asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:38.443 E/ResourcesManager( 1774): failed to add asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk
+2019-04-18 23:10:38.443 W/PackageManager( 1774): Failure retrieving resources for com.android.vending
+2019-04-18 23:10:38.455 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:38.456 D/OpenGLRenderer(20018): endAllActiveAnimators on 0x8e562200 (RippleDrawable) with handle 0xa1103d80
+2019-04-18 23:10:38.458 I/KeyboardViewUtil( 1767): systemKeyboardHeightRatio:1.000000; userKeyboardHeightRatio:1.000000.
+2019-04-18 23:10:38.458 I/AndroidIME( 1767): DummyIme.onActivate() : EditorInfo = Package = com.avjindersinghsekhon.minimaltodo : Type = Text : Learning = Enable : Suggestion = Show : AutoCorrection = Enable : Microphone = Show : NoPersonalizedLearning = Disable
+2019-04-18 23:10:38.459 I/Conv2QueryExtension( 1767): Current locale: en_US, config allows these locales: de,en,es,fr,it,ms,pt,ta
+2019-04-18 23:10:38.459 I/Conv2QueryExtension( 1767): Conv2Query not enabled due to current app [com.avjindersinghsekhon.minimaltodo] not in whitelist
+2019-04-18 23:10:38.459 I/Conv2QueryExtension( 1767): onActivate() : Disabled by unsupported host app
+2019-04-18 23:10:38.460 I/FederatedC2QExtension( 1767): Federated Conv2Query inferencing disabled, switching to baseline
+2019-04-18 23:10:38.467 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:38.819 W/SurfaceFlinger( 1442): couldn't log to binary event log: overflow.
+2019-04-18 23:10:39.302 D/STEP_COUNTER(19933): current step: 18
+2019-04-18 23:10:39.856 I/PhenotypeExpConfig( 1767): refreshConfiguration() : Force = false : UpdateAvailable = false : Age = 112 minutes : MaxAge = 720 minutes
+2019-04-18 23:10:39.857 D/STEP_COUNTER(19933): current step: 19
+2019-04-18 23:10:39.865 W/IInputConnectionWrapper(20018): requestCursorAnchorInfo on inactive InputConnection
+2019-04-18 23:10:39.865 I/AndroidIME( 1767): DummyIme.onDeactivate()
+2019-04-18 23:10:39.885 I/KeyboardViewUtil( 1767): systemKeyboardHeightRatio:1.000000; userKeyboardHeightRatio:1.000000.
+2019-04-18 23:10:39.885 I/AndroidIME( 1767): DummyIme.onActivate() : EditorInfo = Package = com.avjindersinghsekhon.minimaltodo : Type = Text : Learning = Enable : Suggestion = Show : AutoCorrection = Enable : Microphone = Show : NoPersonalizedLearning = Disable
+2019-04-18 23:10:39.886 I/Conv2QueryExtension( 1767): Current locale: en_US, config allows these locales: de,en,es,fr,it,ms,pt,ta
+2019-04-18 23:10:39.886 I/Conv2QueryExtension( 1767): Conv2Query not enabled due to current app [com.avjindersinghsekhon.minimaltodo] not in whitelist
+2019-04-18 23:10:39.886 I/Conv2QueryExtension( 1767): onActivate() : Disabled by unsupported host app
+2019-04-18 23:10:39.887 I/FederatedC2QExtension( 1767): Federated Conv2Query inferencing disabled, switching to baseline
+2019-04-18 23:10:40.419 D/STEP_COUNTER(19933): current step: 20
+2019-04-18 23:10:40.966 D/STEP_COUNTER(19933): current step: 21
+2019-04-18 23:10:40.977 D/OskarSchindler(20018): Imagined Date: Fri Apr 19 00:00:40 GMT+03:00 2019
+2019-04-18 23:10:40.982 E/memtrack( 1674): Couldn't load memtrack module
+2019-04-18 23:10:40.982 W/android.os.Debug( 1674): failed to get memory consumption info: -1
+2019-04-18 23:10:40.982 I/PhenotypeExpConfig( 1767): refreshConfiguration() : Force = false : UpdateAvailable = false : Age = 112 minutes : MaxAge = 720 minutes
+2019-04-18 23:10:40.998 I/AndroidIME( 1767): DummyIme.onDeactivate()
+2019-04-18 23:10:41.010 D/EGL_emulation( 1767): eglMakeCurrent: 0x8a77d480: ver 2 0 (tinfo 0x8a4fb3a0)
+2019-04-18 23:10:41.656 D/STEP_COUNTER(19933): current step: 22
+2019-04-18 23:10:41.689 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:41.703 I/chatty  ( 1433): uid=1000(system) allocator@2.0-s identical 2 lines
+2019-04-18 23:10:41.710 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:41.722 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:41.726 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:41.736 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:41.752 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:41.753 D/OpenGLRenderer(20018): endAllActiveAnimators on 0x8e367b00 (RippleDrawable) with handle 0xa1103de0
+2019-04-18 23:10:41.775 W/asset   ( 1774): Asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:41.775 E/ResourcesManager( 1774): failed to add asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk
+2019-04-18 23:10:41.775 W/PackageManager( 1774): Failure retrieving resources for com.android.vending
+2019-04-18 23:10:42.020 W/SurfaceFlinger( 1442): couldn't log to binary event log: overflow.
+2019-04-18 23:10:42.378 D/STEP_COUNTER(19933): current step: 23
+2019-04-18 23:10:42.391 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:42.393 I/ActivityManager( 1674): START u0 {cmp=com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.AddToDo.AddToDoActivity (has extras)} from uid 10156
+2019-04-18 23:10:42.396 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:42.428 D/OskarSchindler(20018): Imagined Date: Fri Apr 19 00:00:42 GMT+03:00 2019
+2019-04-18 23:10:42.443 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:42.447 I/chatty  ( 1433): uid=1000(system) allocator@2.0-s identical 1 line
+2019-04-18 23:10:42.454 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:42.476 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:42.480 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:42.487 I/ActivityManager( 1674): Displayed com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.AddToDo.AddToDoActivity: +87ms
+2019-04-18 23:10:42.489 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:42.490 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:42.490 W/View    (20018): dispatchProvideAutofillStructure(): not laid out, ignoring
+2019-04-18 23:10:42.491 W/Binder  ( 1674): Outgoing transactions from this process must be FLAG_ONEWAY
+2019-04-18 23:10:42.491 W/Binder  ( 1674): java.lang.Throwable
+2019-04-18 23:10:42.491 W/Binder  ( 1674): 	at android.os.BinderProxy.transact(Binder.java:736)
+2019-04-18 23:10:42.491 W/Binder  ( 1674): 	at android.app.assist.AssistStructure$ParcelTransferReader.fetchData(AssistStructure.java:407)
+2019-04-18 23:10:42.491 W/Binder  ( 1674): 	at android.app.assist.AssistStructure$ParcelTransferReader.go(AssistStructure.java:343)
+2019-04-18 23:10:42.491 W/Binder  ( 1674): 	at android.app.assist.AssistStructure.ensureData(AssistStructure.java:2096)
+2019-04-18 23:10:42.491 W/Binder  ( 1674): 	at com.android.server.autofill.Session$1.send(Session.java:200)
+2019-04-18 23:10:42.491 W/Binder  ( 1674): 	at com.android.server.am.ActivityManagerService.reportAssistContextExtras(ActivityManagerService.java:13137)
+2019-04-18 23:10:42.491 W/Binder  ( 1674): 	at android.app.IActivityManager$Stub.onTransact(IActivityManager.java:2466)
+2019-04-18 23:10:42.491 W/Binder  ( 1674): 	at com.android.server.am.ActivityManagerService.onTransact(ActivityManagerService.java:2935)
+2019-04-18 23:10:42.491 W/Binder  ( 1674): 	at android.os.Binder.execTransact(Binder.java:674)
+2019-04-18 23:10:42.492 I/AssistStructure(20018): Flattened final assist data: 5036 bytes, containing 1 windows, 19 views
+2019-04-18 23:10:42.495 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:42.496 I/AssistStructure( 1674): Flattened final assist data: 4812 bytes, containing 1 windows, 19 views
+2019-04-18 23:10:42.496 D/OpenGLRenderer(20018): endAllActiveAnimators on 0x8e562200 (RippleDrawable) with handle 0x8d1140f0
+2019-04-18 23:10:42.497 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:42.502 I/KeyboardViewUtil( 1767): systemKeyboardHeightRatio:1.000000; userKeyboardHeightRatio:1.000000.
+2019-04-18 23:10:42.502 I/AndroidIME( 1767): DummyIme.onActivate() : EditorInfo = Package = com.avjindersinghsekhon.minimaltodo : Type = Text : Learning = Disable : Suggestion = Show : AutoCorrection = Disable : Microphone = Show : NoPersonalizedLearning = Disable
+2019-04-18 23:10:42.503 I/Conv2QueryExtension( 1767): Current locale: en_US, config allows these locales: de,en,es,fr,it,ms,pt,ta
+2019-04-18 23:10:42.503 I/Conv2QueryExtension( 1767): Conv2Query not enabled due to current app [com.avjindersinghsekhon.minimaltodo] not in whitelist
+2019-04-18 23:10:42.503 I/Conv2QueryExtension( 1767): onActivate() : Disabled by unsupported host app
+2019-04-18 23:10:42.503 I/FederatedC2QExtension( 1767): Federated Conv2Query inferencing disabled, switching to baseline
+2019-04-18 23:10:42.503 W/asset   ( 1774): Asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:42.503 E/ResourcesManager( 1774): failed to add asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk
+2019-04-18 23:10:42.504 W/PackageManager( 1774): Failure retrieving resources for com.android.vending
+2019-04-18 23:10:42.507 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8024064
+2019-04-18 23:10:42.510 I/chatty  ( 1433): uid=1000(system) allocator@2.0-s identical 1 line
+2019-04-18 23:10:42.513 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8024064
+2019-04-18 23:10:42.524 I/PhenotypeExpConfig( 1767): refreshConfiguration() : Force = false : UpdateAvailable = false : Age = 112 minutes : MaxAge = 720 minutes
+2019-04-18 23:10:42.524 I/AndroidIME( 1767): DummyIme.onDeactivate()
+2019-04-18 23:10:42.545 I/KeyboardViewUtil( 1767): systemKeyboardHeightRatio:1.000000; userKeyboardHeightRatio:1.000000.
+2019-04-18 23:10:42.545 I/AndroidIME( 1767): DummyIme.onActivate() : EditorInfo = Package = com.avjindersinghsekhon.minimaltodo : Type = Text : Learning = Enable : Suggestion = Show : AutoCorrection = Enable : Microphone = Show : NoPersonalizedLearning = Disable
+2019-04-18 23:10:42.546 I/Conv2QueryExtension( 1767): Current locale: en_US, config allows these locales: de,en,es,fr,it,ms,pt,ta
+2019-04-18 23:10:42.546 I/Conv2QueryExtension( 1767): Conv2Query not enabled due to current app [com.avjindersinghsekhon.minimaltodo] not in whitelist
+2019-04-18 23:10:42.546 I/Conv2QueryExtension( 1767): onActivate() : Disabled by unsupported host app
+2019-04-18 23:10:42.548 I/FederatedC2QExtension( 1767): Federated Conv2Query inferencing disabled, switching to baseline
+2019-04-18 23:10:42.549 D/EGL_emulation( 1767): eglMakeCurrent: 0x8a77d480: ver 2 0 (tinfo 0x8a4fb3a0)
+2019-04-18 23:10:42.879 W/SurfaceFlinger( 1442): couldn't log to binary event log: overflow.
+2019-04-18 23:10:43.357 D/STEP_COUNTER(19933): current step: 24
+2019-04-18 23:10:43.392 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 225280
+2019-04-18 23:10:43.393 I/chatty  ( 1433): uid=1000(system) allocator@2.0-s identical 1 line
+2019-04-18 23:10:43.394 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 225280
+2019-04-18 23:10:43.402 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:43.445 W/RemoteFillService( 1674): Not handling { when=-1ms what=3 target=com.android.internal.os.HandlerCaller$MyHandler } as service for ComponentInfo{com.google.android.gms/com.google.android.gms.autofill.service.AutofillService} is already destroyed
+2019-04-18 23:10:43.414 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:43.926 I/PhenotypeExpConfig( 1767): refreshConfiguration() : Force = false : UpdateAvailable = false : Age = 112 minutes : MaxAge = 720 minutes
+2019-04-18 23:10:43.926 D/STEP_COUNTER(19933): current step: 25
+2019-04-18 23:10:43.927 I/AndroidIME( 1767): DummyIme.onDeactivate()
+2019-04-18 23:10:43.941 D/EGL_emulation( 1767): eglMakeCurrent: 0x8a77d480: ver 2 0 (tinfo 0x8a4fb3a0)
+2019-04-18 23:10:44.471 D/STEP_COUNTER(19933): current step: 26
+2019-04-18 23:10:44.507 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 249856
+2019-04-18 23:10:44.509 I/chatty  ( 1433): uid=1000(system) allocator@2.0-s identical 1 line
+2019-04-18 23:10:44.510 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 249856
+2019-04-18 23:10:44.514 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:45.375 W/WindowManager( 1674): removeWindowToken: Attempted to remove non-existing token: android.os.Binder@ab9bce
+2019-04-18 23:10:44.521 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:45.438 D/STEP_COUNTER(19933): current step: 27
+2019-04-18 23:10:45.463 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:45.479 I/chatty  ( 1433): uid=1000(system) allocator@2.0-s identical 2 lines
+2019-04-18 23:10:45.486 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:45.502 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:45.506 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:45.515 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:45.532 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:45.532 D/OpenGLRenderer(20018): endAllActiveAnimators on 0x8e4c8100 (RippleDrawable) with handle 0x8d114390
+2019-04-18 23:10:45.549 W/asset   ( 1774): Asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:45.549 E/ResourcesManager( 1774): failed to add asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk
+2019-04-18 23:10:45.549 W/PackageManager( 1774): Failure retrieving resources for com.android.vending
+2019-04-18 23:10:45.551 W/LatinCounterProcess( 1767): Missing LM for 'en'
+2019-04-18 23:10:45.787 E/SurfaceFlinger( 1442): Failed to find layer (com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.AddToDo.AddToDoActivity#0) in layer parent (no-parent).
+2019-04-18 23:10:45.793 W/SurfaceFlinger( 1442): couldn't log to binary event log: overflow.
+2019-04-18 23:10:46.157 D/STEP_COUNTER(19933): current step: 28
+2019-04-18 23:10:46.165 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:46.166 I/ActivityManager( 1674): START u0 {cmp=com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.AddToDo.AddToDoActivity (has extras)} from uid 10156
+2019-04-18 23:10:46.169 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:46.176 E/memtrack( 1674): Couldn't load memtrack module
+2019-04-18 23:10:46.176 W/android.os.Debug( 1674): failed to get memory consumption info: -1
+2019-04-18 23:10:46.197 D/OskarSchindler(20018): Imagined Date: Fri Apr 19 00:00:46 GMT+03:00 2019
+2019-04-18 23:10:46.213 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:46.216 I/chatty  ( 1433): uid=1000(system) allocator@2.0-s identical 1 line
+2019-04-18 23:10:46.219 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8298496
+2019-04-18 23:10:46.242 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:46.247 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:46.248 W/View    (20018): dispatchProvideAutofillStructure(): not laid out, ignoring
+2019-04-18 23:10:46.250 W/Binder  ( 1674): Outgoing transactions from this process must be FLAG_ONEWAY
+2019-04-18 23:10:46.250 W/Binder  ( 1674): java.lang.Throwable
+2019-04-18 23:10:46.250 W/Binder  ( 1674): 	at android.os.BinderProxy.transact(Binder.java:736)
+2019-04-18 23:10:46.250 W/Binder  ( 1674): 	at android.app.assist.AssistStructure$ParcelTransferReader.fetchData(AssistStructure.java:407)
+2019-04-18 23:10:46.250 W/Binder  ( 1674): 	at android.app.assist.AssistStructure$ParcelTransferReader.go(AssistStructure.java:343)
+2019-04-18 23:10:46.250 W/Binder  ( 1674): 	at android.app.assist.AssistStructure.ensureData(AssistStructure.java:2096)
+2019-04-18 23:10:46.250 W/Binder  ( 1674): 	at com.android.server.autofill.Session$1.send(Session.java:200)
+2019-04-18 23:10:46.250 W/Binder  ( 1674): 	at com.android.server.am.ActivityManagerService.reportAssistContextExtras(ActivityManagerService.java:13137)
+2019-04-18 23:10:46.250 W/Binder  ( 1674): 	at android.app.IActivityManager$Stub.onTransact(IActivityManager.java:2466)
+2019-04-18 23:10:46.250 W/Binder  ( 1674): 	at com.android.server.am.ActivityManagerService.onTransact(ActivityManagerService.java:2935)
+2019-04-18 23:10:46.250 W/Binder  ( 1674): 	at android.os.Binder.execTransact(Binder.java:674)
+2019-04-18 23:10:46.250 I/ActivityManager( 1674): Displayed com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.AddToDo.AddToDoActivity: +75ms
+2019-04-18 23:10:46.253 I/AssistStructure(20018): Flattened final assist data: 5036 bytes, containing 1 windows, 19 views
+2019-04-18 23:10:46.257 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:46.257 I/AssistStructure( 1674): Flattened final assist data: 4812 bytes, containing 1 windows, 19 views
+2019-04-18 23:10:46.261 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:46.267 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:46.267 D/OpenGLRenderer(20018): endAllActiveAnimators on 0x8e562200 (RippleDrawable) with handle 0xa11037c0
+2019-04-18 23:10:46.270 I/KeyboardViewUtil( 1767): systemKeyboardHeightRatio:1.000000; userKeyboardHeightRatio:1.000000.
+2019-04-18 23:10:46.271 I/AndroidIME( 1767): DummyIme.onActivate() : EditorInfo = Package = com.avjindersinghsekhon.minimaltodo : Type = Text : Learning = Disable : Suggestion = Show : AutoCorrection = Disable : Microphone = Show : NoPersonalizedLearning = Disable
+2019-04-18 23:10:46.272 I/Conv2QueryExtension( 1767): Current locale: en_US, config allows these locales: de,en,es,fr,it,ms,pt,ta
+2019-04-18 23:10:46.272 I/Conv2QueryExtension( 1767): Conv2Query not enabled due to current app [com.avjindersinghsekhon.minimaltodo] not in whitelist
+2019-04-18 23:10:46.272 I/Conv2QueryExtension( 1767): onActivate() : Disabled by unsupported host app
+2019-04-18 23:10:46.273 I/FederatedC2QExtension( 1767): Federated Conv2Query inferencing disabled, switching to baseline
+2019-04-18 23:10:46.276 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8024064
+2019-04-18 23:10:46.277 W/asset   ( 1774): Asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:46.277 E/ResourcesManager( 1774): failed to add asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk
+2019-04-18 23:10:46.277 W/PackageManager( 1774): Failure retrieving resources for com.android.vending
+2019-04-18 23:10:46.279 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8024064
+2019-04-18 23:10:46.286 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8024064
+2019-04-18 23:10:46.298 I/PhenotypeExpConfig( 1767): refreshConfiguration() : Force = false : UpdateAvailable = false : Age = 112 minutes : MaxAge = 720 minutes
+2019-04-18 23:10:46.298 I/AndroidIME( 1767): DummyIme.onDeactivate()
+2019-04-18 23:10:46.318 I/KeyboardViewUtil( 1767): systemKeyboardHeightRatio:1.000000; userKeyboardHeightRatio:1.000000.
+2019-04-18 23:10:46.318 I/AndroidIME( 1767): DummyIme.onActivate() : EditorInfo = Package = com.avjindersinghsekhon.minimaltodo : Type = Text : Learning = Enable : Suggestion = Show : AutoCorrection = Enable : Microphone = Show : NoPersonalizedLearning = Disable
+2019-04-18 23:10:46.320 I/Conv2QueryExtension( 1767): Current locale: en_US, config allows these locales: de,en,es,fr,it,ms,pt,ta
+2019-04-18 23:10:46.320 I/Conv2QueryExtension( 1767): Conv2Query not enabled due to current app [com.avjindersinghsekhon.minimaltodo] not in whitelist
+2019-04-18 23:10:46.320 I/Conv2QueryExtension( 1767): onActivate() : Disabled by unsupported host app
+2019-04-18 23:10:46.322 D/EGL_emulation( 1767): eglMakeCurrent: 0x8a77d480: ver 2 0 (tinfo 0x8a4fb3a0)
+2019-04-18 23:10:46.322 I/FederatedC2QExtension( 1767): Federated Conv2Query inferencing disabled, switching to baseline
+2019-04-18 23:10:46.334 D/EGL_emulation(20018): eglMakeCurrent: 0xa1105420: ver 2 0 (tinfo 0xa1103300)
+2019-04-18 23:10:46.636 W/SurfaceFlinger( 1442): couldn't log to binary event log: overflow.
+2019-04-18 23:10:47.113 D/STEP_COUNTER(19933): current step: 29
+2019-04-18 23:10:47.160 D/STEP_COUNTER(19933): current step: 30
+2019-04-18 23:10:47.177 D/OskarSchindler(20018): Imagined Date: Fri Apr 19 00:00:47 GMT+03:00 2019
+2019-04-18 23:10:47.182 I/PhenotypeExpConfig( 1767): refreshConfiguration() : Force = false : UpdateAvailable = false : Age = 112 minutes : MaxAge = 720 minutes
+2019-04-18 23:10:47.182 E/memtrack( 1674): Couldn't load memtrack module
+2019-04-18 23:10:47.182 W/android.os.Debug( 1674): failed to get memory consumption info: -1
+2019-04-18 23:10:47.194 I/AndroidIME( 1767): DummyIme.onDeactivate()
+2019-04-18 23:10:47.209 D/EGL_emulation( 1767): eglMakeCurrent: 0x8a77d480: ver 2 0 (tinfo 0x8a4fb3a0)
+2019-04-18 23:10:47.499 W/RemoteFillService( 1674): Not handling { when=-1ms what=3 target=com.android.internal.os.HandlerCaller$MyHandler } as service for ComponentInfo{com.google.android.gms/com.google.android.gms.autofill.service.AutofillService} is already destroyed
+2019-04-18 23:10:48.102 I/zygote  (19933): Do full code cache collection, code=121KB, data=77KB
+2019-04-18 23:10:48.102 I/zygote  (19933): After code cache collection, code=121KB, data=70KB
+2019-04-18 23:10:48.113 D/STEP_COUNTER(19933): current step: 31
+2019-04-18 23:10:48.138 I/KeyboardViewUtil( 1767): systemKeyboardHeightRatio:1.000000; userKeyboardHeightRatio:1.000000.
+2019-04-18 23:10:48.138 I/AndroidIME( 1767): DummyIme.onActivate() : EditorInfo = Package = com.avjindersinghsekhon.minimaltodo : Type = Text : Learning = Enable : Suggestion = Show : AutoCorrection = Enable : Microphone = Show : NoPersonalizedLearning = Disable
+2019-04-18 23:10:48.139 I/Conv2QueryExtension( 1767): Current locale: en_US, config allows these locales: de,en,es,fr,it,ms,pt,ta
+2019-04-18 23:10:48.139 I/Conv2QueryExtension( 1767): Conv2Query not enabled due to current app [com.avjindersinghsekhon.minimaltodo] not in whitelist
+2019-04-18 23:10:48.139 I/Conv2QueryExtension( 1767): onActivate() : Disabled by unsupported host app
+2019-04-18 23:10:48.142 I/FederatedC2QExtension( 1767): Federated Conv2Query inferencing disabled, switching to baseline
+2019-04-18 23:10:48.143 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8024064
+2019-04-18 23:10:48.146 I/chatty  ( 1433): uid=1000(system) allocator@2.0-s identical 1 line
+2019-04-18 23:10:48.149 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 8024064
+2019-04-18 23:10:48.170 D/EGL_emulation( 1767): eglMakeCurrent: 0x8a77d480: ver 2 0 (tinfo 0x8a4fb3a0)
+2019-04-18 23:10:48.715 I/PhenotypeExpConfig( 1767): refreshConfiguration() : Force = false : UpdateAvailable = false : Age = 112 minutes : MaxAge = 720 minutes
+2019-04-18 23:10:48.715 D/STEP_COUNTER(19933): current step: 32
+2019-04-18 23:10:48.726 W/IInputConnectionWrapper(20018): requestCursorAnchorInfo on inactive InputConnection
+2019-04-18 23:10:48.726 I/AndroidIME( 1767): DummyIme.onDeactivate()
+2019-04-18 23:10:48.747 I/KeyboardViewUtil( 1767): systemKeyboardHeightRatio:1.000000; userKeyboardHeightRatio:1.000000.
+2019-04-18 23:10:48.747 I/AndroidIME( 1767): DummyIme.onActivate() : EditorInfo = Package = com.avjindersinghsekhon.minimaltodo : Type = Text : Learning = Enable : Suggestion = Show : AutoCorrection = Enable : Microphone = Show : NoPersonalizedLearning = Disable
+2019-04-18 23:10:48.749 I/Conv2QueryExtension( 1767): Current locale: en_US, config allows these locales: de,en,es,fr,it,ms,pt,ta
+2019-04-18 23:10:48.749 I/Conv2QueryExtension( 1767): Conv2Query not enabled due to current app [com.avjindersinghsekhon.minimaltodo] not in whitelist
+2019-04-18 23:10:48.749 I/Conv2QueryExtension( 1767): onActivate() : Disabled by unsupported host app
+2019-04-18 23:10:48.750 I/FederatedC2QExtension( 1767): Federated Conv2Query inferencing disabled, switching to baseline
+2019-04-18 23:10:49.286 D/STEP_COUNTER(19933): current step: 33
+2019-04-18 23:10:49.837 D/STEP_COUNTER(19933): current step: 34
+2019-04-18 23:10:49.855 D/OskarSchindler(20018): Imagined Date: Fri Apr 19 00:00:49 GMT+03:00 2019
+2019-04-18 23:10:49.858 I/PhenotypeExpConfig( 1767): refreshConfiguration() : Force = false : UpdateAvailable = false : Age = 112 minutes : MaxAge = 720 minutes
+2019-04-18 23:10:49.872 I/AndroidIME( 1767): DummyIme.onDeactivate()
+2019-04-18 23:10:49.888 D/EGL_emulation( 1767): eglMakeCurrent: 0x8a77d480: ver 2 0 (tinfo 0x8a4fb3a0)
+2019-04-18 23:10:50.395 W/System.err(19933): null
+2019-04-18 23:10:50.395 D/STEP_COUNTER(19933): current step: 35
+2019-04-18 23:10:50.927 I/qemu-props( 1440): start adbd ...
+2019-04-18 23:10:50.940 D/STEP_COUNTER(19933): current step: 36
+2019-04-18 23:10:50.949 D/AndroidRuntime(20018): Shutting down VM
+2019-04-18 23:10:50.950 E/AndroidRuntime(20018): FATAL EXCEPTION: main
+2019-04-18 23:10:50.950 E/AndroidRuntime(20018): Process: com.avjindersinghsekhon.minimaltodo, PID: 20018
+2019-04-18 23:10:50.950 E/AndroidRuntime(20018): java.lang.RuntimeException
+2019-04-18 23:10:50.950 E/AndroidRuntime(20018): 	at com.example.avjindersinghsekhon.minimaltodo.AddToDo.AddToDoFragment$5.onCheckedChanged(AddToDoFragment.java:274)
+2019-04-18 23:10:50.950 E/AndroidRuntime(20018): 	at android.widget.CompoundButton.setChecked(CompoundButton.java:171)
+2019-04-18 23:10:50.950 E/AndroidRuntime(20018): 	at android.support.v7.widget.SwitchCompat.setChecked(SwitchCompat.java:806)
+2019-04-18 23:10:50.950 E/AndroidRuntime(20018): 	at android.support.v7.widget.SwitchCompat.toggle(SwitchCompat.java:801)
+2019-04-18 23:10:50.950 E/AndroidRuntime(20018): 	at android.widget.CompoundButton.performClick(CompoundButton.java:132)
+2019-04-18 23:10:50.950 E/AndroidRuntime(20018): 	at android.view.View$PerformClick.run(View.java:24701)
+2019-04-18 23:10:50.950 E/AndroidRuntime(20018): 	at android.os.Handler.handleCallback(Handler.java:789)
+2019-04-18 23:10:50.950 E/AndroidRuntime(20018): 	at android.os.Handler.dispatchMessage(Handler.java:98)
+2019-04-18 23:10:50.950 E/AndroidRuntime(20018): 	at android.os.Looper.loop(Looper.java:164)
+2019-04-18 23:10:50.950 E/AndroidRuntime(20018): 	at android.app.ActivityThread.main(ActivityThread.java:6541)
+2019-04-18 23:10:50.950 E/AndroidRuntime(20018): 	at java.lang.reflect.Method.invoke(Native Method)
+2019-04-18 23:10:50.950 E/AndroidRuntime(20018): 	at com.android.internal.os.Zygote$MethodAndArgsCaller.run(Zygote.java:240)
+2019-04-18 23:10:50.950 E/AndroidRuntime(20018): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:767)
+2019-04-18 23:10:50.963 W/ActivityManager( 1674):   Force finishing activity com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.AddToDo.AddToDoActivity
+2019-04-18 23:10:50.966 I/ActivityManager( 1674): Showing crash dialog for package com.avjindersinghsekhon.minimaltodo u0
+2019-04-18 23:10:50.966 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.DROPBOX_ENTRY_ADDED flg=0x10 (has extras) } to com.google.android.gms/.stats.service.DropBoxEntryAddedReceiver
+2019-04-18 23:10:50.966 W/BroadcastQueue( 1674): Background execution not allowed: receiving Intent { act=android.intent.action.DROPBOX_ENTRY_ADDED flg=0x10 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+2019-04-18 23:10:50.966 E/memtrack( 1674): Couldn't load memtrack module
+2019-04-18 23:10:50.966 W/android.os.Debug( 1674): failed to get memory consumption info: -1
+2019-04-18 23:10:50.986 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 2654208
+2019-04-18 23:10:50.990 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 2654208
+2019-04-18 23:10:50.990 I/OpenGLRenderer( 1674): Initialized EGL, version 1.4
+2019-04-18 23:10:50.990 D/OpenGLRenderer( 1674): Swap behavior 1
+2019-04-18 23:10:50.991 W/OpenGLRenderer( 1674): Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+2019-04-18 23:10:50.991 D/OpenGLRenderer( 1674): Swap behavior 0
+2019-04-18 23:10:50.994 D/gralloc_ranchu( 1433): gralloc_alloc: Creating ashmem region of size 2654208
+2019-04-18 23:10:50.995 D/EGL_emulation( 1674): eglCreateContext: 0x9e4fe340: maj 2 min 0 rcv 2
+2019-04-18 23:10:50.999 D/EGL_emulation( 1674): eglMakeCurrent: 0x9e4fe340: ver 2 0 (tinfo 0x8e0d0890)
+2019-04-18 23:10:51.006 D/EGL_emulation( 1674): eglMakeCurrent: 0x9e4fe340: ver 2 0 (tinfo 0x8e0d0890)
+2019-04-18 23:10:51.065 W/asset   ( 1774): Asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:51.065 E/ResourcesManager( 1774): failed to add asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk
+2019-04-18 23:10:51.065 W/PackageManager( 1774): Failure retrieving resources for com.android.vending
+2019-04-18 23:10:51.264 W/RemoteFillService( 1674): Not handling { when=-4ms what=3 target=com.android.internal.os.HandlerCaller$MyHandler } as service for ComponentInfo{com.google.android.gms/com.google.android.gms.autofill.service.AutofillService} is already destroyed
+2019-04-18 23:10:51.465 W/ActivityManager( 1674): Activity pause timeout for ActivityRecord{f8d99d7 u0 com.avjindersinghsekhon.minimaltodo/com.example.avjindersinghsekhon.minimaltodo.AddToDo.AddToDoActivity t367 f}
+2019-04-18 23:10:51.568 W/asset   ( 1774): Asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk is neither a directory nor file (type=1).
+2019-04-18 23:10:51.568 E/ResourcesManager( 1774): failed to add asset path /data/app/com.android.vending-Ct_WH2fva71IHN4kTAzZ8g==/base.apk
+2019-04-18 23:10:51.568 W/PackageManager( 1774): Failure retrieving resources for com.android.vending
+2019-04-18 23:10:51.751 W/LatinCounterProcess( 1767): Missing LM for 'en'
+2019-04-18 23:10:53.055 W/audio_hw_generic( 1427): Not supplying enough data to HAL, expected position 11802338 , only wrote 10579680
+2019-04-18 23:10:54.768 I/ActivityManager( 1674): Force stopping ru.yandex.testopithecus appid=10131 user=0: from pid 20077
+2019-04-18 23:10:54.768 I/ActivityManager( 1674): Killing 19933:ru.yandex.testopithecus/u0a131 (adj 0): stop ru.yandex.testopithecus
+2019-04-18 23:10:54.770 W/ActivityManager( 1674): Crash of app ru.yandex.testopithecus running instrumentation ComponentInfo{ru.yandex.testopithecus.test/androidx.test.runner.AndroidJUnitRunner}
+2019-04-18 23:10:54.770 I/ActivityManager( 1674): Force stopping ru.yandex.testopithecus appid=10131 user=0: finished inst
+2019-04-18 23:10:54.771 W/Binder  ( 1674): Outgoing transactions from this process must be FLAG_ONEWAY
+2019-04-18 23:10:54.771 W/Binder  ( 1674): java.lang.Throwable
+2019-04-18 23:10:54.771 W/Binder  ( 1674): 	at android.os.BinderProxy.transact(Binder.java:736)
+2019-04-18 23:10:54.771 W/Binder  ( 1674): 	at android.app.IInstrumentationWatcher$Stub$Proxy.instrumentationFinished(IInstrumentationWatcher.java:160)
+2019-04-18 23:10:54.771 W/Binder  ( 1674): 	at com.android.server.am.InstrumentationReporter$MyThread.run(InstrumentationReporter.java:86)
+2019-04-18 23:10:54.771 D/AndroidRuntime(19924): Shutting down VM
+2019-04-18 23:10:54.807 E/memtrack( 1674): Couldn't load memtrack module
+2019-04-18 23:10:54.807 W/android.os.Debug( 1674): failed to get memory consumption info: -1
+2019-04-18 23:10:54.811 D/CarrierSvcBindHelper( 1905): No carrier app for: 0
+2019-04-18 23:10:54.824 W/WindowManager( 1674): removeWindowToken: Attempted to remove non-existing token: android.os.Binder@791364f
+2019-04-18 23:11:00.002 E/memtrack( 1674): Couldn't load memtrack module
+2019-04-18 23:11:00.002 W/android.os.Debug( 1674): failed to get memory consumption info: -1
+2019-04-18 23:11:00.004 D/hwcomposer( 1434): hw_composer sent 129 syncs in 60s
+2019-04-18 23:11:00.007 D/EGL_emulation( 1774): eglMakeCurrent: 0xa1105300: ver 2 0 (tinfo 0xa11034d0)
+2019-04-18 23:11:00.964 W/ActivityManager( 1674): Launch timeout has expired, giving up wake lock!
+2019-04-18 23:11:01.467 E/memtrack( 1674): Couldn't load memtrack module
+2019-04-18 23:11:01.467 W/android.os.Debug( 1674): failed to get memory consumption info: -1
+2019-04-18 23:11:01.473 E/memtrack( 1674): Couldn't load memtrack module
+2019-04-18 23:11:01.473 W/android.os.Debug( 1674): failed to get memory consumption info: -1
