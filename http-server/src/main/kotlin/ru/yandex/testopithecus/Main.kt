@@ -26,7 +26,7 @@ fun Application.main() {
             val jsonState = JSONObject(call.receiveText())
             val uiState = deserializeState(jsonState)
             val action = model.generateAction(uiState)
-            call.respond(serializeAction(action))
+            call.respond(serializeAction(action).toString())
         }
     }
 }
