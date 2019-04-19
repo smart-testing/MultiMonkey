@@ -31,17 +31,14 @@ class SimpleUiTest {
     }
 
     private fun openApplicationIfRequired() {
-        if (device.currentPackageName != APPLICATION_PACKAGE) {
+        if (device.currentPackageName !=APPLICATION_PACKAGE ) {
             openApplication()
         }
     }
 
     private fun openApplication() {
         device.pressHome()
-        val intent = context.packageManager.getLaunchIntentForPackage(APPLICATION_PACKAGE)
-        if (intent == null) {
-            throw IllegalArgumentException("No application '$APPLICATION_PACKAGE'")
-        }
+        val intent = context.packageManager.getLaunchIntentForPackage(APPLICATION_PACKAGE) ?: throw IllegalArgumentException("No application '$APPLICATION_PACKAGE'")
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         context.startActivity(intent)
         device.wait(Until.hasObject(By.pkg(APPLICATION_PACKAGE).depth(0)), LONG_WAIT)

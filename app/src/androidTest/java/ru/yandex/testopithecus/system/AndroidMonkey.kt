@@ -26,6 +26,6 @@ class AndroidMonkey(private val device: UiDevice) {
         val action = model.generateAction(uiState)
         val id = action.id?.toInt()
         val element = if (id != null) elements[id] else return
-        AndroidActionPerformer(element).perform(action)
+        AndroidActionPerformer(device, element).perform(action)
     }
 }

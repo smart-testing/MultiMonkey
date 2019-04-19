@@ -1,0 +1,42 @@
+[
+    {
+      "type": "resource-id",
+      "value": "content9a9a1b96221c466eb24d2e48dadd4536",
+      "fileValue": "Hi there!"
+    },
+    {
+      "type": "resource-id",
+      "value": "edit_password",
+      "fillValue": "apkTest"
+    },
+    {
+      "type": "text",
+      "value": "Кому",
+      "fillValue": "pushkin@yandex.ru"
+    },
+    {
+      "type": "text",
+      "value": "Тема",
+      "fileValue": "Поэзия"
+    },
+    {
+      "type": "text",
+      "value": "Поиск писем",
+      "fillValue": "Анна Керн"
+    },
+    {
+      "type": "resource-id",
+      "value": "ru.yandex.mail:id/edit_login",
+      "fillValue": "apkTestAndroid"
+    },
+    {
+      "type": "text",
+      "value": "To",
+      "fillValue": "pushkin@yandex.ru"
+    },
+    {
+    "type": "text",
+    "value": "Subject",
+    "fileValue": "Поэзия"
+    }
+]

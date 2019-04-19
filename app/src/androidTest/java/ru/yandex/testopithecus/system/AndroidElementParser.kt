@@ -36,6 +36,8 @@ object AndroidElementParser {
         val possibleActions = mutableListOf<String>()
         if (element.isClickable) {
             possibleActions.add("TAP")
+        } else if (element.className == "android.widget.EditText") {
+            possibleActions.add("INPUT")
         }
         return possibleActions
     }
