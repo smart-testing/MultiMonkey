@@ -1,11 +1,11 @@
 package ru.yandex.testopithecus.mbt.interfaces
 
 
-interface TodoDraft {
+interface DraftTodo {
 
     fun addTodo()
 
-    fun validTodo()
+    fun validTodo(): Boolean
 
     fun rejectTodo()
 

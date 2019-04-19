@@ -9,7 +9,12 @@ import androidx.test.uiautomator.*
 
 import org.junit.Before
 import org.junit.Test
+import ru.yandex.testopithecus.mbt.StateMachine
+import ru.yandex.testopithecus.mbt.components.DraftTodoComponent
+import ru.yandex.testopithecus.mbt.model.ApplicationModel
+import ru.yandex.testopithecus.mbt.page.DraftTodoActual
 import ru.yandex.testopithecus.system.AndroidMonkey
+import java.util.regex.Pattern
 
 class SimpleUiTest {
 
@@ -32,6 +37,12 @@ class SimpleUiTest {
 
     @Test
     fun testWithModel() {
+        val newTodoElement = device.findObject(By.res(Pattern.compile(".*FAB")))
+        newTodoElement.click()
+
+        val stateMachine = StateMachine(ApplicationModel())
+        val initialComponent = DraftTodoComponent(DraftTodoActual(device))
+        stateMachine.run(initialComponent)
     }
 
     private fun openApplicationIfRequired() {

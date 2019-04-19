@@ -3,6 +3,8 @@ package ru.yandex.testopithecus.mbt.interfaces
 
 interface DraftTodoField {
 
-    val text: String
+    fun getText(): String
+
+    fun setText(text: String)
 
 }
