@@ -17,6 +17,8 @@ class StateActionsGeneratorImpl : StateActionsGenerator {
     private fun addActionsToList(actions: MutableList<UiAction>, element: UiElement) {
         if (element.possibleActions.contains("TAP")) {
             actions.add(constructTapAction(element))
+        } else if (element.possibleActions.contains("INPUT")) {
+            actions.add(constructInputAction(element))
         }
     }
 
@@ -24,4 +26,7 @@ class StateActionsGeneratorImpl : StateActionsGenerator {
         return UiAction(element.id, "TAP", mapOf())
     }
 
+    private fun constructInputAction(element: UiElement): UiAction {
+        return UiAction(element.id, "INPUT", mapOf())
+    }
 }

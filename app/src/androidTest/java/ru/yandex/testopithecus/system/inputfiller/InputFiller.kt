@@ -5,13 +5,12 @@ import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiObject2
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import ru.yandex.testopithecus.RectComparison
+import ru.yandex.testopithecus.rect.RectComparison
 import java.io.File
 import java.util.stream.Collectors
 
 
 object InputFiller {
-//    private var device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
     private var configs: List<Config> = ArrayList()
     private const val RELATIVE_PATH_TO_PROPERTIES = "raw/config.json"
 
@@ -29,26 +28,26 @@ object InputFiller {
         val markedTextViews = findMarkedTextViews(device)
         var minDistance = Integer.MAX_VALUE
         var nearestTextView: UiObject2? = null
-            for (markedTextView in markedTextViews) {
-                val curDistance = RectComparison.minDistance(RectAndroid(unmarkedInput.visibleBounds),
-                        RectAndroid(markedTextView.visibleBounds))
-                if (minDistance > curDistance) {
-                    minDistance = curDistance
-                    nearestTextView = markedTextView
+        for (markedTextView in markedTextViews) {
+            val curDistance = RectComparison.minDistance(RectAndroid(unmarkedInput.visibleBounds),
+                    RectAndroid(markedTextView.visibleBounds))
+            if (minDistance > curDistance) {
+                minDistance = curDistance
+                nearestTextView = markedTextView
+            }
+        }
+        var fillValue = ""
+        for (config in configs) {
+            if (config.type.contains("text")) {
+                if (nearestTextView != null && config.value == nearestTextView.text) {
+                    fillValue = config.fillValue
+                }
+            } else if (config.type.contains("id")) {
+                if (nearestTextView != null && config.value == nearestTextView.text) {
+                    fillValue = config.fillValue
                 }
             }
-            var fillValue = ""
-            for (config in configs) {
-                if (config.type.contains("text")) {
-                    if (nearestTextView != null && config.value == nearestTextView.text) {
-                        fillValue = config.fillValue
-                    }
-                } else if (config.type.contains("id")) {
-                    if (nearestTextView != null && config.value == nearestTextView.text) {
-                        fillValue = config.fillValue
-                    }
-                }
-            }
+        }
         unmarkedInput.text = fillValue
         return fillValue != ""
     }

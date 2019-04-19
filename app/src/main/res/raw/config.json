@@ -2,7 +2,7 @@
     {
       "type": "resource-id",
       "value": "content9a9a1b96221c466eb24d2e48dadd4536",
-      "fileValue": "Hi there!"
+      "fillValue": "Hi there!"
     },
     {
       "type": "resource-id",
@@ -17,7 +17,7 @@
     {
       "type": "text",
       "value": "Тема",
-      "fileValue": "Поэзия"
+      "fillValue": "Поэзия"
     },
     {
       "type": "text",
@@ -37,6 +37,11 @@
     {
     "type": "text",
     "value": "Subject",
-    "fileValue": "Поэзия"
+    "fillValue": "Поэзия"
+    },
+    {
+    "type": "text",
+    "value": "Search emails",
+    "fillValue": "Анна Керн"
     }
 ]

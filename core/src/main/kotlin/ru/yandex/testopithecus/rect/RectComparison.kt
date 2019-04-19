@@ -1,4 +1,4 @@
-package ru.yandex.testopithecus
+package ru.yandex.testopithecus.rect
 
 object RectComparison {
     fun minDistance(r1: Rectangle, r2: Rectangle): Int {
