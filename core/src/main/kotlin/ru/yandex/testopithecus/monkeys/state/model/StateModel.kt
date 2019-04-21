@@ -2,23 +2,21 @@ package ru.yandex.testopithecus.monkeys.state.model
 
 import org.jgrapht.Graph
 import org.jgrapht.graph.DirectedMultigraph
-import ru.yandex.testopithecus.ui.UiAction
 import ru.yandex.testopithecus.monkeys.state.identifier.StateId
-import ru.yandex.testopithecus.monkeys.state.model.strategies.metric.DistanceToUnknownState
 import ru.yandex.testopithecus.monkeys.state.model.strategies.metric.Metric
-import ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy.MinimizeMetricStrategy
 import ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy.WalkStrategy
+import ru.yandex.testopithecus.ui.UiAction
 
 
-class StateModel {
+class StateModel(
+        private val strategy: WalkStrategy,
+        private val metric: Metric
+) {
 
     private val states: MutableMap<StateId, State> = mutableMapOf()
     private val actions: MutableMap<Action, UiAction> = mutableMapOf()
 
     private val graph: Graph<State, Action> = DirectedMultigraph(null, { Action() }, false)
-
-    private val strategy: WalkStrategy = MinimizeMetricStrategy()
-    private val metric: Metric = DistanceToUnknownState()
 
     private var previousAction: Action? = null
 
