@@ -34,7 +34,7 @@ fun Application.main() {
         post("/log") {
             val log = call.receiveText()
             if (model is LogMonkey) {
-                model.apendToLog(log)
+                model.appendToLog(log)
             }
         }
     }

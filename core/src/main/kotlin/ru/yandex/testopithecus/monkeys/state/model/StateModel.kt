@@ -1,22 +1,24 @@
 package ru.yandex.testopithecus.monkeys.state.model
 
 import org.jgrapht.Graph
-import org.jgrapht.graph.DirectedMultigraph
-import ru.yandex.testopithecus.monkeys.state.identifier.StateId
-import ru.yandex.testopithecus.monkeys.state.model.strategies.metric.Metric
-import ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy.WalkStrategy
+import org.jgrapht.graph.DirectedPseudograph
 import ru.yandex.testopithecus.ui.UiAction
+import ru.yandex.testopithecus.monkeys.state.identifier.StateId
+import ru.yandex.testopithecus.monkeys.state.model.strategies.metric.DistanceToUnknownState
+import ru.yandex.testopithecus.monkeys.state.model.strategies.metric.Metric
+import ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy.MinimizeMetricStrategy
+import ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy.WalkStrategy
 
 
-class StateModel(
-        private val strategy: WalkStrategy,
-        private val metric: Metric
-) {
+class StateModel {
 
     private val states: MutableMap<StateId, State> = mutableMapOf()
     private val actions: MutableMap<Action, UiAction> = mutableMapOf()
 
-    private val graph: Graph<State, Action> = DirectedMultigraph(null, { Action() }, false)
+    private val graph: Graph<State, Action> = DirectedPseudograph(null, { Action() }, false)
+
+    private val strategy: WalkStrategy = MinimizeMetricStrategy()
+    private val metric: Metric = DistanceToUnknownState()
 
     private var previousAction: Action? = null
 
@@ -54,8 +56,8 @@ class StateModel(
             val previousSource = graph.getEdgeSource(previousEdgeSnapshot)
             val previousTarget = graph.getEdgeTarget(previousEdgeSnapshot)
             when {
-                previousTarget == State.NULL_STATE -> graph.changeEdge(previousEdgeSnapshot, previousTarget, previousSource)
-                previousTarget != state -> graph.changeEdge(previousEdgeSnapshot, previousTarget, State.NULL_STATE)
+                previousTarget == State.NULL_STATE -> graph.changeEdge(previousEdgeSnapshot, previousSource, state)
+                previousTarget != state -> graph.changeEdge(previousEdgeSnapshot, previousSource, State.NULL_STATE)
                 else -> metric.updateMetric(graph, state)
             }
         }

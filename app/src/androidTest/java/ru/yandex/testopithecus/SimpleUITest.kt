@@ -73,7 +73,7 @@ class SimpleUiTest {
         private const val METRICS_LOG_TAG = "METRICS"
         private const val STEPS_NUMBER = 100
         private const val LONG_WAIT = 5000L
-        private const val DEFAULT_PACKAGE = "ru.yandex.mail"
+        private const val DEFAULT_PACKAGE = "com.avjindersinghsekhon.minimaltodo"
         private val apps = mapOf(
                 "minimaltodo.apk" to "com.avjindersinghsekhon.minimaltodo",
                 "activitydiary.apk" to "de.rampro.activitydiary.debug",
