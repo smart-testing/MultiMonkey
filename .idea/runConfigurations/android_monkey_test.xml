@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="android-monkey-test" type="AndroidTestRunConfigurationType" singleton="true">
     <module name="app" />
-    <option name="TESTING_TYPE" value="2" />
+    <option name="TESTING_TYPE" value="3" />
     <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
-    <option name="METHOD_NAME" value="" />
+    <option name="METHOD_NAME" value="testApplication" />
     <option name="CLASS_NAME" value="ru.yandex.testopithecus.SimpleUiTest" />
     <option name="PACKAGE_NAME" value="" />
     <option name="EXTRA_OPTIONS" value="" />
