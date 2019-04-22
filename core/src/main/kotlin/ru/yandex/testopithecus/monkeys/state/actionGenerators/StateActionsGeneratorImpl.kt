@@ -31,8 +31,6 @@ class StateActionsGeneratorImpl : StateActionsGenerator {
 
     private fun constructInputAction(element: UiElement, elements: List<UiElement>): UiAction {
         val allTextLabels = elements.parallelStream().filter{x -> x.attributes["isLabel"] == true}.collect(toList())
-        println("-p выбрали input")
-        println("-p size ${elements.parallelStream().filter{x->x.attributes["isLabel"] == true}.count()}")
         InputFiller.fillInput(element, allTextLabels)
         return UiAction(element.id, "INPUT", mapOf("text" to element.attributes["text"] as String))
     }

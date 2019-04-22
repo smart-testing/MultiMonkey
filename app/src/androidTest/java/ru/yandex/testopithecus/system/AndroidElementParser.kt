@@ -25,9 +25,6 @@ object AndroidElementParser {
 
     private fun parseAttributes(element: UiObject2): MutableMap<String, Any> {
         val center = element.visibleCenter
-        if (element.className == "android.widget.TextView") {
-            println("-p attributes is support")
-        }
         val attributes = mutableMapOf("location" to Pair(Pair("x", center.x), Pair("y", center.y)),
         "text" to element.text,
         "isLabel" to (element.className == "android.widget.TextView"),
@@ -43,7 +40,6 @@ object AndroidElementParser {
             possibleActions.add("TAP")
         }
         if (element.className == "android.widget.EditText") {
-            println("-p add input")
             possibleActions.add("INPUT")
         }
         return possibleActions
