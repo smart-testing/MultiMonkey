@@ -1,13 +1,14 @@
 package ru.yandex.testopithecus.system
 
 import androidx.test.uiautomator.*
+import ru.yandex.testopithecus.system.inputfiller.RectAndroid
 import ru.yandex.testopithecus.ui.UiElement
 import ru.yandex.testopithecus.ui.UiState
 import java.util.stream.Collectors
 
 object AndroidElementParser {
     fun parse(elements: List<UiObject2>): UiState {
-        return UiState(AndroidElementParser.parseElements(elements), buildGlobal())
+        return UiState(parseElements(elements), buildGlobal())
     }
 
     private fun parseElements(elements: List<UiObject2>): List<UiElement> {
@@ -22,21 +23,27 @@ object AndroidElementParser {
         return UiElement(elementId, parseAttributes(element), parsePossibleActions(element))
     }
 
-    private fun parseAttributes(element: UiObject2): Map<String, Any> {
-        val attributes = mutableMapOf<String, Any>()
+    private fun parseAttributes(element: UiObject2): MutableMap<String, Any> {
         val center = element.visibleCenter
-        attributes["position"] = mapOf(
-                Pair("x", center.x),
-                Pair("y", center.y)
-        )
+        if (element.className == "android.widget.TextView") {
+            println("-p attributes is support")
+        }
+        val attributes = mutableMapOf("location" to Pair(Pair("x", center.x), Pair("y", center.y)),
+        "text" to element.text,
+        "isLabel" to (element.className == "android.widget.TextView"),
+        "rect" to RectAndroid(element.visibleBounds),
+        "id" to element.resourceName)
         return attributes
     }
 
     private fun parsePossibleActions(element: UiObject2): List<String> {
         val possibleActions = mutableListOf<String>()
+        println("-p ${element.className}")
         if (element.isClickable) {
             possibleActions.add("TAP")
-        } else if (element.className == "android.widget.EditText") {
+        }
+        if (element.className == "android.widget.EditText") {
+            println("-p add input")
             possibleActions.add("INPUT")
         }
         return possibleActions

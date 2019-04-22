@@ -1,4 +1,4 @@
-package ru.yandex.testopithecus
+package ru.yandex.testopithecus.rect
 
 
 open class Rectangle(top: Int, left: Int, right: Int, bottom: Int) {
