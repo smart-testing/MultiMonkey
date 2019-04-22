@@ -1,7 +1,6 @@
 package ru.yandex.testopithecus.system
 
 import androidx.test.uiautomator.*
-import ru.yandex.testopithecus.system.inputfiller.InputFiller
 import ru.yandex.testopithecus.ui.ActionPerformer
 import ru.yandex.testopithecus.ui.UiAction
 
@@ -9,7 +8,8 @@ class AndroidActionPerformer(private val device: UiDevice, private val element: 
     override fun perform(action: UiAction) {
         when (action.action) {
             "TAP" -> element.click()
-            "INPUT" -> InputFiller.fillInput(element, device)
+            "INPUT" -> {element.text = action.attributes["text"]
+                        element.click()}
             else -> throw IllegalStateException("Unknown action '${action.action}'")
         }
     }
