@@ -9,10 +9,8 @@ import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.Until
 import org.junit.Test
-import ru.yandex.testopithecus.mbt.StateMachine
-import ru.yandex.testopithecus.mbt.components.DraftTodoComponent
-import ru.yandex.testopithecus.mbt.model.ApplicationModel
-import ru.yandex.testopithecus.mbt.page.DraftTodoActual
+import ru.yandex.testopithecus.monkeys.state.model.mbt.components.draftTodo.DraftTodoComponent
+import ru.yandex.testopithecus.monkeys.state.model.mbt.model.ApplicationModel
 import ru.yandex.testopithecus.metrics.MetricsEvaluator
 import ru.yandex.testopithecus.system.AndroidMonkey
 import java.util.regex.Pattern
@@ -56,16 +54,6 @@ class SimpleUiTest {
             openApplicationIfRequired(pckg)
             monkey.performAction()
         }
-    }
-
-    @Test
-    fun testWithModel() {
-        val newTodoElement = device.findObject(By.res(Pattern.compile(".*FAB")))
-        newTodoElement.click()
-
-        val stateMachine = StateMachine(ApplicationModel())
-        val initialComponent = DraftTodoComponent(DraftTodoActual(device))
-        stateMachine.run(initialComponent)
     }
 
     private fun openApplicationIfRequired(pckg: String) {
