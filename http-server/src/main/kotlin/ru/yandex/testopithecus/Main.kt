@@ -11,11 +11,12 @@ import io.ktor.routing.post
 import io.ktor.routing.routing
 import org.json.JSONObject
 import ru.yandex.testopithecus.monkeys.log.LogMonkey
+import ru.yandex.testopithecus.monkeys.log.ReplayMonkey
 import ru.yandex.testopithecus.ui.Monkey
 import ru.yandex.testopithecus.utils.deserializeState
 import ru.yandex.testopithecus.utils.serializeAction
 
-val model: Monkey = LogMonkey("minimaltodo")
+val model: Monkey = ReplayMonkey("minimaltodo")
 
 
 fun Application.main() {

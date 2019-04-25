@@ -75,3 +75,18 @@ fun serializeAttributes(attributes: Map<String, String>): JSONObject {
     }
     return json
 }
+
+fun deserializeAction(json: JSONObject): UiAction {
+    val id: String? = json.optString("id", null)
+    val action = json.getString("action")
+    val attributes = deserializeAttributes(json.getJSONObject("attributes"))
+    return UiAction(id, action, attributes)
+}
+
+fun deserializeAttributes(json: JSONObject): Map<String, String> {
+    val attributes = mutableMapOf<String, String>()
+    for (key in json.keys()) {
+        attributes[key] = json.getString(key)
+    }
+    return attributes
+}
