@@ -15,6 +15,7 @@ class AndroidActionPerformer(
     override fun perform(action: UiAction) {
         when (action.action) {
             "TAP" -> element?.click()
+            "FILL" -> element!!.text = "aaa"
             "SKIP" -> {
             }
             "FINISH" -> throw SessionFinishedException()

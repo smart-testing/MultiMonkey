@@ -38,6 +38,7 @@ class SimpleUiTest {
 
 
     private fun runMonkey(pckg: String, apk: String) {
+        Reinstaller.reinstall(device, pckg, apk)
         openApplication(pckg)
         val monkey = AndroidMonkeyHttp(device, pckg, apk)
         for (step in 0 until STEPS_NUMBER) {
