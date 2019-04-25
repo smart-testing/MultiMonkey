@@ -12,9 +12,11 @@ import io.ktor.routing.routing
 import org.json.JSONObject
 import ru.yandex.testopithecus.monkeys.log.LogMonkey
 import ru.yandex.testopithecus.ui.Monkey
-import java.util.*
+import ru.yandex.testopithecus.utils.deserializeState
+import ru.yandex.testopithecus.utils.serializeAction
 
-val model: Monkey = LogMonkey(LinkedList()) //TODO
+val model: Monkey = LogMonkey("minimaltodo")
+
 
 fun Application.main() {
     install(ContentNegotiation) {
@@ -27,7 +29,8 @@ fun Application.main() {
             val jsonState = JSONObject(call.receiveText())
             val uiState = deserializeState(jsonState)
             val action = model.generateAction(uiState)
-            call.respond(serializeAction(action).toString())
+            val resp = serializeAction(action).toString()
+            call.respond(resp)
         }
     }
     routing {

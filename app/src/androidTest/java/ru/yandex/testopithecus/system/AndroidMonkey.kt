@@ -1,12 +1,15 @@
 package ru.yandex.testopithecus.system
 
-import androidx.test.uiautomator.*
-import ru.yandex.testopithecus.ui.Monkey
-import ru.yandex.testopithecus.monkeys.state.StateModelMonkey
+import androidx.test.uiautomator.By
+import androidx.test.uiautomator.StaleObjectException
+import androidx.test.uiautomator.UiDevice
+import ru.yandex.testopithecus.ui.UiAction
+import ru.yandex.testopithecus.ui.UiState
 
-class AndroidMonkey(private val device: UiDevice, private val applicationPackage: String) {
-
-    private val model: Monkey = StateModelMonkey()
+abstract class AndroidMonkey(
+        private val device: UiDevice,
+        private val applicationPackage: String,
+        private val apk: String) {
 
     fun performAction() {
         try {
@@ -19,9 +22,11 @@ class AndroidMonkey(private val device: UiDevice, private val applicationPackage
     private fun performActionImpl() {
         val elements = device.findObjects(By.pkg(applicationPackage))
         val uiState = AndroidElementParser.parse(elements)
-        val action = model.generateAction(uiState)
+        val action = generateAction(uiState)
         val id = action.id?.toInt()
-        val element = if (id != null) elements[id] else return
-        AndroidActionPerformer(element).perform(action)
+        val element = id?.let { elements[id] }
+        AndroidActionPerformer(device, applicationPackage, apk, element).perform(action)
     }
+
+    protected abstract fun generateAction(uiState: UiState): UiAction
 }
