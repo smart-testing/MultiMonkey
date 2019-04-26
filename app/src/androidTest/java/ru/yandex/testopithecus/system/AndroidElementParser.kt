@@ -1,7 +1,6 @@
 package ru.yandex.testopithecus.system
 
 import androidx.test.uiautomator.*
-import ru.yandex.testopithecus.system.inputfiller.RectAndroid
 import ru.yandex.testopithecus.ui.UiElement
 import ru.yandex.testopithecus.ui.UiState
 import java.util.stream.Collectors
@@ -26,10 +25,10 @@ object AndroidElementParser {
     private fun parseAttributes(element: UiObject2): MutableMap<String, Any> {
         val center = element.visibleCenter
         val attributes = mutableMapOf("location" to Pair(Pair("x", center.x), Pair("y", center.y)),
-        "text" to element.text,
-        "isLabel" to (element.className == "android.widget.TextView"),
-        "rect" to RectAndroid(element.visibleBounds),
-        "id" to element.resourceName)
+                "text" to element.text,
+                "isLabel" to (element.className == "android.widget.TextView"),
+                "rect" to RectAndroid(element.visibleBounds),
+                "id" to element.resourceName)
         return attributes
     }
 

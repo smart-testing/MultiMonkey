@@ -1,8 +1,9 @@
 package ru.yandex.testopithecus.input
 
 import ru.yandex.testopithecus.rect.RectComparison
-import ru.yandex.testopithecus.rect.Rectangle
+import ru.yandex.testopithecus.rect.TRectangle
 import ru.yandex.testopithecus.ui.UiElement
+import java.util.stream.Collector
 import java.util.stream.Collectors
 
 
@@ -12,7 +13,13 @@ object InputFiller {
             Config("text", "Subject", "Поэзия"),
             Config("text", "Search emails", "Анна Керн"),
             Config("text", "Cc", "jukovsky@yandex.ru"),
-            Config("text", "Bcc", "voronzhov@yandex.ru"))
+            Config("text", "Bcc", "voronzhov@yandex.ru"),
+            Config("placeholder", "Поиск", "Анна Керн"),
+            Config("name", "subj-16ab49096a46dad6e71262103da54c526a0026f9", "Поэзия"),
+            Config("text", "Кому", "pushkin@yandex.ru"),
+            Config("text", "Скрытая", "voronzhov@yandex.ru"),
+            Config("text", "Копия", "jukovsky@yandex.ru"),
+            Config("text", "Тема", "Поэзия"))
     fun fillInput(input:UiElement, allTextLabels: Collection<UiElement>) {
         if (!fillMarkedInput(input)) {
             fillUnmarkedInput(input, allTextLabels)
@@ -23,8 +30,8 @@ object InputFiller {
         var minDistance = Integer.MAX_VALUE
         var nearestTextLabel: UiElement? = null
         for (markedTextView in markedTextViews) {
-            val curDistance = RectComparison.minDistance((unmarkedInput.attributes["rect"] as Rectangle),
-            (markedTextView.attributes["rect"] as Rectangle))
+            val curDistance = RectComparison.minDistance((unmarkedInput.attributes["rect"] as TRectangle),
+                    (markedTextView.attributes["rect"] as TRectangle))
             if (minDistance > curDistance) {
                 minDistance = curDistance
                 nearestTextLabel = markedTextView
@@ -35,10 +42,12 @@ object InputFiller {
             if (config.type.contains("text")) {
                 if (nearestTextLabel != null && config.value == nearestTextLabel.attributes["text"]) {
                     fillValue = config.fillValue
+                    break
                 }
             } else if (config.type.contains("id")) {
-                if (nearestTextLabel != null && config.value == nearestTextLabel.attributes["text"]) {
+                if (nearestTextLabel != null && config.value == nearestTextLabel.attributes["id"]) {
                     fillValue = config.fillValue
+                    break
                 }
             }
         }
@@ -49,14 +58,18 @@ object InputFiller {
     private fun findMarkedTextLabels(allTextLabels: Collection<UiElement>): List<UiElement> {
         val markedTextViews = ArrayList<UiElement>()
         for (config in configs) {
-            if (config.type.contains("id")) {
-                markedTextViews.addAll(allTextLabels.stream()
+            when {
+                config.type.contains("id") -> markedTextViews.addAll(allTextLabels.stream()
                         .filter { x -> x.attributes["id"] == config.value }
                         .collect(Collectors.toList()))
-            } else if (config.type.contains("text")) {
-                markedTextViews.addAll(allTextLabels.stream()
+                config.type.contains("text") -> markedTextViews.addAll(allTextLabels.stream()
                         .filter { x -> x.attributes["text"] == config.value }
                         .collect(Collectors.toList()))
+                config.type.contains("placeholder") -> {
+                    markedTextViews.addAll(allTextLabels.stream()
+                            .filter{x->x.attributes["placeholder"]==config.value}
+                            .collect(Collectors.toList()))
+                }
             }
         }
         return markedTextViews
@@ -64,10 +77,13 @@ object InputFiller {
 
     private fun fillMarkedInput(input: UiElement): Boolean {
         for (config in configs) {
-            if (config.type.contains("id") && input.attributes["id"] == config.value) {
+            if (config.type.contains("id") && input.attributes["id"] ==config.value) {
                 input.attributes["text"] = config.fillValue
                 return true
             } else if (config.type.contains("text")&& input.attributes["text"] == config.value) {
+                input.attributes["text"] = config.fillValue
+                return true
+            } else if (config.type.contains("placeholder")&& input.attributes["placeholder"] == config.value) {
                 input.attributes["text"] = config.fillValue
                 return true
             }
