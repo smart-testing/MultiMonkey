@@ -1,7 +1,7 @@
 package ru.yandex.testopithecus.rect
 
 object RectComparison {
-    fun minDistance(r1: Rectangle, r2: Rectangle): Int {
+    fun minDistance(r1: TRectangle, r2: TRectangle): Int {
         var min = Integer.MAX_VALUE
         if (Math.abs(r1.top - r2.bottom) < min)
             min = Math.abs(r1.top - r2.bottom)

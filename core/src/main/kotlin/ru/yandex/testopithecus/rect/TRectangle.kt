@@ -1,7 +1,7 @@
 package ru.yandex.testopithecus.rect
 
 
-open class Rectangle(top: Int, left: Int, right: Int, bottom: Int) {
+open class TRectangle(top: Int, left: Int, right: Int, bottom: Int) {
     var top: Int = 0
     var left: Int = 0
     var right: Int = 0
@@ -18,7 +18,7 @@ open class Rectangle(top: Int, left: Int, right: Int, bottom: Int) {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as Rectangle
+        other as TRectangle
 
         if (top != other.top) return false
         if (left != other.left) return false
