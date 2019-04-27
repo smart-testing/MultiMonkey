@@ -18,8 +18,10 @@ object InputFiller {
             Config("name", "subj-16ab49096a46dad6e71262103da54c526a0026f9", "Поэзия"),
             Config("text", "Кому", "pushkin@yandex.ru"),
             Config("text", "Скрытая", "voronzhov@yandex.ru"),
-            Config("text", "Копия", "jukovsky@yandex.ru"),
-            Config("text", "Тема", "Поэзия"))
+            Config("text", "Тема", "Поэзия"),
+            Config("class", "cke_wysiwyg_div cke_reset cke_enable_context_menu cke_editable cke_editable_themed cke_contents_ltr cke_show_borders", "Hi there"),
+            Config("text", "Введите пароль", "apktest"),
+            Config("text", "Введите логин, почту или телефон", "apkTestAndroid"))
     fun fillInput(input:UiElement, allTextLabels: Collection<UiElement>) {
         if (!fillMarkedInput(input)) {
             fillUnmarkedInput(input, allTextLabels)
@@ -52,6 +54,9 @@ object InputFiller {
             }
         }
         unmarkedInput.attributes["text"] = fillValue
+        if (nearestTextLabel != null) {
+            println("nrearest ${nearestTextLabel.attributes["text"]} $fillValue ${unmarkedInput.attributes["class"]}")
+        }
         return fillValue != ""
     }
 
@@ -85,6 +90,11 @@ object InputFiller {
                 return true
             } else if (config.type.contains("placeholder")&& input.attributes["placeholder"] == config.value) {
                 input.attributes["text"] = config.fillValue
+                println(input.attributes["text"])
+                return true
+            } else if (config.type.contains("class")&& input.attributes["class"] == config.value) {
+                input.attributes["text"] = config.fillValue
+                println(input.attributes["text"])
                 return true
             }
         }
