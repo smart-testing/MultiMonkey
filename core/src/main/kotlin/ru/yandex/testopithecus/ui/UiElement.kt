@@ -3,7 +3,6 @@ package ru.yandex.testopithecus.ui
 import org.apache.commons.lang3.builder.EqualsBuilder
 import org.apache.commons.lang3.builder.HashCodeBuilder
 
-
 data class UiElement(
         val id: String,
         val attributes: Map<String, Any>,

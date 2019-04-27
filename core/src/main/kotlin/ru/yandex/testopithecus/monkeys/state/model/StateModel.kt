@@ -1,70 +1,75 @@
 package ru.yandex.testopithecus.monkeys.state.model
 
+import org.jgrapht.Graph
+import org.jgrapht.graph.DirectedPseudograph
 import ru.yandex.testopithecus.ui.UiAction
 import ru.yandex.testopithecus.monkeys.state.identifier.StateId
-import java.lang.IllegalArgumentException
+import ru.yandex.testopithecus.monkeys.state.model.strategies.metric.DistanceToUnknownState
+import ru.yandex.testopithecus.monkeys.state.model.strategies.metric.Metric
+import ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy.MinimizeMetricStrategy
+import ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy.WalkStrategy
 
 
 class StateModel {
 
     private val states: MutableMap<StateId, State> = mutableMapOf()
+    private val actions: MutableMap<Action, UiAction> = mutableMapOf()
+
+    private val graph: Graph<State, Action> = DirectedPseudograph(null, { Action() }, false)
+
+    private val strategy: WalkStrategy = MinimizeMetricStrategy()
+    private val metric: Metric = DistanceToUnknownState()
 
     private var previousAction: Action? = null
 
+    init {
+        graph.addVertex(State.NULL_STATE)
+    }
+
     fun hasState(id: StateId): Boolean {
-        return states.containsKey(id)
+        return states.contains(id)
     }
 
     fun registerState(id: StateId, uiActions: List<UiAction>) {
-        if (states.containsKey(id)) {
+        if (states.contains(id)) {
             throw Exception("Duplicate state found")
         }
-        val state = State()
-        uiActions.forEach { state.addFromAction(Action(state, null, it)) }
-        ModelConfig.METRIC.updateMetric(state)
+        println("Creating new state with id $id")
+        val state = State(id)
         states[id] = state
+        graph.addVertex(state)
+
+        uiActions.forEach {
+            val action = Action()
+            actions[action] = it
+            graph.addEdge(state, State.NULL_STATE, action)
+        }
+        metric.updateMetric(graph, state)
     }
 
     fun generateAction(id: StateId): UiAction {
-        val state = states.getOrElse(id) { throw IllegalArgumentException() }
+        val state = states.getOrElse(id) { throw NoSuchElementException() }
 
         // temporary fix until feedback impl
-        val previousActionSnapshot = previousAction
-        if (previousActionSnapshot != null) {
+        val previousEdgeSnapshot = previousAction
+        if (previousEdgeSnapshot != null) {
+            val previousSource = graph.getEdgeSource(previousEdgeSnapshot)
+            val previousTarget = graph.getEdgeTarget(previousEdgeSnapshot)
             when {
-                previousActionSnapshot.to == null -> linkStates(previousActionSnapshot.from, state, previousActionSnapshot)
-                previousActionSnapshot.to != state -> unlink(previousActionSnapshot)
-                else -> ModelConfig.METRIC.updateMetric(previousActionSnapshot.to)
+                previousTarget == State.NULL_STATE -> graph.changeEdge(previousEdgeSnapshot, previousSource, state)
+                previousTarget != state -> graph.changeEdge(previousEdgeSnapshot, previousSource, State.NULL_STATE)
+                else -> metric.updateMetric(graph, state)
             }
         }
 
-        val action = ModelConfig.STRATEGY.generateAction(state)
-        if (action == null) {
-            throw Exception("No actions found")
-        } else {
-            previousAction = action
-            return action.uiAction
-        }
+        val action = strategy.getAction(graph, state) ?: throw NoSuchElementException()
+        previousAction = action
+        return actions.getOrElse(action) { throw NoSuchElementException() }
     }
 
-    private fun unlink(action: Action) {
-        action.to?.removeToAction(action)
-        ModelConfig.METRIC.updateMetric(action.to)
-        action.to = null
-        ModelConfig.METRIC.updateMetric(action.from)
-    }
+}
 
-    private fun linkStates(from: State, to: State, action: Action) {
-        if (action.from != from) {
-            throw Exception("Action has different from state")
-        }
-        if (action.to != null) {
-            throw Exception("Action already have linked to sate")
-        }
-        action.to = to
-        to.addToAction(action)
-        ModelConfig.METRIC.updateMetric(action.from)
-        ModelConfig.METRIC.updateMetric(action.to)
-    }
-
+fun <V, E> Graph<V, E>.changeEdge(edge: E, source: V, target: V) {
+    removeEdge(edge)
+    addEdge(source, target, edge)
 }

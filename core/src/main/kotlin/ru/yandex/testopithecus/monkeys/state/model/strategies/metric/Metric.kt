@@ -1,15 +1,11 @@
 package ru.yandex.testopithecus.monkeys.state.model.strategies.metric
 
+import org.jgrapht.Graph
+import ru.yandex.testopithecus.monkeys.state.model.Action
 import ru.yandex.testopithecus.monkeys.state.model.State
-
 
 interface Metric {
 
-    fun getInitialMetric(): Int
+    fun updateMetric(graph: Graph<State, Action>, state: State)
 
-    fun evaluateMetric(state: State?): Int
-
-    fun getMetricForNull(): Int
-
-    fun updateMetric(state: State?)
 }
