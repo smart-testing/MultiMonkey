@@ -9,17 +9,17 @@ import ru.yandex.testopithecus.ui.Monkey
 class WebMonkey(private val driver: WebDriver) {
 
     private val model: Monkey = StateModelMonkey()
-
-    fun performAction() {
-        try {
-            performActionImpl()
-        } catch (e: StaleElementReferenceException) {
-            System.err.println(e.localizedMessage)
-        }
+    private val selector = listOf("input:not(hidden)", "label>div", "div>span", "div[contenteditable='true']",
+            "label", "button", "a:link")
+    private val strSelector = selector.joinToString()
+    fun performAction() = try {
+        performActionImpl()
+    } catch (e: StaleElementReferenceException) {
+        System.err.println(e.localizedMessage)
     }
 
     private fun performActionImpl() {
-        val elements = driver.findElements(By.cssSelector("a, button, input"))
+        val elements = driver.findElements(By.cssSelector(strSelector))
         val uiState = WebElementParser.parse(elements)
         val action = model.generateAction(uiState)
         val id = action.id?.toInt()
