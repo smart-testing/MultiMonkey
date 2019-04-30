@@ -6,6 +6,7 @@ import ru.yandex.testopithecus.monkeys.state.actionGenerators.StateActionsGenera
 import ru.yandex.testopithecus.ui.Monkey
 import ru.yandex.testopithecus.ui.UiAction
 import ru.yandex.testopithecus.ui.UiState
+import ru.yandex.testopithecus.ui.finishAction
 import ru.yandex.testopithecus.utils.deserializeAction
 import java.io.File
 import java.lang.RuntimeException
@@ -13,13 +14,12 @@ import java.util.*
 
 class ReplayMonkey(filename: String) : Monkey {
 
-    private val actions = LinkedList<String>(File("results/$filename.monkey").readLines())
+    private val actions = LinkedList<String>(File("tests/$filename.monkey").readLines())
     private val stateActionsGenerator: StateActionsGenerator = StateActionsGeneratorImpl()
-
 
     override fun generateAction(uiState: UiState): UiAction {
         if (actions.isEmpty()) {
-            return UiAction(null, "FINISH", mapOf())
+            return finishAction()
         }
         val nextAction = deserializeAction(JSONObject(actions.removeFirst()))
         if (!stateActionsGenerator.getActions(uiState).contains(nextAction)) {

@@ -2,9 +2,7 @@ package ru.yandex.testopithecus.monkeys.log
 
 import ru.yandex.testopithecus.monkeys.state.actionGenerators.StateActionsGenerator
 import ru.yandex.testopithecus.monkeys.state.actionGenerators.StateActionsGeneratorImpl
-import ru.yandex.testopithecus.ui.Monkey
-import ru.yandex.testopithecus.ui.UiAction
-import ru.yandex.testopithecus.ui.UiState
+import ru.yandex.testopithecus.ui.*
 import ru.yandex.testopithecus.utils.serializeAction
 import java.io.File
 import java.nio.file.Files
@@ -23,7 +21,19 @@ class LogMonkey(private val filename: String) : Monkey {
 
     private val stateActionsGenerator: StateActionsGenerator = StateActionsGeneratorImpl()
 
+    private var state = MonkeyState.INIT
+
     override fun generateAction(uiState: UiState): UiAction {
+        if (state == MonkeyState.INIT) {
+            state = MonkeyState.LEARN
+            return restart()
+        } else if (state == MonkeyState.FINISH) {
+            if (stackIndex >= stack.size) {
+                return finishAction()
+            }
+            val state = stack[stackIndex++]
+            return state.actions[state.currentAction]
+        }
         var stateChanged: Boolean
         synchronized(actual) {
             stateChanged = actual.isNotEmpty()
@@ -38,7 +48,9 @@ class LogMonkey(private val filename: String) : Monkey {
         }
         if (expected.isEmpty()) {
             outputResult()
-            return UiAction(null, "FINISH", mapOf())
+            state = MonkeyState.FINISH
+            stackIndex = 0
+            return skipAction()
         }
         if (stackIndex < stack.size) {
             val state = stack[stackIndex++]
@@ -46,6 +58,9 @@ class LogMonkey(private val filename: String) : Monkey {
         }
         if (!stateChanged) {
             chooseNextBranch()
+        } else if (expected.first.contains("screenshot")) {
+            stack.addLast(State(listOf(screenshotAction(fake = true)), 0))
+            stackIndex = stack.size
         } else {
             stack.addLast(State(stateActionsGenerator.getActions(uiState).sortedBy { it.id }, 0))
             stackIndex = stack.size
@@ -54,14 +69,22 @@ class LogMonkey(private val filename: String) : Monkey {
     }
 
     private fun outputResult() {
-        val outputFile = File("results/$filename.monkey")
+        val outputFile = File("tests/$filename.monkey")
         Files.createDirectories(outputFile.parentFile.toPath())
         if (!outputFile.exists()) {
             outputFile.createNewFile()
         }
+        stack.forEach {
+            val action = it.actions[it.currentAction]
+            if (action == screenshotAction(true)) {
+                action.attributes
+            }
+        }
         outputFile.writeText(
                 stack.stream()
-                        .map { serializeAction(it.actions[it.currentAction]).toString() }
+                        .map { it.actions[it.currentAction] }
+                        .map { if (it == screenshotAction(true)) screenshotAction(false) else it }
+                        .map { serializeAction(it).toString() }
                         .collect(Collectors.joining("\n"))
         )
     }
@@ -84,7 +107,7 @@ class LogMonkey(private val filename: String) : Monkey {
         expected.clear()
         expected.addAll(userLogs)
         stackIndex = 0
-        return UiAction(null, "RESTART", mapOf())
+        return restartAction()
     }
 
     override fun feedback() {
@@ -92,9 +115,14 @@ class LogMonkey(private val filename: String) : Monkey {
 
     fun appendToLog(line: String) {
         synchronized(actual) {
+            println(line)
             actual.addLast(line)
         }
     }
 
     data class State(val actions: List<UiAction>, var currentAction: Int)
+
+    enum class MonkeyState {
+        INIT, LEARN, FINISH
+    }
 }

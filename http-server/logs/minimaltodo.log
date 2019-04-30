@@ -1,9 +1,7 @@
 class com.example.avjindersinghsekhon.minimaltodo.Main.MainFragment {"&t":"screenview"}
 class com.example.avjindersinghsekhon.minimaltodo.Main.MainFragment$1 {"&ea":"FAB pressed","&ec":"Action","&t":"event"}
-class com.example.avjindersinghsekhon.minimaltodo.AddToDo.AddToDoFragment$5 {"&ea":"Reminder Set","&ec":"Action","&t":"event"}
+{"screenshot": ""}
 class com.example.avjindersinghsekhon.minimaltodo.Main.MainFragment {"&t":"screenview"}
+{"screenshot": ""}
 class com.example.avjindersinghsekhon.minimaltodo.Main.MainActivity {"&ea":"Menu opened","&ec":"Action","&t":"event"}
 class com.example.avjindersinghsekhon.minimaltodo.Main.MainActivity {"&ea":"Menu opened","&ec":"Action","&t":"event"}
-class com.example.avjindersinghsekhon.minimaltodo.Settings.SettingsActivity {"&t":"screenview"}
-class com.example.avjindersinghsekhon.minimaltodo.Settings.SettingsFragment {"&ea":"Night Mode used","&ec":"Settings","&t":"event"}
-class com.example.avjindersinghsekhon.minimaltodo.Settings.SettingsActivity {"&t":"screenview"}

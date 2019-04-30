@@ -12,14 +12,18 @@ import io.ktor.routing.routing
 import org.json.JSONObject
 import ru.yandex.testopithecus.monkeys.log.LogMonkey
 import ru.yandex.testopithecus.monkeys.log.ReplayMonkey
+import ru.yandex.testopithecus.monkeys.state.StateModelMonkey
 import ru.yandex.testopithecus.ui.Monkey
+import ru.yandex.testopithecus.ui.errorAction
 import ru.yandex.testopithecus.utils.deserializeState
 import ru.yandex.testopithecus.utils.serializeAction
+import java.io.File
 
-val model: Monkey = ReplayMonkey("minimaltodo")
-
+var model: Monkey? = null
+val logFile = File("logs/common.log")
 
 fun Application.main() {
+    logFile.delete()
     install(ContentNegotiation) {
         gson {
             setPrettyPrinting()
@@ -29,7 +33,7 @@ fun Application.main() {
         post("/generate-action") {
             val jsonState = JSONObject(call.receiveText())
             val uiState = deserializeState(jsonState)
-            val action = model.generateAction(uiState)
+            val action = model?.generateAction(uiState) ?: errorAction("Monkey not initialized")
             val resp = serializeAction(action).toString()
             call.respond(resp)
         }
@@ -37,8 +41,24 @@ fun Application.main() {
     routing {
         post("/log") {
             val log = call.receiveText()
-            if (model is LogMonkey) {
-                model.appendToLog(log)
+            (model as? LogMonkey)?.appendToLog(log) ?: logFile.appendText(log + "\n")
+        }
+    }
+    routing {
+        post("/init/{mode}/{name?}") {
+            logFile.delete()
+            val mode = call.parameters["mode"]
+            model = when (mode?.toLowerCase()) {
+                "statemodel" -> StateModelMonkey()
+                "log" -> {
+                    val file = call.parameters["name"]
+                    file?.let { LogMonkey(it) }
+                }
+                "replay" -> {
+                    val file = call.parameters["name"]
+                    file?.let { ReplayMonkey(it) }
+                }
+                else -> null
             }
         }
     }
