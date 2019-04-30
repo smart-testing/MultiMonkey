@@ -1,12 +1,13 @@
 package ru.yandex.testopithecus.system
 
 import androidx.test.uiautomator.*
+import ru.yandex.testopithecus.monkeys.complex.ComplexMonkey
 import ru.yandex.testopithecus.ui.Monkey
 import ru.yandex.testopithecus.monkeys.state.StateModelMonkey
 
 class AndroidMonkey(private val device: UiDevice, private val applicationPackage: String) {
 
-    private val model: Monkey = StateModelMonkey()
+    private val model: Monkey = ComplexMonkey()
 
     fun performAction() {
         try {
