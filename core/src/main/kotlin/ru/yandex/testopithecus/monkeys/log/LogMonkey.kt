@@ -24,15 +24,24 @@ class LogMonkey(private val filename: String) : Monkey {
     private var state = MonkeyState.INIT
 
     override fun generateAction(uiState: UiState): UiAction {
-        if (state == MonkeyState.INIT) {
-            state = MonkeyState.LEARN
-            return restart()
-        } else if (state == MonkeyState.FINISH) {
-            if (stackIndex >= stack.size) {
-                return finishAction()
+        when (state) {
+            MonkeyState.INIT -> {
+                state = MonkeyState.LEARN
+                return restart()
             }
-            val state = stack[stackIndex++]
-            return state.actions[state.currentAction]
+            MonkeyState.FINISH -> {
+                if (stackIndex >= stack.size) {
+                    state = MonkeyState.DEAD
+                    outputScreenshots()
+                    return finishAction()
+                }
+                val state = stack[stackIndex++]
+                val action = state.actions[state.currentAction]
+                return if (action == screenshotAction(true)) screenshotAction(false) else action
+            }
+            MonkeyState.DEAD -> return finishAction()
+            else -> {
+            }
         }
         var stateChanged: Boolean
         synchronized(actual) {
@@ -47,10 +56,11 @@ class LogMonkey(private val filename: String) : Monkey {
             }
         }
         if (expected.isEmpty()) {
-            outputResult()
+            outputSteps()
             state = MonkeyState.FINISH
             stackIndex = 0
-            return skipAction()
+            actual.clear()
+            return restartAction()
         }
         if (stackIndex < stack.size) {
             val state = stack[stackIndex++]
@@ -68,17 +78,27 @@ class LogMonkey(private val filename: String) : Monkey {
         return stack.last.actions[stack.last.currentAction]
     }
 
-    private fun outputResult() {
-        val outputFile = File("tests/$filename.monkey")
+    private fun outputScreenshots() {
+        val outputFile = File("tests/$filename.screenshots")
         Files.createDirectories(outputFile.parentFile.toPath())
         if (!outputFile.exists()) {
             outputFile.createNewFile()
         }
-        stack.forEach {
-            val action = it.actions[it.currentAction]
-            if (action == screenshotAction(true)) {
-                action.attributes
-            }
+        println(actual.stream()
+                .filter { it.startsWith("{\"screenshot\":") }
+                .collect(Collectors.joining("\n")).length)
+        outputFile.writeText(
+                actual.stream()
+                        .filter { it.startsWith("{\"screenshot\":") }
+                        .collect(Collectors.joining("\n"))
+        )
+    }
+
+    private fun outputSteps() {
+        val outputFile = File("tests/$filename.monkey")
+        Files.createDirectories(outputFile.parentFile.toPath())
+        if (!outputFile.exists()) {
+            outputFile.createNewFile()
         }
         outputFile.writeText(
                 stack.stream()
@@ -123,6 +143,6 @@ class LogMonkey(private val filename: String) : Monkey {
     data class State(val actions: List<UiAction>, var currentAction: Int)
 
     enum class MonkeyState {
-        INIT, LEARN, FINISH
+        INIT, LEARN, FINISH, DEAD
     }
 }
