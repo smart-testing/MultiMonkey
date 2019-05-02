@@ -8,12 +8,15 @@ import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.Until
+import org.junit.Assert.fail
 import org.junit.Test
 import ru.yandex.testopithecus.exception.ServerErrorException
 import ru.yandex.testopithecus.exception.SessionFinishedException
+import ru.yandex.testopithecus.exception.TestFailException
+import ru.yandex.testopithecus.exception.TestOkException
 import ru.yandex.testopithecus.metrics.MetricsEvaluator
 import ru.yandex.testopithecus.system.AndroidMonkeyHttp
-import ru.yandex.testopithecus.system.AndroidScreenshotTaker
+import ru.yandex.testopithecus.system.AndroidScreenshotManager
 import ru.yandex.testopithecus.utils.Reinstaller
 
 class SimpleUiTest {
@@ -23,7 +26,7 @@ class SimpleUiTest {
 
     @Test
     fun takeScreenshot() {
-        AndroidScreenshotTaker.takeScreenshot(device, true)
+        AndroidScreenshotManager.takeScreenshot(device, true)
     }
 
     @Test
@@ -32,7 +35,7 @@ class SimpleUiTest {
     }
 
     @Test
-    fun replayActions() {
+    fun replayTest() {
         runMonkey(REPLAY_MODE, DEFAULT_PACKAGE, DEFAULT_APK, "minimaltodo")
     }
 
@@ -67,6 +70,17 @@ class SimpleUiTest {
                 return
             } catch (e: ServerErrorException) {
                 Log.e(LOG_TAG, e.message)
+            } catch (e: TestOkException) {
+                Log.d(LOG_TAG, "Test passed")
+                return
+            } catch (e: TestFailException) {
+                Log.e(LOG_TAG, e.message)
+                if (e.expected.isNotEmpty()) {
+                    Log.e(LOG_TAG, "screenshot were saved at " + context.filesDir)
+                    AndroidScreenshotManager.parseScreenshotAndSave(e.expected, "expected")
+                    AndroidScreenshotManager.parseScreenshotAndSave(e.actual, "actual")
+                }
+                fail("See logcat for more details")
             }
         }
     }

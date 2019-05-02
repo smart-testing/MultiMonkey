@@ -84,9 +84,6 @@ class LogMonkey(private val filename: String) : Monkey {
         if (!outputFile.exists()) {
             outputFile.createNewFile()
         }
-        println(actual.stream()
-                .filter { it.startsWith("{\"screenshot\":") }
-                .collect(Collectors.joining("\n")).length)
         outputFile.writeText(
                 actual.stream()
                         .filter { it.startsWith("{\"screenshot\":") }
@@ -97,9 +94,8 @@ class LogMonkey(private val filename: String) : Monkey {
     private fun outputSteps() {
         val outputFile = File("tests/$filename.monkey")
         Files.createDirectories(outputFile.parentFile.toPath())
-        if (!outputFile.exists()) {
-            outputFile.createNewFile()
-        }
+        outputFile.delete()
+        stack.addFirst(State(listOf(restartAction()), 0))
         outputFile.writeText(
                 stack.stream()
                         .map { it.actions[it.currentAction] }

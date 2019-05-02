@@ -41,6 +41,7 @@ fun Application.main() {
     routing {
         post("/log") {
             val log = call.receiveText()
+            println("log: $log")
             (model as? LogMonkey)?.appendToLog(log) ?: logFile.appendText(log + "\n")
         }
     }
@@ -56,7 +57,7 @@ fun Application.main() {
                 }
                 "replay" -> {
                     val file = call.parameters["name"]
-                    file?.let { ReplayMonkey(it) }
+                    file?.let { ReplayMonkey(it, logFile) }
                 }
                 else -> null
             }
