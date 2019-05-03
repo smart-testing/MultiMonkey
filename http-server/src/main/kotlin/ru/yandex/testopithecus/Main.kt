@@ -14,12 +14,11 @@ import ru.yandex.testopithecus.monkeys.log.LogMonkey
 import ru.yandex.testopithecus.monkeys.log.ReplayMonkey
 import ru.yandex.testopithecus.monkeys.state.StateModelMonkey
 import ru.yandex.testopithecus.ui.Monkey
-import ru.yandex.testopithecus.ui.errorAction
 import ru.yandex.testopithecus.utils.deserializeState
 import ru.yandex.testopithecus.utils.serializeAction
 import java.io.File
 
-var model: Monkey? = null
+var model: Monkey = StateModelMonkey()
 val logFile = File("logs/common.log")
 
 fun Application.main() {
@@ -33,7 +32,7 @@ fun Application.main() {
         post("/generate-action") {
             val jsonState = JSONObject(call.receiveText())
             val uiState = deserializeState(jsonState)
-            val action = model?.generateAction(uiState) ?: errorAction("Monkey not initialized")
+            val action = model.generateAction(uiState)
             val resp = serializeAction(action).toString()
             call.respond(resp)
         }
@@ -53,13 +52,13 @@ fun Application.main() {
                 "statemodel" -> StateModelMonkey()
                 "log" -> {
                     val file = call.parameters["name"]
-                    file?.let { LogMonkey(it) }
+                    file?.let { LogMonkey(it) } ?: StateModelMonkey()
                 }
                 "replay" -> {
                     val file = call.parameters["name"]
-                    file?.let { ReplayMonkey(it, logFile) }
+                    file?.let { ReplayMonkey(it, logFile) } ?: StateModelMonkey()
                 }
-                else -> null
+                else -> StateModelMonkey()
             }
         }
     }
