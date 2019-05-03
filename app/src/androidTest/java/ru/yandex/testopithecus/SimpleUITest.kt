@@ -9,11 +9,8 @@ import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.Until
 import org.junit.Test
-import ru.yandex.testopithecus.monkeys.state.model.mbt.components.draftTodo.DraftTodoComponent
-import ru.yandex.testopithecus.monkeys.state.model.mbt.model.ApplicationModel
 import ru.yandex.testopithecus.metrics.MetricsEvaluator
 import ru.yandex.testopithecus.system.AndroidMonkey
-import java.util.regex.Pattern
 
 class SimpleUiTest {
 
@@ -74,7 +71,7 @@ class SimpleUiTest {
     companion object {
         const val STEPS_LOG_TAG = "STEP_COUNTER"
         private const val METRICS_LOG_TAG = "METRICS"
-        private const val STEPS_NUMBER = 100
+        private const val STEPS_NUMBER = 400
         private const val LONG_WAIT = 5000L
         private const val DEFAULT_PACKAGE = "com.avjindersinghsekhon.minimaltodo"
         private val apps = mapOf(

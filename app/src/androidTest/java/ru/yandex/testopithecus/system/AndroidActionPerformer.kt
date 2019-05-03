@@ -6,8 +6,10 @@ import ru.yandex.testopithecus.ui.UiAction
 
 class AndroidActionPerformer(private val element: UiObject2): ActionPerformer {
     override fun perform(action: UiAction) {
+        println("Performing action ${action.action} on element ${action.id}")
         when (action.action) {
             "TAP" -> element.click()
+            "INPUT" -> element.text = action.attributes["text"]
             else -> throw IllegalStateException("Unknown action '${action.action}'")
         }
     }

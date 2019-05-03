@@ -20,7 +20,7 @@ class StateModelMonkey : Monkey {
         val stateId : StateId = stateIdGenerator.getId(uiState)
         if (!model.hasState(stateId)) {
             val uiActions = stateActionsGenerator.getActions(uiState)
-            model.registerState(stateId, uiActions)
+            model.registerState(stateId, uiState, uiActions)
         }
         return model.generateAction(stateId)
     }
