@@ -10,16 +10,25 @@ import ru.yandex.testopithecus.monkeys.state.identifier.ElementsStateIdGenerator
 import ru.yandex.testopithecus.monkeys.state.identifier.StateId
 import ru.yandex.testopithecus.monkeys.state.identifier.StateIdGenerator
 
-class StateModelMonkey : Monkey {
+class StateModelMonkey(private val cvServerAddress: String? = null) : Monkey {
 
     private val model = StateModel()
-    private val stateIdGenerator : StateIdGenerator<StateId> = ElementsStateIdGenerator()
-    private val stateActionsGenerator : StateActionsGenerator = StateActionsGeneratorImpl()
+    private val useScreenshots: Boolean = cvServerAddress != null
+    private val stateIdGenerator: StateIdGenerator<StateId> = ElementsStateIdGenerator()
+    private val stateActionsGenerator: StateActionsGenerator = StateActionsGeneratorImpl()
+
+    private fun filterStates(uiState: UiState): UiState {
+        return uiState
+    }
 
     override fun generateAction(uiState: UiState): UiAction {
-        val stateId : StateId = stateIdGenerator.getId(uiState)
+        var uiStateLocal = uiState
+        if (useScreenshots) {
+            uiStateLocal = filterStates(uiState)
+        }
+        val stateId: StateId = stateIdGenerator.getId(uiStateLocal)
         if (!model.hasState(stateId)) {
-            val uiActions = stateActionsGenerator.getActions(uiState)
+            val uiActions = stateActionsGenerator.getActions(uiStateLocal)
             model.registerState(stateId, uiActions)
         }
         return model.generateAction(stateId)
