@@ -4,9 +4,11 @@ import androidx.test.uiautomator.*
 import ru.yandex.testopithecus.ui.Monkey
 import ru.yandex.testopithecus.monkeys.state.StateModelMonkey
 
+
 class AndroidMonkey(private val device: UiDevice, private val applicationPackage: String) {
 
     private val model: Monkey = StateModelMonkey()
+
 
     fun performAction() {
         try {

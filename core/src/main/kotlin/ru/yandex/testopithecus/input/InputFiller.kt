@@ -3,31 +3,43 @@ package ru.yandex.testopithecus.input
 import ru.yandex.testopithecus.rect.RectComparison
 import ru.yandex.testopithecus.rect.TRectangle
 import ru.yandex.testopithecus.ui.UiElement
-import java.util.stream.Collector
+import ru.yandex.testopithecus.ui.UiState
 import java.util.stream.Collectors
 
 
-object InputFiller {
-    private var configs: List<Config> = listOf(Config("resource-id", "content9a9a1b96221c466eb24d2e48dadd4536", "Hi there!"),
-            Config("text", "To", "pushkin@yandex.ru"),
-            Config("text", "Subject", "Поэзия"),
-            Config("text", "Search emails", "Анна Керн"),
-            Config("text", "Cc", "jukovsky@yandex.ru"),
-            Config("text", "Bcc", "voronzhov@yandex.ru"),
-            Config("placeholder", "Поиск", "Анна Керн"),
-            Config("name", "subj-16ab49096a46dad6e71262103da54c526a0026f9", "Поэзия"),
-            Config("text", "Кому", "pushkin@yandex.ru"),
-            Config("text", "Скрытая", "voronzhov@yandex.ru"),
-            Config("text", "Тема", "Поэзия"),
-            Config("class", "cke_wysiwyg_div cke_reset cke_enable_context_menu cke_editable cke_editable_themed cke_contents_ltr cke_show_borders", "Hi there"),
-            Config("text", "Введите пароль", "apktest"),
-            Config("text", "Введите логин, почту или телефон", "apkTestAndroid"))
-    fun fillInput(input:UiElement, allTextLabels: Collection<UiElement>) {
-        if (!fillMarkedInput(input)) {
-            fillUnmarkedInput(input, allTextLabels)
+object InputFiller : InputGenerator {
+    private var configs: Map<String, Map<String, String>> = mapOf(
+            "id" to mapOf("content9a9a1b96221c466eb24d2e48dadd4536" to "Hi there!"),
+            "name" to mapOf("subj-16ab49096a46dad6e71262103da54c526a0026f9" to "Поэзия"),
+            "class" to mapOf("cke_wysiwyg_div cke_reset cke_enable_context_menu cke_editable cke_editable_themed cke_contents_ltr cke_show_borders" to "Hi there"),
+            "placeholder" to mapOf("Поиск" to "Анна Керн"),
+            "text" to mapOf(
+                    "To" to "pushkin@yandex.ru",
+                    "Subject" to "Поэзия",
+                    "Search emails" to "Анна Керн",
+                    "Cc" to "jukovsky@yandex.ru",
+                    "Bcc" to "voronzhov@yandex.ru",
+                    "Кому" to "pushkin@yandex.ru",
+                    "Скрытая" to "voronzhov@yandex.ru",
+                    "Тема" to "Поэзия",
+                    "Введите пароль" to "apktest",
+                    "Введите логин, почту или телефон" to "apkTestAndroid",
+                    "Phone number or login" to "apkTestAndroid",
+                    "Password" to "apktest"))
+
+    override fun suggestInput(input: UiElement, state: UiState): String {
+        var res = fillMarkedInput(input)
+        if (res == "") {
+            val allTextLabels = state.elements
+                    .parallelStream()
+                    .filter { x -> x.attributes["isLabel"] == true }
+                    .collect(Collectors.toList())
+            res = suggestForUnmarkedInput(input, allTextLabels)
         }
+        return res
     }
-    private fun fillUnmarkedInput(unmarkedInput : UiElement, allTextLabels : Collection<UiElement>) : Boolean {
+
+    private fun suggestForUnmarkedInput(unmarkedInput: UiElement, allTextLabels: Collection<UiElement>): String {
         val markedTextViews = findMarkedTextLabels(allTextLabels)
         var minDistance = Integer.MAX_VALUE
         var nearestTextLabel: UiElement? = null
@@ -40,64 +52,32 @@ object InputFiller {
             }
         }
         var fillValue = ""
-        for (config in configs) {
-            if (config.type.contains("text")) {
-                if (nearestTextLabel != null && config.value == nearestTextLabel.attributes["text"]) {
-                    fillValue = config.fillValue
-                    break
-                }
-            } else if (config.type.contains("id")) {
-                if (nearestTextLabel != null && config.value == nearestTextLabel.attributes["id"]) {
-                    fillValue = config.fillValue
-                    break
+        if (nearestTextLabel != null) {
+            for (attr in nearestTextLabel.attributes.keys) {
+                if (configs.containsKey(attr) && configs.getValue(attr).containsKey(nearestTextLabel.attributes[attr])) {
+                    fillValue = configs[attr]?.get(nearestTextLabel.attributes[attr])!!
                 }
             }
         }
-        unmarkedInput.attributes["text"] = fillValue
-        if (nearestTextLabel != null) {
-            println("nrearest ${nearestTextLabel.attributes["text"]} $fillValue ${unmarkedInput.attributes["class"]}")
-        }
-        return fillValue != ""
+        return fillValue
     }
 
     private fun findMarkedTextLabels(allTextLabels: Collection<UiElement>): List<UiElement> {
         val markedTextViews = ArrayList<UiElement>()
-        for (config in configs) {
-            when {
-                config.type.contains("id") -> markedTextViews.addAll(allTextLabels.stream()
-                        .filter { x -> x.attributes["id"] == config.value }
-                        .collect(Collectors.toList()))
-                config.type.contains("text") -> markedTextViews.addAll(allTextLabels.stream()
-                        .filter { x -> x.attributes["text"] == config.value }
-                        .collect(Collectors.toList()))
-                config.type.contains("placeholder") -> {
-                    markedTextViews.addAll(allTextLabels.stream()
-                            .filter{x->x.attributes["placeholder"]==config.value}
-                            .collect(Collectors.toList()))
-                }
-            }
+        for (key in configs.keys) {
+            markedTextViews.addAll(allTextLabels.stream()
+                    .filter { x -> x.attributes[key] != null && configs.getValue(key).containsKey(x.attributes[key]) }
+                    .collect(Collectors.toList()))
         }
         return markedTextViews
     }
 
-    private fun fillMarkedInput(input: UiElement): Boolean {
-        for (config in configs) {
-            if (config.type.contains("id") && input.attributes["id"] ==config.value) {
-                input.attributes["text"] = config.fillValue
-                return true
-            } else if (config.type.contains("text")&& input.attributes["text"] == config.value) {
-                input.attributes["text"] = config.fillValue
-                return true
-            } else if (config.type.contains("placeholder")&& input.attributes["placeholder"] == config.value) {
-                input.attributes["text"] = config.fillValue
-                println(input.attributes["text"])
-                return true
-            } else if (config.type.contains("class")&& input.attributes["class"] == config.value) {
-                input.attributes["text"] = config.fillValue
-                println(input.attributes["text"])
-                return true
+    private fun fillMarkedInput(input: UiElement): String {
+        for (attr in input.attributes.keys) {
+            if (configs.containsKey(attr) && configs.getValue(attr).containsKey(input.attributes[attr])) {
+                return configs[attr]?.get(input.attributes[attr])!!
             }
         }
-        return false
+        return ""
     }
 }
