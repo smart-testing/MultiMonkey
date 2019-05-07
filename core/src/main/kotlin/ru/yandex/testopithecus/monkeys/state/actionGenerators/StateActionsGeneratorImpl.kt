@@ -26,7 +26,6 @@ class StateActionsGeneratorImpl : StateActionsGenerator {
     private fun constructTapAction(element: UiElement): UiAction {
         return UiAction(element.id, "TAP", mapOf())
     }
-
     private fun constructInputAction(element: UiElement, state: UiState): UiAction {
         element.attributes["text"] = InputFiller.suggestInput(element, state)
         return UiAction(element.id, "INPUT", mapOf("text" to element.attributes["text"] as String))
