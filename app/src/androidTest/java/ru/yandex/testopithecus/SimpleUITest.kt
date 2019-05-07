@@ -9,8 +9,10 @@ import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.Until
 import org.junit.Test
+import ru.yandex.testopithecus.exception.SessionFinishedException
 import ru.yandex.testopithecus.metrics.MetricsEvaluator
-import ru.yandex.testopithecus.system.AndroidMonkey
+import ru.yandex.testopithecus.system.AndroidMonkeyHttp
+import ru.yandex.testopithecus.utils.Reinstaller
 
 class SimpleUiTest {
 
@@ -19,37 +21,34 @@ class SimpleUiTest {
 
     @Test
     fun testApplication() {
-        runMonkey(DEFAULT_PACKAGE)
+        runMonkey(DEFAULT_PACKAGE, DEFAULT_APK)
     }
 
     @Test
     fun calculateMetrics() {
         for ((apk, pckg) in apps) {
-            reinstall(apk, pckg)
+            Reinstaller.reinstall(device, pckg, apk)
             val evaluator = MetricsEvaluator()
             evaluator.start()
-            runMonkey(pckg)
+            runMonkey(pckg, apk)
             val result = evaluator.result(true)
             Log.i(METRICS_LOG_TAG, result.toString())
         }
     }
 
-    private fun reinstall(apk: String, pckg: String) {
-        Log.i(METRICS_LOG_TAG, "uninstalling $pckg")
-        Log.i(METRICS_LOG_TAG, device.executeShellCommand("pm uninstall $pckg"))
-        Log.i(METRICS_LOG_TAG, "clearing $pckg")
-        Log.i(METRICS_LOG_TAG, device.executeShellCommand("pm clear $pckg"))
-        Log.i(METRICS_LOG_TAG, "installing $pckg")
-        Log.i(METRICS_LOG_TAG, device.executeShellCommand("pm install -t -r /data/local/tmp/apks/$apk"))
-    }
 
-    private fun runMonkey(pckg: String) {
+    private fun runMonkey(pckg: String, apk: String) {
+        Reinstaller.reinstall(device, pckg, apk)
         openApplication(pckg)
-        val monkey = AndroidMonkey(device, pckg)
+        val monkey = AndroidMonkeyHttp(device, pckg, apk)
         for (step in 0 until STEPS_NUMBER) {
             Log.d(STEPS_LOG_TAG, "current step: $step")
             openApplicationIfRequired(pckg)
-            monkey.performAction()
+            try {
+                monkey.performAction()
+            } catch (e: SessionFinishedException) {
+                return
+            }
         }
     }
 
@@ -74,6 +73,7 @@ class SimpleUiTest {
         private const val STEPS_NUMBER = 400
         private const val LONG_WAIT = 5000L
         private const val DEFAULT_PACKAGE = "com.avjindersinghsekhon.minimaltodo"
+        private const val DEFAULT_APK = "minimaltodo.apk"
         private val apps = mapOf(
                 "minimaltodo.apk" to "com.avjindersinghsekhon.minimaltodo",
                 "activitydiary.apk" to "de.rampro.activitydiary.debug",

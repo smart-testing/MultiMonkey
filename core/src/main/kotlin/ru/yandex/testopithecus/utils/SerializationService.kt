@@ -1,4 +1,4 @@
-package ru.yandex.testopithecus
+package ru.yandex.testopithecus.utils
 
 import org.json.JSONArray
 import org.json.JSONObject
@@ -74,4 +74,19 @@ fun serializeAttributes(attributes: Map<String, String>): JSONObject {
         json.put(key, value)
     }
     return json
+}
+
+fun deserializeAction(json: JSONObject): UiAction {
+    val id: String? = json.optString("id", null)
+    val action = json.getString("action")
+    val attributes = deserializeAttributes(json.getJSONObject("attributes"))
+    return UiAction(id, action, attributes)
+}
+
+fun deserializeAttributes(json: JSONObject): Map<String, String> {
+    val attributes = mutableMapOf<String, String>()
+    for (key in json.keys()) {
+        attributes[key] = json.getString(key)
+    }
+    return attributes
 }

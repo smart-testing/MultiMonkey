@@ -18,10 +18,17 @@ class StateActionsGeneratorImpl : StateActionsGenerator {
         if (element.possibleActions.contains("TAP")) {
             actions.add(constructTapAction(element))
         }
+        if (element.possibleActions.contains("INPUT")) {
+            actions.add(constructInputAction(element))
+        }
     }
 
     private fun constructTapAction(element: UiElement): UiAction {
         return UiAction(element.id, "TAP", mapOf())
+    }
+
+    private fun constructInputAction(element: UiElement): UiAction {
+        return UiAction(element.id, "INPUT", mapOf("text" to "text"))
     }
 
 }

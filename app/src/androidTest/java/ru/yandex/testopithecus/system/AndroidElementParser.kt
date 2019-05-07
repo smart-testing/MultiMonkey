@@ -7,7 +7,7 @@ import java.util.stream.Collectors
 
 object AndroidElementParser {
     fun parse(elements: List<UiObject2>): UiState {
-        return UiState(AndroidElementParser.parseElements(elements), buildGlobal())
+        return UiState(parseElements(elements), buildGlobal())
     }
 
     private fun parseElements(elements: List<UiObject2>): List<UiElement> {
@@ -42,6 +42,9 @@ object AndroidElementParser {
         val possibleActions = mutableListOf<String>()
         if (element.isClickable) {
             possibleActions.add("TAP")
+        }
+        if (element.className.contains("EditText")) {
+            possibleActions.add("INPUT")
         }
         return possibleActions
     }
