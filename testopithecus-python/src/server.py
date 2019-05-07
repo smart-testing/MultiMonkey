@@ -26,7 +26,7 @@ def server():
     elements: list = list(map(lambda x: Element(x), elements_json))
     # todo отправлять только найденные
     filtered = remove_selected(screenshot, elements)
-    print('Got from client: ' + str(len(elements)) + ' elements. Filtered: ' + str(len(elements) - len(filtered)))
+    print('Got from client: ' + str(len(elements)) + ' elements. Filtered: ' + str(len(filtered)))
     return jsonify(filtered)
 
 
