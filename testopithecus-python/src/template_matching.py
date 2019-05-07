@@ -97,4 +97,4 @@ def remove_selected(screenshot_base64: str, elements: list):
             area_intersect = compare_rectangles(r, result_rect)
             if satisfies_intersection_threshold(area_intersect, area_r, area_s):
                 matched.append(e)
-    return list(filter(lambda x: x not in matched, elements))
+    return [ind for ind, val in list(filter(lambda x: x[1] in matched, enumerate(elements)))]
