@@ -24,27 +24,44 @@ object AndroidElementParser {
 
     private fun parseAttributes(element: UiObject2): MutableMap<String, Any> {
         val center = element.visibleCenter
-        val attributes = mutableMapOf("location" to Pair(Pair("x", center.x), Pair("y", center.y)),
+        return mutableMapOf("location" to Pair(Pair("x", center.x), Pair("y", center.y)),
                 "text" to element.text,
-                "isLabel" to (element.className == "android.widget.TextView"),
+                "isLabel" to isLabelElement(element),
                 "rect" to RectAndroid(element.visibleBounds),
                 "id" to element.resourceName)
-        return attributes
     }
 
     private fun parsePossibleActions(element: UiObject2): List<String> {
         val possibleActions = mutableListOf<String>()
-        println("-p ${element.className}")
-        if (element.isClickable) {
-            possibleActions.add("TAP")
-        }
-        if (element.className == "android.widget.EditText") {
+        if (isInputElement(element)) {
             possibleActions.add("INPUT")
+        }
+        if (isTapElement(element)) {
+            possibleActions.add("TAP")
         }
         return possibleActions
     }
 
     private fun buildGlobal(): Map<String, Any> {
         return mapOf()
+    }
+
+    private fun isLabelElement(element: UiObject2): Boolean {
+        return (element.className == "android.widget.TextView" || element.className == "TextInputLayout")
+                && element.text != null && element.text.isNotEmpty() && !element.isClickable
+    }
+
+    private fun isTapElement(element: UiObject2): Boolean {
+        return (element.className == "android.widget.TextView"
+                || element.className == "android.widget.ImageButton"
+                || element.className == "android.widget.ImageView"
+                || element.className == "android.widget.TextView"
+                || element.className == "android.widget.Button"
+                || element.className == "android.widget.LinearLayout")
+                && element.isClickable
+    }
+
+    private fun isInputElement(element: UiObject2): Boolean {
+        return element.className == "android.widget.EditText"
     }
 }

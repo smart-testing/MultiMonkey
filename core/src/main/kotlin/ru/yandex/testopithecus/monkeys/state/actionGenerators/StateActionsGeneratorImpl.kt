@@ -4,24 +4,22 @@ import ru.yandex.testopithecus.input.InputFiller
 import ru.yandex.testopithecus.ui.UiAction
 import ru.yandex.testopithecus.ui.UiElement
 import ru.yandex.testopithecus.ui.UiState
-import java.util.stream.Collectors.toList
 
 class StateActionsGeneratorImpl : StateActionsGenerator {
-
-    override fun getActions(state: UiState) : List<UiAction> {
+    override fun getActions(state: UiState): List<UiAction> {
         val actions = mutableListOf<UiAction>()
         state.elements.stream()
-            .forEach  { element -> addActionsToList(actions, element, state.elements) }
+                .forEach { element -> addActionsToList(actions, element, state) }
         actions.add(UiAction(null, "SKIP", mapOf()))
         return actions
     }
 
-    private fun addActionsToList(actions: MutableList<UiAction>, element: UiElement, elements: List<UiElement>) {
+    private fun addActionsToList(actions: MutableList<UiAction>, element: UiElement, state: UiState) {
         if (element.possibleActions.contains("TAP")) {
             actions.add(constructTapAction(element))
         }
         if (element.possibleActions.contains("INPUT")) {
-            actions.add(constructInputAction(element, elements))
+            actions.add(constructInputAction(element, state))
         }
     }
 
@@ -29,9 +27,8 @@ class StateActionsGeneratorImpl : StateActionsGenerator {
         return UiAction(element.id, "TAP", mapOf())
     }
 
-    private fun constructInputAction(element: UiElement, elements: List<UiElement>): UiAction {
-        val allTextLabels = elements.parallelStream().filter{x -> x.attributes["isLabel"] == true}.collect(toList())
-        InputFiller.fillInput(element, allTextLabels)
+    private fun constructInputAction(element: UiElement, state: UiState): UiAction {
+        element.attributes["text"] = InputFiller.suggestInput(element, state)
         return UiAction(element.id, "INPUT", mapOf("text" to element.attributes["text"] as String))
     }
 }
