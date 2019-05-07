@@ -29,10 +29,10 @@ class ComplexMonkey: Monkey {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    private fun parseAction(action: UiAction, state: UiState): Pair<ElementDescription, ActionDescription> {
+    private fun parseAction(action: UiAction, state: UiState): Pair<ElementDescription?, ActionDescription> {
         val actionDescription = ActionDescription(action.action, action.attributes)
         val element = state.elements.find { it.id == action.id }
-        val elementDescription = ElementDescription(element?.attributes ?: mapOf())
+        val elementDescription = if (element != null) ElementDescription(element.attributes) else null
         return elementDescription to actionDescription
     }
 

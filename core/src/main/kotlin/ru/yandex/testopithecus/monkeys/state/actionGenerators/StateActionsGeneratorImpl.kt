@@ -10,7 +10,7 @@ class StateActionsGeneratorImpl : StateActionsGenerator {
         val actions = mutableListOf<UiAction>()
         state.elements.stream()
             .forEach  { element -> addActionsToList(actions, element) }
-        actions.add(UiAction(null, "SKIP", mapOf("global" to "true")))
+        actions.add(UiAction(null, "SKIP", mapOf()))
         return actions
     }
 
@@ -21,7 +21,7 @@ class StateActionsGeneratorImpl : StateActionsGenerator {
     }
 
     private fun constructTapAction(element: UiElement): UiAction {
-        return UiAction(element.id, "TAP", mapOf("global" to "false"))
+        return UiAction(element.id, "TAP", mapOf())
     }
 
 }

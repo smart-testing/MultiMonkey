@@ -1,6 +1,5 @@
 package ru.yandex.testopithecus.monkeys.complex.complex_action.splitter
 
-import ru.yandex.testopithecus.monkeys.complex.complex_action.ActionDescription
 import ru.yandex.testopithecus.monkeys.complex.complex_action.ComplexAction
 import ru.yandex.testopithecus.monkeys.complex.complex_action.ElementDescription
 import ru.yandex.testopithecus.monkeys.complex.complex_action.matcher.ElementMatcher
@@ -22,7 +21,7 @@ class SimpleComplexActionSplitter: ComplexActionSplitter {
 
     override fun getNextAction(state: UiState): UiAction {
         val (elementDescription, actionDescription) = complexAction.get().actionDescriptions[index]
-        val id = getIdForAction(elementDescription, actionDescription, state)
+        val id = getIdByElement(elementDescription, state)
         val action = UiAction(id, actionDescription.action, actionDescription.attributes)
         ++index
         updateOptionalIfEmpty()
@@ -30,19 +29,25 @@ class SimpleComplexActionSplitter: ComplexActionSplitter {
     }
 
     override fun pushComplexAction(action: ComplexAction) {
+        if (complexAction.isPresent) {
+            throw IllegalStateException()
+        }
         complexAction = Optional.of(action)
         index = 0
         updateOptionalIfEmpty()
     }
 
     private fun updateOptionalIfEmpty() {
+        if (!complexAction.isPresent) {
+            return
+        }
         if (index == complexAction.get().actionDescriptions.size) {
             complexAction = Optional.empty()
         }
     }
 
-    private fun getIdForAction(elementDescription: ElementDescription, actionDescription: ActionDescription, state: UiState): String? {
-        if (actionDescription.attributes["global"] == "true") {
+    private fun getIdByElement(elementDescription: ElementDescription?, state: UiState): String? {
+        if (elementDescription == null) {
             return null
         }
         val element = elementMatcher.match(state, elementDescription)
