@@ -24,48 +24,49 @@ class SimpleUiTest {
 
     @Test
     fun calculateMetrics() {
-        for ((apk, pkg) in apps) {
-            reinstall(apk, pkg)
+        for ((apk, pckg) in apps) {
+            reinstall(apk, pckg)
             val evaluator = MetricsEvaluator()
             evaluator.start()
-            runMonkey(pkg)
+            runMonkey(pckg)
             val result = evaluator.result(true)
             Log.i(METRICS_LOG_TAG, result.toString())
         }
     }
 
-    private fun reinstall(apk: String, pkg: String) {
-        Log.i(METRICS_LOG_TAG, "uninstalling $pkg")
-        Log.i(METRICS_LOG_TAG, device.executeShellCommand("pm uninstall $pkg"))
-        Log.i(METRICS_LOG_TAG, "clearing $pkg")
-        Log.i(METRICS_LOG_TAG, device.executeShellCommand("pm clear $pkg"))
-        Log.i(METRICS_LOG_TAG, "installing $pkg")
+    private fun reinstall(apk: String, pckg: String) {
+        Log.i(METRICS_LOG_TAG, "uninstalling $pckg")
+        Log.i(METRICS_LOG_TAG, device.executeShellCommand("pm uninstall $pckg"))
+        Log.i(METRICS_LOG_TAG, "clearing $pckg")
+        Log.i(METRICS_LOG_TAG, device.executeShellCommand("pm clear $pckg"))
+        Log.i(METRICS_LOG_TAG, "installing $pckg")
         Log.i(METRICS_LOG_TAG, device.executeShellCommand("pm install -t -r /data/local/tmp/apks/$apk"))
     }
 
-    private fun runMonkey(pkg: String) {
-        openApplication(pkg)
-        val monkey = AndroidMonkey(device, pkg)
+    private fun runMonkey(pckg: String) {
+        openApplication(pckg)
+        val monkey = AndroidMonkey(device, pckg)
         for (step in 0 until STEPS_NUMBER) {
             Log.d(STEPS_LOG_TAG, "current step: $step")
-            openApplicationIfRequired(pkg)
+            openApplicationIfRequired(pckg)
             monkey.performAction()
         }
     }
 
-    private fun openApplicationIfRequired(pkg: String) {
-        if (device.currentPackageName != pkg) {
-            openApplication(pkg)
+
+    private fun openApplicationIfRequired(pckg: String) {
+        if (device.currentPackageName != pckg) {
+            openApplication(pckg)
         }
     }
 
-    private fun openApplication(pkg: String) {
+    private fun openApplication(pckg: String) {
         device.pressHome()
-        val intent = context.packageManager.getLaunchIntentForPackage(pkg)
-                ?: throw IllegalArgumentException("No application '$pkg'")
+        val intent = context.packageManager.getLaunchIntentForPackage(pckg)
+                ?: throw IllegalArgumentException("No application '$pckg'")
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         context.startActivity(intent)
-        device.wait(Until.hasObject(By.pkg(pkg).depth(0)), LONG_WAIT)
+        device.wait(Until.hasObject(By.pkg(pckg).depth(0)), LONG_WAIT)
     }
 
     companion object {
