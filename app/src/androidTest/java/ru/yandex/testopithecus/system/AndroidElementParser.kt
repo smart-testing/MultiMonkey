@@ -6,8 +6,13 @@ import ru.yandex.testopithecus.ui.UiState
 import java.util.stream.Collectors
 
 object AndroidElementParser {
+    private val cache = HashMap<Int, UiState>()
     fun parse(elements: List<UiObject2>): UiState {
-        return UiState(parseElements(elements), buildGlobal())
+        val hashCode = elements.hashCode()
+        if (!cache.containsKey(hashCode) || cache[hashCode] == null) {
+            cache[hashCode] = UiState(parseElements(elements), buildGlobal())
+        }
+        return cache[hashCode]!!
     }
 
     private fun parseElements(elements: List<UiObject2>): List<UiElement> {
@@ -23,8 +28,7 @@ object AndroidElementParser {
     }
 
     private fun parseAttributes(element: UiObject2): MutableMap<String, Any> {
-        val center = element.visibleCenter
-        return mutableMapOf("location" to Pair(Pair("x", center.x), Pair("y", center.y)),
+        return mutableMapOf(
                 "text" to element.text,
                 "isLabel" to isLabelElement(element),
                 "rect" to RectAndroid(element.visibleBounds),
@@ -47,18 +51,12 @@ object AndroidElementParser {
     }
 
     private fun isLabelElement(element: UiObject2): Boolean {
-        return (element.className == "android.widget.TextView" || element.className == "TextInputLayout")
-                && element.text != null && element.text.isNotEmpty() && !element.isClickable
+        return element.text != null && element.text.isNotEmpty() && !element.isClickable
+                && (element.className == "android.widget.TextView" || element.className == "TextInputLayout")
     }
 
     private fun isTapElement(element: UiObject2): Boolean {
-        return (element.className == "android.widget.TextView"
-                || element.className == "android.widget.ImageButton"
-                || element.className == "android.widget.ImageView"
-                || element.className == "android.widget.TextView"
-                || element.className == "android.widget.Button"
-                || element.className == "android.widget.LinearLayout")
-                && element.isClickable
+        return element.isClickable && (element.className != "android.widget.EditText")
     }
 
     private fun isInputElement(element: UiObject2): Boolean {
