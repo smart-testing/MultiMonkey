@@ -1,5 +1,8 @@
 package ru.yandex.testopithecus.rect
 
+import org.apache.commons.lang3.builder.EqualsBuilder
+import org.apache.commons.lang3.builder.HashCodeBuilder
+
 
 open class TRectangle(top: Int, left: Int, right: Int, bottom: Int) {
     var top: Int = 0
@@ -15,24 +18,24 @@ open class TRectangle(top: Int, left: Int, right: Int, bottom: Int) {
     }
 
     override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as TRectangle
-
-        if (top != other.top) return false
-        if (left != other.left) return false
-        if (right != other.right) return false
-        if (bottom != other.bottom) return false
-
-        return true
+        return if (other is TRectangle) {
+            EqualsBuilder()
+                    .append(this.top, other.top)
+                    .append(this.left, other.left)
+                    .append(this.right, other.right)
+                    .append(this.top, other.top)
+                    .isEquals
+        } else {
+            false
+        }
     }
 
     override fun hashCode(): Int {
-        var result = top
-        result = 31 * result + left
-        result = 31 * result + right
-        result = 31 * result + bottom
-        return result
+        return HashCodeBuilder()
+                .append(this.top)
+                .append(this.left)
+                .append(this.right)
+                .append(this.bottom)
+                .build()
     }
 }
