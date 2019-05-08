@@ -3,6 +3,7 @@ package ru.yandex.testopithecus.system
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.StaleObjectException
 import androidx.test.uiautomator.UiDevice
+import androidx.test.uiautomator.Until
 import ru.yandex.testopithecus.monkeys.state.StateModelMonkey
 import ru.yandex.testopithecus.ui.Monkey
 import ru.yandex.testopithecus.ui.UiState
@@ -16,6 +17,7 @@ class AndroidMonkeyScreenshots(private val device: UiDevice, private val applica
 
     companion object {
         const val ANDROID_LOCALHOST = "10.0.2.2"
+        const val LONG_WAIT = 1000.toLong()
     }
 
     override fun performAction() {
@@ -28,7 +30,7 @@ class AndroidMonkeyScreenshots(private val device: UiDevice, private val applica
 
     private fun performActionImpl() {
         val elements = device.findObjects(By.pkg(applicationPackage))
-//        device.wait(Until.hasObject(By.pkg(APPLICATION_PACKAGE).depth(0)), LONG_WAIT)
+        device.wait(Until.hasObject(By.pkg(applicationPackage).depth(0)), LONG_WAIT)
         val screenshot = AndroidElementParser.takeScreenshot(screenshotDir, device)
         val uiState = AndroidElementParser.parseWithScreenshot(elements, screenshot)
         val action = generateAction(uiState)
