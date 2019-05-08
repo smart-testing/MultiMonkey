@@ -1,4 +1,4 @@
-#from src.template_matching import remove_selected
+# from src.template_matching import remove_selected
 from template_matching import remove_selected
 from flask import Flask
 from flask import request
@@ -19,11 +19,12 @@ class Element:
 @app.route("/", methods=['POST'])
 def server():
     input_json: dict = request.get_json(cache=False)
-    screenshot: str = input_json["screenshot"]
+    glob: dict = input_json["global"]
+    screenshot: str = glob["screenshot"]
     elements_json: list = input_json["elements"]
     if len(elements_json) < 1:
         return jsonify()
-    elements: list = list(map(lambda x: Element(x), elements_json))
+    elements: list = list(map(lambda x: Element(x["attributes"]), elements_json))
     # todo отправлять только найденные
     filtered = remove_selected(screenshot, elements)
     print('Got from client: ' + str(len(elements)) + ' elements. Filtered: ' + str(len(filtered)))
