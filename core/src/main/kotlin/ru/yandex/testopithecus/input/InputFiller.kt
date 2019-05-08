@@ -1,6 +1,5 @@
 package ru.yandex.testopithecus.input
 
-import ru.yandex.testopithecus.rect.RectComparison
 import ru.yandex.testopithecus.rect.TRectangle
 import ru.yandex.testopithecus.ui.UiElement
 import ru.yandex.testopithecus.ui.UiState
@@ -41,16 +40,22 @@ object InputFiller : InputGenerator {
 
     private fun suggestForUnmarkedInput(unmarkedInput: UiElement, allTextLabels: Collection<UiElement>): String {
         val markedTextViews = findMarkedTextLabels(allTextLabels)
-        var minDistance = Integer.MAX_VALUE
-        var nearestTextLabel: UiElement? = null
-        for (markedTextView in markedTextViews) {
-            val curDistance = RectComparison.minDistance((unmarkedInput.attributes["rect"] as TRectangle),
-                    (markedTextView.attributes["rect"] as TRectangle))
-            if (minDistance > curDistance) {
-                minDistance = curDistance
-                nearestTextLabel = markedTextView
+        val nearestTextLabel = markedTextViews.stream().min { _, e2 ->
+            //            val r2 = e2.attributes["rect"] as TRectangle
+            val r1 = unmarkedInput.attributes["rect"] as TRectangle
+            val r2 = e2.attributes["rect"] as TRectangle
+            var min = Integer.MAX_VALUE
+            if (Math.abs(r1.top - r2.bottom) < min) {
+                min = Math.abs(r1.top - r2.bottom)
             }
-        }
+            if (Math.abs(r1.bottom - r2.top) < min)
+                min = Math.abs(r1.bottom - r2.top)
+            if (Math.abs(r1.left - r2.right) < min)
+                min = Math.abs(r1.left - r2.right)
+            if (Math.abs(r1.right - r2.left) < min)
+                min = Math.abs(r1.right - r2.left)
+            min
+        }.orElse(null)
         var fillValue = ""
         if (nearestTextLabel != null) {
             for (attr in nearestTextLabel.attributes.keys) {
