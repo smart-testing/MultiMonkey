@@ -28,7 +28,7 @@ def server():
     # todo отправлять только найденные
     filtered = remove_selected(screenshot, elements)
     print('Got from client: ' + str(len(elements)) + ' elements. Filtered: ' + str(len(filtered)))
-    return jsonify(filtered)
+    return jsonify({"detected": filtered})
 
 
 if __name__ == '__main__':

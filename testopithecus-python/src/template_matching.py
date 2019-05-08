@@ -27,6 +27,7 @@ def readb64(base64_string):
     sbuf = BytesIO()
     sbuf.write(base64.b64decode(base64_string))
     pimg = Image.open(sbuf)
+    cv2.imwrite('android_screenshot.png', np.array(pimg))
     return cv2.cvtColor(np.array(pimg), cv2.COLOR_RGB2BGR)
 
 
