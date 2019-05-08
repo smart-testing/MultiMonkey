@@ -1,5 +1,5 @@
 # from src.template_matching import remove_selected
-from template_matching import remove_selected
+from src.template_matching import remove_selected
 from flask import Flask
 from flask import request
 from flask import jsonify
