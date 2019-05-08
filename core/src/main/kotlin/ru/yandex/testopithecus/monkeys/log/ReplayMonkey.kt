@@ -6,7 +6,7 @@ import ru.yandex.testopithecus.monkeys.state.actionGenerators.StateActionsGenera
 import ru.yandex.testopithecus.ui.Monkey
 import ru.yandex.testopithecus.ui.UiAction
 import ru.yandex.testopithecus.ui.UiState
-import ru.yandex.testopithecus.utils.deserializeAction
+import ru.yandex.testopithecus.utilsCore.deserializeAction
 import java.io.File
 import java.lang.RuntimeException
 import java.util.*

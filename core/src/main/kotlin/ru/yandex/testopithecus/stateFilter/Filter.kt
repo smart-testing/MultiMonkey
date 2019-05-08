@@ -1,20 +1,17 @@
 package ru.yandex.testopithecus.stateFilter
 
-import org.json.JSONArray
 import org.json.JSONObject
 import ru.yandex.testopithecus.ui.UiState
-import ru.yandex.testopithecus.utils.deserializeJSONArray
-import ru.yandex.testopithecus.utils.deserializeJSONObject
-import ru.yandex.testopithecus.utils.serializeUiState
+import ru.yandex.testopithecus.utilsCore.deserializeJSONObject
+import ru.yandex.testopithecus.utilsCore.serializeUiState
 
-class Filter(private val cvServerAddress: String) {
-
+class Filter(cvServerAddress: String) {
 
     private val cvClient = CvClient(cvServerAddress)
 
     private fun parseServerResponse(response: String): List<Any> {
         val jsonObject = deserializeJSONObject(JSONObject(response))
-        return deserializeJSONArray(jsonObject["detected"] as JSONArray)
+        return jsonObject["detected"] as List<Any>
     }
 
     private fun performRequest(uiState: UiState): List<Any> {

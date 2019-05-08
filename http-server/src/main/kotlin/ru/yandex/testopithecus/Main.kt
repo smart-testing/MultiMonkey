@@ -13,8 +13,8 @@ import org.json.JSONObject
 import ru.yandex.testopithecus.monkeys.log.LogMonkey
 import ru.yandex.testopithecus.monkeys.log.ReplayMonkey
 import ru.yandex.testopithecus.ui.Monkey
-import ru.yandex.testopithecus.utils.deserializeState
-import ru.yandex.testopithecus.utils.serializeAction
+import ru.yandex.testopithecus.utilsCore.deserializeState
+import ru.yandex.testopithecus.utilsCore.serializeAction
 
 val model: Monkey = ReplayMonkey("minimaltodo")
 

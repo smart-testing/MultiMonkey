@@ -11,7 +11,7 @@ abstract class AndroidMonkey(
         private val applicationPackage: String,
         private val apk: String) {
 
-    fun performAction() {
+    open fun performAction() {
         try {
             performActionImpl()
         } catch (e: StaleObjectException) {
