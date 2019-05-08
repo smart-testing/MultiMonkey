@@ -43,6 +43,9 @@ object AndroidElementParser {
         if (isTapElement(element)) {
             possibleActions.add("TAP")
         }
+        if (element.className.contains("EditText")) {
+            possibleActions.add("FILL")
+        }
         return possibleActions
     }
 

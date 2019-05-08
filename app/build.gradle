@@ -48,7 +48,7 @@ dependencies {
 }
 
 task putTestedApks(type: Exec) {
-    commandLine 'adb', 'push', 'src/androidTest/res/apks/', '/data/local/tmp'
+    commandLine 'adb', 'push', 'src/androidTest/apks/', '/data/local/tmp'
 }
 
 
