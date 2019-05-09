@@ -12,12 +12,13 @@ import khttp.post as httpPost
 
 object AndroidScreenshotManager {
 
-    fun takeScreenshot(device: UiDevice, fake: Boolean) {
-        if (fake) {
-            val message = "{\"screenshot\": \"\"}"
-            httpPost(URL + LOG, data = message)
-            return
-        }
+    fun shouldTakeScreenshotDuringRestore() {
+        val message = "{\"screenshot\": \"\"}"
+        httpPost(URL + LOG, data = message)
+        return
+    }
+
+    fun takeScreenshotNow(device: UiDevice) {
         val scrFile = File(context.filesDir, "scr.png")
         device.takeScreenshot(scrFile)
         val bytes = scrFile.readBytes()

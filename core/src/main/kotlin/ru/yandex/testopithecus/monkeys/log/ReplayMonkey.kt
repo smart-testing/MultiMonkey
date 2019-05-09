@@ -10,14 +10,18 @@ import java.util.*
 
 class ReplayMonkey(private val filename: String, private val logFile: File) : Monkey {
 
-    private val actions = LinkedList<String>(File("tests/$filename.monkey").readLines())
+    private val actions = LinkedList<UiAction>(
+            File("tests/$filename.monkey").readLines().map {
+                deserializeAction(JSONObject(it))
+            }
+    )
     private val stateActionsGenerator: StateActionsGenerator = StateActionsGeneratorImpl()
 
     override fun generateAction(uiState: UiState): UiAction {
         if (actions.isEmpty()) {
             return validate()
         }
-        val nextAction = deserializeAction(JSONObject(actions.removeFirst()))
+        val nextAction = actions.removeFirst()
         if (nextAction.id != null && !stateActionsGenerator.getActions(uiState).contains(nextAction)) {
             throw RuntimeException("could not find replay action: $nextAction")
         }

@@ -10,7 +10,7 @@ import io.ktor.response.respond
 import io.ktor.routing.post
 import io.ktor.routing.routing
 import org.json.JSONObject
-import ru.yandex.testopithecus.monkeys.log.LogMonkey
+import ru.yandex.testopithecus.monkeys.log.RestoreMonkey
 import ru.yandex.testopithecus.monkeys.log.ReplayMonkey
 import ru.yandex.testopithecus.monkeys.state.StateModelMonkey
 import ru.yandex.testopithecus.ui.Monkey
@@ -41,21 +41,22 @@ fun Application.main() {
         post("/log") {
             val log = call.receiveText()
             println("log: $log")
-            (model as? LogMonkey)?.appendToLog(log) ?: logFile.appendText(log + "\n")
+            (model as? RestoreMonkey)?.appendToLog(log) ?: logFile.appendText(log + "\n")
         }
     }
     routing {
-        post("/init/{mode}/{name?}") {
+        post("/init/{mode}/{recordName?}") {
             logFile.delete()
             val mode = call.parameters["mode"]
             model = when (mode?.toLowerCase()) {
                 "statemodel" -> StateModelMonkey()
                 "log" -> {
-                    val file = call.parameters["name"]
-                    file?.let { LogMonkey(it) } ?: StateModelMonkey()
+                    val file = call.parameters["recordName"]
+                    println(file)
+                    file?.let { RestoreMonkey(it) } ?: StateModelMonkey()
                 }
                 "replay" -> {
-                    val file = call.parameters["name"]
+                    val file = call.parameters["recordName"]
                     file?.let { ReplayMonkey(it, logFile) } ?: StateModelMonkey()
                 }
                 else -> StateModelMonkey()

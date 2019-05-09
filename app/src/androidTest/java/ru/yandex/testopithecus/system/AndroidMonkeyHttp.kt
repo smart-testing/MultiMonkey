@@ -17,7 +17,7 @@ class AndroidMonkeyHttp(
 ) : AndroidMonkey(device, applicationPackage, apk) {
 
     init {
-        httpPost(URL + INIT + mode + "/" + (file ?: ""))
+        httpPost("$URL$INIT$mode/${file ?: ""}")
     }
 
     override fun generateAction(uiState: UiState): UiAction {

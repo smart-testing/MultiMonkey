@@ -26,7 +26,7 @@ class SimpleUiTest {
 
     @Test
     fun takeScreenshot() {
-        AndroidScreenshotManager.takeScreenshot(device, true)
+        AndroidScreenshotManager.shouldTakeScreenshotDuringRestore()
     }
 
     @Test

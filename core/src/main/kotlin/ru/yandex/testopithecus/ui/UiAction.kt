@@ -19,7 +19,8 @@ fun skipAction() = UiAction(null, "SKIP", mapOf())
 
 fun finishAction() = UiAction(null, "FINISH", mapOf())
 
-fun screenshotAction(fake: Boolean) = UiAction(null, "SCREENSHOT", mapOf("fake" to fake.toString()))
+fun screenshotAction() = UiAction(null, "SCREENSHOT", mapOf())
+fun fakeScreenshotAction() = UiAction(null, "FAKE_SCREENSHOT", mapOf())
 
 fun testOkAction() = UiAction(null, "TEST_OK", mapOf())
 

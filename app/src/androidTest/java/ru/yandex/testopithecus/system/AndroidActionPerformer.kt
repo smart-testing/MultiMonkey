@@ -24,7 +24,10 @@ class AndroidActionPerformer(
             "SKIP" -> {
             }
             "SCREENSHOT" -> {
-                AndroidScreenshotManager.takeScreenshot(device, action.attributes["fake"]?.toBoolean() ?: false)
+                AndroidScreenshotManager.takeScreenshotNow(device)
+            }
+            "FAKE_SCREENSHOT" -> {
+                AndroidScreenshotManager.shouldTakeScreenshotDuringRestore()
             }
             "FINISH" -> throw SessionFinishedException()
             "ERROR" -> throw ServerErrorException(action.attributes["message"])
