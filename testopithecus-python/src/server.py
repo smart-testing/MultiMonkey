@@ -23,7 +23,7 @@ def server():
     screenshot: str = glob["screenshot"]
     elements_json: list = input_json["elements"]
     if len(elements_json) < 1:
-        return jsonify()
+        return jsonify({"detected": []})
     elements: list = list(map(lambda x: Element(x["attributes"]), elements_json))
     # todo отправлять только найденные
     filtered = remove_selected(screenshot, elements)
