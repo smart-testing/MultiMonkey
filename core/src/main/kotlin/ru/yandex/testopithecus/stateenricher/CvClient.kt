@@ -1,4 +1,4 @@
-package ru.yandex.testopithecus.stateFilter
+package ru.yandex.testopithecus.stateenricher
 
 import okhttp3.MediaType
 import okhttp3.OkHttpClient

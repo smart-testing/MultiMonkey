@@ -44,7 +44,7 @@ fun deserializeJSONArray(jsonArray: JSONArray): List<Any> {
     return list
 }
 
-fun deserialize(value: Any) : Any {
+fun deserialize(value: Any): Any {
     return when (value) {
         is JSONObject -> deserializeJSONObject(value)
         is JSONArray -> deserializeJSONArray(value)
@@ -116,7 +116,7 @@ fun serializeUiElement(uiElement: UiElement): JSONObject {
     return json
 }
 
-fun serializeJSONObject(mapObject: Map<String, Any>): JSONObject  {
+fun serializeJSONObject(mapObject: Map<String, Any>): JSONObject {
     val json = JSONObject()
     for ((key, value) in mapObject) {
         json.put(key, serialize(value))
@@ -132,7 +132,8 @@ fun serializeJSONArray(list: List<Any>): JSONArray {
     return jsonArray
 }
 
-fun serialize(value: Any) : Any {
+fun serialize(value: Any): Any {
+    @Suppress("UNCHECKED_CAST")
     return when (value) {
         is Map<*, *> -> serializeJSONObject(value as Map<String, Any>)
         is List<*> -> serializeJSONArray(value as List<Any>)
