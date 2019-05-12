@@ -1,7 +1,7 @@
-package ru.yandex.testopithecus.monkeys.mbt.model.components.draftTodo
+package ru.yandex.testopithecus.monkeys.mbt.minimalTodoExample.components.draftTodo
 
-import ru.yandex.testopithecus.monkeys.mbt.model.components.ModelAction
-import ru.yandex.testopithecus.monkeys.mbt.model.components.Component
+import ru.yandex.testopithecus.monkeys.mbt.ModelAction
+import ru.yandex.testopithecus.monkeys.mbt.Component
 
 
 class DraftTodoComponent: Component {

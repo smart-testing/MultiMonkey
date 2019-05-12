@@ -5,9 +5,9 @@ import org.jgrapht.graph.DirectedPseudograph
 import org.json.JSONArray
 import org.json.JSONObject
 import ru.yandex.testopithecus.monkeys.mbt.MbtElement
-import ru.yandex.testopithecus.monkeys.mbt.model.application.ApplicationModel
-import ru.yandex.testopithecus.monkeys.mbt.model.components.ModelAction
-import ru.yandex.testopithecus.monkeys.mbt.model.components.mainPage.MainPageComponent
+import ru.yandex.testopithecus.monkeys.mbt.minimalTodoExample.application.ApplicationModel
+import ru.yandex.testopithecus.monkeys.mbt.ModelAction
+import ru.yandex.testopithecus.monkeys.mbt.minimalTodoExample.components.mainPage.MainPageComponent
 import ru.yandex.testopithecus.ui.UiAction
 import ru.yandex.testopithecus.monkeys.state.identifier.StateId
 import ru.yandex.testopithecus.monkeys.state.model.strategies.metric.DistanceToUnknownState
