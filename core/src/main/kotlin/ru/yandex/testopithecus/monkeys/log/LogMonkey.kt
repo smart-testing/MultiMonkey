@@ -5,7 +5,7 @@ import ru.yandex.testopithecus.monkeys.state.actionGenerators.StateActionsGenera
 import ru.yandex.testopithecus.ui.Monkey
 import ru.yandex.testopithecus.ui.UiAction
 import ru.yandex.testopithecus.ui.UiState
-import ru.yandex.testopithecus.utilsCore.serializeAction
+import ru.yandex.testopithecus.utils.serializeAction
 import java.io.File
 import java.nio.file.Files
 import java.util.*

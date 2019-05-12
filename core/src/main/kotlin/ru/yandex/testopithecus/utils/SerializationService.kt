@@ -1,4 +1,4 @@
-package ru.yandex.testopithecus.utilsCore
+package ru.yandex.testopithecus.utils
 
 import org.json.JSONArray
 import org.json.JSONObject

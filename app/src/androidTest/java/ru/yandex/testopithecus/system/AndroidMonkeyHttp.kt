@@ -3,8 +3,8 @@ package ru.yandex.testopithecus.system
 import androidx.test.uiautomator.UiDevice
 import ru.yandex.testopithecus.ui.UiAction
 import ru.yandex.testopithecus.ui.UiState
-import ru.yandex.testopithecus.utilsCore.deserializeAction
-import ru.yandex.testopithecus.utilsCore.serializeUiState
+import ru.yandex.testopithecus.utils.deserializeAction
+import ru.yandex.testopithecus.utils.serializeUiState
 
 import khttp.post as httpPost
 

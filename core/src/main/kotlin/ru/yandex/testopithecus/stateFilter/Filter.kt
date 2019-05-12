@@ -2,8 +2,8 @@ package ru.yandex.testopithecus.stateFilter
 
 import org.json.JSONObject
 import ru.yandex.testopithecus.ui.UiState
-import ru.yandex.testopithecus.utilsCore.deserializeJSONObject
-import ru.yandex.testopithecus.utilsCore.serializeUiState
+import ru.yandex.testopithecus.utils.deserializeJSONObject
+import ru.yandex.testopithecus.utils.serializeUiState
 
 class Filter(cvServerAddress: String) {
 
