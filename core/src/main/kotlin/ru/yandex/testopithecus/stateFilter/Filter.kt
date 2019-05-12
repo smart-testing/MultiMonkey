@@ -21,12 +21,11 @@ class Filter(cvServerAddress: String) {
     }
 
     private fun applyFilter(uiState: UiState, toFilter: List<Int>): UiState {
-        uiState.elements.forEachIndexed { index, _ -> index !in toFilter }
-        return uiState
+        return UiState(uiState.elements.filter { it.id.toInt() !in toFilter }, uiState.global)
     }
 
     fun filterStates(uiState: UiState): UiState {
-        val toFilter = performRequest(uiState)
-        return applyFilter(uiState, toFilter as List<Int>)
+        val toFilter = performRequest(uiState) as List<Int>
+        return applyFilter(uiState, toFilter)
     }
 }
