@@ -11,6 +11,7 @@ import androidx.test.uiautomator.Until
 import org.junit.Test
 import ru.yandex.testopithecus.exception.SessionFinishedException
 import ru.yandex.testopithecus.metrics.MetricsEvaluator
+import ru.yandex.testopithecus.system.AndroidMonkeyHttp
 import ru.yandex.testopithecus.system.AndroidMonkeyScreenshots
 import ru.yandex.testopithecus.utils.Reinstaller
 
@@ -22,6 +23,11 @@ class SimpleUiTest {
     @Test
     fun testApplication() {
         runMonkey(DEFAULT_PACKAGE, DEFAULT_APK)
+    }
+
+    @Test
+    fun testApplicationWithScreenshots() {
+        runMonkeyScreenshots(DEFAULT_PACKAGE, DEFAULT_APK)
     }
 
     @Test
@@ -38,6 +44,21 @@ class SimpleUiTest {
 
 
     private fun runMonkey(pckg: String, apk: String) {
+        Reinstaller.reinstall(device, pckg, apk)
+        openApplication(pckg)
+        val monkey = AndroidMonkeyHttp(device, pckg, apk)
+        for (step in 0 until STEPS_NUMBER) {
+            Log.d(STEPS_LOG_TAG, "current step: $step")
+            openApplicationIfRequired(pckg)
+            try {
+                monkey.performAction()
+            } catch (e: SessionFinishedException) {
+                return
+            }
+        }
+    }
+
+    private fun runMonkeyScreenshots(pckg: String, apk: String) {
         Reinstaller.reinstall(device, pckg, apk)
         openApplication(pckg)
         val monkey = AndroidMonkeyScreenshots(device, pckg, apk, context.filesDir,
