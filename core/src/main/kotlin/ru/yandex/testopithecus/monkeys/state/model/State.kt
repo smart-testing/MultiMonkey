@@ -8,8 +8,7 @@ import java.lang.IllegalArgumentException
 class State(val id: StateId, val uiState: UiState) {
     var metric: Int? = null
     private var mbt: MbtElement? = null
-
-    class FictiveStateId: StateId
+    val index = counter++
 
     fun hasMbt(): Boolean {
         return mbt != null
@@ -23,7 +22,10 @@ class State(val id: StateId, val uiState: UiState) {
         this.mbt = mbt
     }
 
+    class FictiveStateId: StateId
+
     companion object {
         val NULL_STATE = State(FictiveStateId(), UiState(listOf(), mapOf()))
+        var counter = 0
     }
 }

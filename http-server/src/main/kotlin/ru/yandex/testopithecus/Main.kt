@@ -13,6 +13,7 @@ import org.json.JSONObject
 import ru.yandex.testopithecus.monkeys.log.LogMonkey
 import ru.yandex.testopithecus.monkeys.log.ReplayMonkey
 import ru.yandex.testopithecus.ui.Monkey
+import ru.yandex.testopithecus.utils.deserializeFeedback
 import ru.yandex.testopithecus.utils.deserializeState
 import ru.yandex.testopithecus.utils.serializeAction
 
@@ -32,6 +33,13 @@ fun Application.main() {
             val action = model.generateAction(uiState)
             val resp = serializeAction(action).toString()
             call.respond(resp)
+        }
+    }
+    routing {
+        post("/feedback") {
+            val jsonState = JSONObject(call.receiveText())
+            val uiFeedback = deserializeFeedback(jsonState)
+            model.feedback(uiFeedback)
         }
     }
     routing {

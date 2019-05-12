@@ -12,6 +12,7 @@ import org.junit.Test
 import ru.yandex.testopithecus.exception.SessionFinishedException
 import ru.yandex.testopithecus.metrics.MetricsEvaluator
 import ru.yandex.testopithecus.system.AndroidMonkeyHttp
+import ru.yandex.testopithecus.system.AndroidMonkeyImpl
 import ru.yandex.testopithecus.utils.Reinstaller
 
 class SimpleUiTest {
@@ -40,7 +41,7 @@ class SimpleUiTest {
     private fun runMonkey(pckg: String, apk: String) {
         Reinstaller.reinstall(device, pckg, apk)
         openApplication(pckg)
-        val monkey = AndroidMonkeyHttp(device, pckg, apk)
+        val monkey = AndroidMonkeyImpl(device, pckg, apk)
         for (step in 0 until STEPS_NUMBER) {
             Log.d(STEPS_LOG_TAG, "current step: $step")
             openApplicationIfRequired(pckg)

@@ -2,9 +2,10 @@ package ru.yandex.testopithecus.monkeys.state.model
 
 import org.jgrapht.Graph
 import org.jgrapht.graph.DirectedPseudograph
+import org.json.JSONArray
+import org.json.JSONObject
 import ru.yandex.testopithecus.monkeys.mbt.MbtElement
 import ru.yandex.testopithecus.monkeys.mbt.model.application.ApplicationModel
-import ru.yandex.testopithecus.monkeys.mbt.model.application.MainPageModel
 import ru.yandex.testopithecus.monkeys.mbt.model.components.ModelAction
 import ru.yandex.testopithecus.monkeys.mbt.model.components.mainPage.MainPageComponent
 import ru.yandex.testopithecus.ui.UiAction
@@ -63,14 +64,16 @@ class StateModel {
 
     fun generateAction(id: StateId): UiAction {
         val state = states.getOrElse(id) { throw NoSuchElementException() }
-
-        // temporary fix until feedback impl
-        processFeedback(state)
-
-        metric.updateMetric(graph, state)
         val action = strategy.getAction(graph, state) ?: throw NoSuchElementException()
         previousAction = action
         return getUiAction(action, state.uiState)
+    }
+
+    fun feedback(id: StateId) {
+        val state = states.getOrElse(id) { throw NoSuchElementException() }
+        processFeedback(state)
+        dumpGraph()
+        metric.updateMetric(graph, state)
     }
 
     private fun processFeedback(state: State) {
@@ -116,6 +119,26 @@ class StateModel {
             }
         }
     }
+
+    private fun dumpGraph(): JSONObject {
+        val json = JSONObject()
+        val vertices = JSONArray()
+        for (state in graph.vertexSet()) {
+            vertices.put(state.index)
+        }
+        val edges = JSONArray()
+        for (action in graph.edgeSet()) {
+            val edge = JSONObject()
+            edge.put("source", graph.getEdgeSource(action).index)
+            edge.put("target", graph.getEdgeTarget(action).index)
+            edges.put(edge)
+        }
+        json.put("vertices", vertices)
+        json.put("edges", edges)
+        println(json)
+        return json
+    }
+
 }
 
 fun <V, E> Graph<V, E>.changeEdge(edge: E, source: V, target: V) {

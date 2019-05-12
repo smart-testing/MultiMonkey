@@ -4,8 +4,12 @@ import org.json.JSONArray
 import org.json.JSONObject
 import ru.yandex.testopithecus.ui.UiAction
 import ru.yandex.testopithecus.ui.UiElement
+import ru.yandex.testopithecus.ui.UiFeedback
 import ru.yandex.testopithecus.ui.UiState
 
+fun deserializeFeedback(json: JSONObject): UiFeedback {
+    return UiFeedback(json.getString("status"), deserializeState(json.getJSONObject("state")))
+}
 
 fun deserializeState(json: JSONObject): UiState {
     val elements = deserializeElements(json.getJSONArray("elements"))

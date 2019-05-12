@@ -22,7 +22,7 @@ class AcceptTodoAction: ModelAction {
         } else {
             model.mainPage.setTodoItem(draftTodo.index, draftTodo)
         }
-        return MbtElement(model.setMainPage(newMainPage), MainPageComponent())
+        return MbtElement(model.copy(mainPage = newMainPage, currentTodo = null), MainPageComponent())
     }
 
     override fun getAction(state: UiState): UiAction {

@@ -4,6 +4,7 @@ import ru.yandex.testopithecus.monkeys.state.actionGenerators.StateActionsGenera
 import ru.yandex.testopithecus.monkeys.state.actionGenerators.StateActionsGeneratorImpl
 import ru.yandex.testopithecus.ui.Monkey
 import ru.yandex.testopithecus.ui.UiAction
+import ru.yandex.testopithecus.ui.UiFeedback
 import ru.yandex.testopithecus.ui.UiState
 import ru.yandex.testopithecus.utils.serializeAction
 import java.io.File
@@ -87,7 +88,7 @@ class LogMonkey(private val filename: String) : Monkey {
         return UiAction(null, "RESTART", mapOf())
     }
 
-    override fun feedback() {
+    override fun feedback(feedback: UiFeedback) {
     }
 
     fun appendToLog(line: String) {

@@ -4,5 +4,5 @@ interface Monkey {
 
     fun generateAction(uiState: UiState): UiAction
 
-    fun feedback()
+    fun feedback(feedback: UiFeedback)
 }

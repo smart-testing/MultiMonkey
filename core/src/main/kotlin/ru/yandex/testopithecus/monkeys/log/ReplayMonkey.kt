@@ -5,6 +5,7 @@ import ru.yandex.testopithecus.monkeys.state.actionGenerators.StateActionsGenera
 import ru.yandex.testopithecus.monkeys.state.actionGenerators.StateActionsGeneratorImpl
 import ru.yandex.testopithecus.ui.Monkey
 import ru.yandex.testopithecus.ui.UiAction
+import ru.yandex.testopithecus.ui.UiFeedback
 import ru.yandex.testopithecus.ui.UiState
 import ru.yandex.testopithecus.utils.deserializeAction
 import java.io.File
@@ -28,6 +29,6 @@ class ReplayMonkey(filename: String) : Monkey {
         return nextAction
     }
 
-    override fun feedback() {
+    override fun feedback(feedback: UiFeedback) {
     }
 }
