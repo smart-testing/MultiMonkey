@@ -1,8 +1,6 @@
 package ru.yandex.testopithecus.monkeys.state.actionGenerators
 
-import ru.yandex.testopithecus.ui.UiAction
-import ru.yandex.testopithecus.ui.UiElement
-import ru.yandex.testopithecus.ui.UiState
+import ru.yandex.testopithecus.ui.*
 
 class StateActionsGeneratorImpl : StateActionsGenerator {
 
@@ -10,25 +8,16 @@ class StateActionsGeneratorImpl : StateActionsGenerator {
         val actions = mutableListOf<UiAction>()
         state.elements.stream()
             .forEach  { element -> addActionsToList(actions, element) }
-        actions.add(UiAction(null, "SKIP", mapOf()))
+        actions.add(skipAction())
         return actions
     }
 
     private fun addActionsToList(actions: MutableList<UiAction>, element: UiElement) {
         if (element.possibleActions.contains("TAP")) {
-            actions.add(constructTapAction(element))
+            actions.add(tapAction(element))
         }
         if (element.possibleActions.contains("INPUT")) {
-            actions.add(constructInputAction(element))
+            actions.add(inputAction(element, "text"))
         }
     }
-
-    private fun constructTapAction(element: UiElement): UiAction {
-        return UiAction(element.id, "TAP", mapOf())
-    }
-
-    private fun constructInputAction(element: UiElement): UiAction {
-        return UiAction(element.id, "INPUT", mapOf("text" to "text"))
-    }
-
 }
