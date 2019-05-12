@@ -1,11 +1,10 @@
-package ru.yandex.testopithecus.monkeys.mbt.model.components.mainPage
+package ru.yandex.testopithecus.monkeys.mbt.minimalTodoExample.components.mainPage
 
 import ru.yandex.testopithecus.monkeys.mbt.MbtElement
-import ru.yandex.testopithecus.monkeys.mbt.model.components.ModelAction
-import ru.yandex.testopithecus.monkeys.mbt.model.components.Component
-import ru.yandex.testopithecus.monkeys.mbt.model.components.draftTodo.DraftTodoComponent
-import ru.yandex.testopithecus.monkeys.mbt.model.application.ApplicationModel
-import ru.yandex.testopithecus.monkeys.mbt.model.application.TodoItemModel
+import ru.yandex.testopithecus.monkeys.mbt.ModelAction
+import ru.yandex.testopithecus.monkeys.mbt.minimalTodoExample.components.draftTodo.DraftTodoComponent
+import ru.yandex.testopithecus.monkeys.mbt.minimalTodoExample.application.ApplicationModel
+import ru.yandex.testopithecus.monkeys.mbt.minimalTodoExample.application.TodoItemModel
 import ru.yandex.testopithecus.ui.UiAction
 import ru.yandex.testopithecus.ui.UiState
 

@@ -1,4 +1,6 @@
-package ru.yandex.testopithecus.monkeys.mbt.model.components
+package ru.yandex.testopithecus.monkeys.mbt
+
+import ru.yandex.testopithecus.monkeys.mbt.ModelAction
 
 
 interface Component {

@@ -3,10 +3,9 @@ package ru.yandex.testopithecus.monkeys.state.model
 import org.jgrapht.Graph
 import org.jgrapht.graph.DirectedPseudograph
 import ru.yandex.testopithecus.monkeys.mbt.MbtElement
-import ru.yandex.testopithecus.monkeys.mbt.model.application.ApplicationModel
-import ru.yandex.testopithecus.monkeys.mbt.model.application.MainPageModel
-import ru.yandex.testopithecus.monkeys.mbt.model.components.ModelAction
-import ru.yandex.testopithecus.monkeys.mbt.model.components.mainPage.MainPageComponent
+import ru.yandex.testopithecus.monkeys.mbt.minimalTodoExample.application.ApplicationModel
+import ru.yandex.testopithecus.monkeys.mbt.ModelAction
+import ru.yandex.testopithecus.monkeys.mbt.minimalTodoExample.components.mainPage.MainPageComponent
 import ru.yandex.testopithecus.ui.UiAction
 import ru.yandex.testopithecus.monkeys.state.identifier.StateId
 import ru.yandex.testopithecus.monkeys.state.model.strategies.metric.DistanceToUnknownState

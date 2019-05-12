@@ -1,9 +1,9 @@
-package ru.yandex.testopithecus.monkeys.mbt.model.application
+package ru.yandex.testopithecus.monkeys.mbt.minimalTodoExample.application
 
 
 data class ApplicationModel(
-    val currentTodo: TodoItemModel? = null,
-    val mainPage: MainPageModel = MainPageModel()
+        val currentTodo: TodoItemModel? = null,
+        val mainPage: MainPageModel = MainPageModel()
 ) {
 
     fun setCurrentTodo(currentTodo: TodoItemModel?): ApplicationModel {

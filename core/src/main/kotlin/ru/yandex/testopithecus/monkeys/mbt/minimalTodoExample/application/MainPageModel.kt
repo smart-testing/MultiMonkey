@@ -1,4 +1,4 @@
-package ru.yandex.testopithecus.monkeys.mbt.model.application
+package ru.yandex.testopithecus.monkeys.mbt.minimalTodoExample.application
 
 
 data class MainPageModel(val todoItems: List<TodoItemModel> = listOf()) {
