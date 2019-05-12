@@ -3,8 +3,8 @@ package ru.yandex.testopithecus.monkeys.state.identifier
 import ru.yandex.testopithecus.ui.UiState
 
 
-interface StateIdGenerator<out T : StateId> {
+interface StateIdGenerator {
 
-    fun getId(state: UiState) : T
+    fun getId(state: UiState) : StateId
 
 }
