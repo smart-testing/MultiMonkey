@@ -8,15 +8,26 @@ import ru.yandex.testopithecus.utils.serializeUiState
 
 import khttp.post as httpPost
 
-class AndroidMonkeyHttp(device: UiDevice, applicationPackage: String, apk: String) :
-        AndroidMonkey(device, applicationPackage, apk) {
+class AndroidMonkeyHttp(
+        mode: String,
+        device: UiDevice,
+        applicationPackage: String,
+        apk: String, file:
+        String? = null
+) : AndroidMonkey(device, applicationPackage, apk) {
+
+    init {
+        httpPost("$URL$INIT$mode/${file ?: ""}")
+    }
 
     override fun generateAction(uiState: UiState): UiAction {
-        val response = httpPost(URL, json = serializeUiState(uiState))
+        val response = httpPost(URL + GENERATE_ACTION, json = serializeUiState(uiState))
         return deserializeAction(response.jsonObject)
     }
 
     companion object {
-        private const val URL = "http://10.0.2.2:8080/generate-action"
+        private const val URL = "http://10.0.2.2:8080/"
+        private const val GENERATE_ACTION = "generate-action/"
+        private const val INIT = "init/"
     }
 }
