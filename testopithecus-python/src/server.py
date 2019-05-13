@@ -36,8 +36,9 @@ def button_alive():
     input_json: dict = request.get_json(cache=False)
     before: str = input_json["before"]
     after: str = input_json["after"]
-    equals = compare_screenshots(before, after)
-    return jsonify({"button-alive": str(equals)})
+    equals = compare_screenshots(before, after) != 0
+    print("Button-alive: ", equals)
+    return jsonify({"button-alive": str(int(equals))})
 
 
 if __name__ == '__main__':
