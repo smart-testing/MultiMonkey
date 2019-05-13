@@ -1,5 +1,5 @@
-# from src.template_matching import remove_selected
 from src.template_matching import remove_selected
+from src.template_matching import compare_screenshots
 from flask import Flask
 from flask import request
 from flask import jsonify
@@ -29,6 +29,15 @@ def server():
     filtered = remove_selected(screenshot, elements)
     print('Got from client: ' + str(len(elements)) + ' elements. Filtered: ' + str(len(filtered)))
     return jsonify({"detected": filtered})
+
+
+@app.route("/button-alive", methods=['POST'])
+def button_alive():
+    input_json: dict = request.get_json(cache=False)
+    before: str = input_json["before"]
+    after: str = input_json["after"]
+    equals = compare_screenshots(before, after)
+    return jsonify({"button-alive": str(equals)})
 
 
 if __name__ == '__main__':

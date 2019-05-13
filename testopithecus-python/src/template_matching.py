@@ -31,6 +31,12 @@ def readb64(base64_string):
     return cv2.cvtColor(np.array(pimg), cv2.COLOR_RGB2BGR)
 
 
+def compare_screenshots(before: str, after: str):
+    before = readb64(before)
+    after = readb64(after)
+    return np.array_equal(before, after)
+
+
 def compare_rectangles(rect1: Rect, rect2: Rect):
     x_overlap = max(0, min(rect1.right, rect2.right) - max(rect1.left, rect2.left))
     y_overlap = max(0, min(rect1.bottom, rect2.bottom) - max(rect1.top, rect2.top))
