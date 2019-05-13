@@ -1,18 +1,14 @@
 package ru.yandex.testopithecus.system
 
 import androidx.test.uiautomator.*
+import ru.yandex.testopithecus.rect.TRectangle
 import ru.yandex.testopithecus.ui.UiElement
 import ru.yandex.testopithecus.ui.UiState
 import java.util.stream.Collectors
 
 object AndroidElementParser {
-    private val cache = HashMap<Int, UiState>()
     fun parse(elements: List<UiObject2>): UiState {
-        val hashCode = elements.hashCode()
-        if (!cache.containsKey(hashCode) || cache[hashCode] == null) {
-            cache[hashCode] = UiState(parseElements(elements), buildGlobal())
-        }
-        return cache[hashCode]!!
+        return UiState(parseElements(elements), buildGlobal())
     }
 
     private fun parseElements(elements: List<UiObject2>): List<UiElement> {
@@ -28,10 +24,11 @@ object AndroidElementParser {
     }
 
     private fun parseAttributes(element: UiObject2): MutableMap<String, Any> {
+        val rect = element.visibleBounds
         return mutableMapOf(
                 "text" to element.text,
                 "isLabel" to isLabelElement(element),
-                "rect" to RectAndroid(element.visibleBounds),
+                "rect" to TRectangle(rect.top, rect.left, rect.right, rect.bottom),
                 "id" to element.resourceName)
     }
 
@@ -42,9 +39,6 @@ object AndroidElementParser {
         }
         if (isTapElement(element)) {
             possibleActions.add("TAP")
-        }
-        if (element.className.contains("EditText")) {
-            possibleActions.add("FILL")
         }
         return possibleActions
     }
