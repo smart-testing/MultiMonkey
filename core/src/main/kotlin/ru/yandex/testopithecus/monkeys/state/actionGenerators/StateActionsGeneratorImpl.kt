@@ -1,9 +1,5 @@
 package ru.yandex.testopithecus.monkeys.state.actionGenerators
-
-import ru.yandex.testopithecus.input.InputFiller
-import ru.yandex.testopithecus.ui.UiAction
-import ru.yandex.testopithecus.ui.UiElement
-import ru.yandex.testopithecus.ui.UiState
+import ru.yandex.testopithecus.ui.*
 
 class StateActionsGeneratorImpl : StateActionsGenerator {
     override fun getActions(state: UiState): List<UiAction> {
@@ -16,7 +12,7 @@ class StateActionsGeneratorImpl : StateActionsGenerator {
 
     private fun addActionsToList(actions: MutableList<UiAction>, element: UiElement, state: UiState) {
         if (element.possibleActions.contains("TAP")) {
-            actions.add(constructTapAction(element))
+            actions.add(tapAction(element))
         }
         if (element.possibleActions.contains("INPUT")) {
             actions.add(constructInputAction(element, state))
