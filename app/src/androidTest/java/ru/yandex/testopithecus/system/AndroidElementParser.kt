@@ -7,8 +7,13 @@ import ru.yandex.testopithecus.ui.UiState
 import java.util.stream.Collectors
 
 object AndroidElementParser {
+    private val cache = HashMap<Int, UiState>()
     fun parse(elements: List<UiObject2>): UiState {
-        return UiState(parseElements(elements), buildGlobal())
+        val hashCode = elements.hashCode()
+        if (!cache.containsKey(hashCode) || cache[hashCode] == null) {
+            cache[hashCode] = UiState(parseElements(elements), buildGlobal())
+        }
+        return cache[hashCode]!!
     }
 
     private fun parseElements(elements: List<UiObject2>): List<UiElement> {
