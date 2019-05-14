@@ -1,6 +1,6 @@
 package ru.yandex.testopithecus.monkeys.state.model
 
-class Action {
+class Action(val isModelAction: Boolean) {
 
     private val index = counter++
 

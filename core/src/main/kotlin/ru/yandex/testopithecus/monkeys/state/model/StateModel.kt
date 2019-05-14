@@ -12,7 +12,7 @@ import ru.yandex.testopithecus.ui.UiAction
 import ru.yandex.testopithecus.monkeys.state.identifier.StateId
 import ru.yandex.testopithecus.monkeys.state.model.strategies.metric.DistanceToUnknownState
 import ru.yandex.testopithecus.monkeys.state.model.strategies.metric.Metric
-import ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy.MinimizeMetricStrategy
+import ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy.MBTPriorityWalkStrategy
 import ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy.WalkStrategy
 import ru.yandex.testopithecus.ui.UiState
 
@@ -23,9 +23,9 @@ class StateModel {
     private val uiActions: MutableMap<Action, UiAction> = mutableMapOf()
     private val modelActions: MutableMap<Action, ModelAction> = mutableMapOf()
 
-    private val graph: Graph<State, Action> = DirectedPseudograph(null, { Action() }, false)
+    private val graph: Graph<State, Action> = DirectedPseudograph(null, { Action(false) }, false)
 
-    private val strategy: WalkStrategy = MinimizeMetricStrategy()
+    private val strategy: WalkStrategy = MBTPriorityWalkStrategy()
     private val metric: Metric = DistanceToUnknownState()
 
     private var previousAction: Action? = null
@@ -48,7 +48,7 @@ class StateModel {
         graph.addVertex(state)
 
         stateUiActions.forEach {
-            val action = Action()
+            val action = Action(false)
             graph.addEdge(state, State.NULL_STATE, action)
             uiActions[action] = it
         }
@@ -113,7 +113,7 @@ class StateModel {
         if (state.hasMbt()) {
             val mbt = state.getMbt()
             for (modelAction in mbt.component.actions().filter { it.canBePerformed(mbt.model) }) {
-                val action = Action()
+                val action = Action(true)
                 graph.addEdge(state, State.NULL_STATE, action)
                 modelActions[action] = modelAction
             }
@@ -124,19 +124,32 @@ class StateModel {
         val json = JSONObject()
         val vertices = JSONArray()
         for (state in graph.vertexSet()) {
-            vertices.put(state.index)
+            val vertex = JSONObject()
+            vertex.put("index", state.index)
+            vertex.put("isModel", state.hasMbt())
+            vertices.put(vertex)
         }
         val edges = JSONArray()
         for (action in graph.edgeSet()) {
             val edge = JSONObject()
             edge.put("source", graph.getEdgeSource(action).index)
             edge.put("target", graph.getEdgeTarget(action).index)
+            edge.put("isModel", isModelAction(action))
+            edge.put("label", getLabelForAction(action))
             edges.put(edge)
         }
         json.put("vertices", vertices)
         json.put("edges", edges)
         println(json)
         return json
+    }
+
+    fun getLabelForAction(action: Action): String {
+        if (uiActions.contains(action)) {
+            val uiAction = uiActions.getOrElse(action) { throw Exception() }
+            return uiAction.action
+        }
+        return ""
     }
 
 }
