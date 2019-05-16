@@ -5,8 +5,11 @@ import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.features.ContentNegotiation
 import io.ktor.gson.gson
+import io.ktor.http.ContentType
 import io.ktor.request.receiveText
 import io.ktor.response.respond
+import io.ktor.response.respondText
+import io.ktor.routing.get
 import io.ktor.routing.post
 import io.ktor.routing.routing
 import org.json.JSONObject
@@ -21,12 +24,30 @@ import java.io.File
 
 var model: Monkey = StateModelMonkey()
 val logFile = File("logs/common.log")
+val graphVisualizer = GraphVisualizer()
 
 fun Application.main() {
     logFile.delete()
     install(ContentNegotiation) {
         gson {
             setPrettyPrinting()
+        }
+    }
+    routing {
+        get("/graph-visualize") {
+            val resp = graphVisualizer.buildHtml()
+            call.respondText(resp, ContentType.Text.Html)
+        }
+    }
+    routing {
+        post("/graph-visualize") {
+            graphVisualizer.graphJson = call.receiveText()
+        }
+    }
+    routing {
+        get("/js/main.js") {
+            val resp = graphVisualizer.getJs()
+            call.respondText(resp)
         }
     }
     routing {

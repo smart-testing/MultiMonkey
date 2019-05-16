@@ -12,14 +12,15 @@ repositories {
 test {
     useJUnitPlatform()
 }
-
 dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     compile 'org.json:json:20180813'
     implementation 'org.apache.commons:commons-lang3:3.0'
     implementation 'org.jgrapht:jgrapht-core:1.2.0'
+    implementation 'khttp:khttp:0.1.0'
     testImplementation 'io.kotlintest:kotlintest-runner-junit5:3.3.2'
 }
+
 
 compileKotlin {
     kotlinOptions.jvmTarget = "1.8"

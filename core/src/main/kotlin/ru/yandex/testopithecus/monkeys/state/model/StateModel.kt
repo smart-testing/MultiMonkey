@@ -16,6 +16,7 @@ import ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy.MBTPr
 import ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy.WalkStrategy
 import ru.yandex.testopithecus.ui.UiState
 
+import khttp.post as httpPost
 
 class StateModel {
 
@@ -140,7 +141,7 @@ class StateModel {
         }
         json.put("vertices", vertices)
         json.put("edges", edges)
-        println(json)
+        httpPost("http://10.0.2.2:8080/graph-visualize", json = json)
         return json
     }
 
