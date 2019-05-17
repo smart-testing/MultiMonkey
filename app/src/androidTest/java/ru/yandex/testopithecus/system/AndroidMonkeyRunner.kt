@@ -16,7 +16,7 @@ import ru.yandex.testopithecus.utils.deserializeAction
 import ru.yandex.testopithecus.utils.serializeUiState
 import java.io.File
 
-class AndroidMonkey(
+class AndroidMonkeyRunner(
         private val device: UiDevice,
         private val applicationPackage: String,
         private val apk: String,
@@ -26,7 +26,7 @@ class AndroidMonkey(
         useButtonLifeInspector: Boolean = false) {
 
     private val model: Monkey = StateModelMonkey(SimpleEnricher(url))
-    private val urlButtonLifeInspector = "http://${AndroidMonkey.ANDROID_LOCALHOST}:5000/button-alive"
+    private val urlButtonLifeInspector = "http://${AndroidMonkeyRunner.ANDROID_LOCALHOST}:5000/button-alive"
     private val buttonLifeInspector: ButtonLifeInspector = ButtonLifeInspector(useButtonLifeInspector,
             ::takeScreenshot,
             CvClient(urlButtonLifeInspector))
@@ -49,7 +49,7 @@ class AndroidMonkey(
         val elements = device.findObjects(By.pkg(applicationPackage))
         val uiState: UiState
         uiState = if (screenshotDir != null) {
-            device.wait(Until.hasObject(By.pkg(applicationPackage).depth(0)), AndroidMonkey.LONG_WAIT)
+            device.wait(Until.hasObject(By.pkg(applicationPackage).depth(0)), AndroidMonkeyRunner.LONG_WAIT)
             val screenshot = AndroidElementParser.takeScreenshot(screenshotDir, device)
             AndroidElementParser.parseWithScreenshot(elements, screenshot)
         } else {
@@ -70,7 +70,7 @@ class AndroidMonkey(
     }
 
     private fun generateActionHTTTP(uiState: UiState): UiAction {
-        val response = post(AndroidMonkey.URL, json = serializeUiState(uiState))
+        val response = post(AndroidMonkeyRunner.URL, json = serializeUiState(uiState))
         return deserializeAction(response.jsonObject)
     }
 

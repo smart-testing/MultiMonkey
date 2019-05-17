@@ -11,7 +11,7 @@ import androidx.test.uiautomator.Until
 import org.junit.Test
 import ru.yandex.testopithecus.exception.SessionFinishedException
 import ru.yandex.testopithecus.metrics.MetricsEvaluator
-import ru.yandex.testopithecus.system.AndroidMonkey
+import ru.yandex.testopithecus.system.AndroidMonkeyRunner
 import ru.yandex.testopithecus.utils.Reinstaller
 
 class SimpleUiTest {
@@ -45,7 +45,7 @@ class SimpleUiTest {
     private fun runMonkey(pckg: String, apk: String) {
         Reinstaller.reinstall(device, pckg, apk)
         openApplication(pckg)
-        val monkey = AndroidMonkey(device, pckg, apk, useHTTP = true)
+        val monkey = AndroidMonkeyRunner(device, pckg, apk, useHTTP = true)
         for (step in 0 until STEPS_NUMBER) {
             Log.d(STEPS_LOG_TAG, "current step: $step")
             openApplicationIfRequired(pckg)
@@ -60,8 +60,8 @@ class SimpleUiTest {
     private fun runMonkeyScreenshots(pckg: String, apk: String) {
         Reinstaller.reinstall(device, pckg, apk)
         openApplication(pckg)
-        val monkey = AndroidMonkey(device, pckg, apk, screenshotDir = context.filesDir,
-                url = "http://${AndroidMonkey.ANDROID_LOCALHOST}:5000")
+        val monkey = AndroidMonkeyRunner(device, pckg, apk, screenshotDir = context.filesDir,
+                url = "http://${AndroidMonkeyRunner.ANDROID_LOCALHOST}:5000")
         for (step in 0 until STEPS_NUMBER) {
             Log.d(STEPS_LOG_TAG, "current step: $step")
             openApplicationIfRequired(pckg)
