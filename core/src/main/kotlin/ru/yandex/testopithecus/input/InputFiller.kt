@@ -53,15 +53,7 @@ object InputFiller : InputGenerator {
                 else -> 0
             }
         }.orElse(null)
-        var fillValue = ""
-        if (nearestTextLabel != null) {
-            for (attr in nearestTextLabel.attributes.keys) {
-                if (configs.containsKey(attr) && configs.getValue(attr).containsKey(nearestTextLabel.attributes[attr])) {
-                    fillValue = configs[attr]?.get(nearestTextLabel.attributes[attr])!!
-                }
-            }
-        }
-        return fillValue
+        return getFromConfig(nearestTextLabel)
     }
 
     private fun findMarkedTextLabels(allTextLabels: Collection<UiElement>): List<UiElement> {
@@ -75,9 +67,12 @@ object InputFiller : InputGenerator {
     }
 
     private fun suggestForMarkedInput(input: UiElement): String {
-        for (attr in input.attributes.keys) {
-            if (configs.containsKey(attr) && configs.getValue(attr).containsKey(input.attributes[attr])) {
-                return configs[attr]?.get(input.attributes[attr])!!
+        return getFromConfig(input)
+    }
+    private fun getFromConfig(uiElement: UiElement) : String {
+        for (attr in uiElement.attributes.keys) {
+            if (configs.containsKey(attr) && configs.getValue(attr).containsKey(uiElement.attributes[attr])) {
+                return configs[attr]?.get(uiElement.attributes[attr]) ?: "do not have a value for attribute: $attr"
             }
         }
         return ""

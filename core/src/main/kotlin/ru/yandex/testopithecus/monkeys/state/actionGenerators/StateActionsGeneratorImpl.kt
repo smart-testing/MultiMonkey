@@ -1,16 +1,14 @@
 package ru.yandex.testopithecus.monkeys.state.actionGenerators
 
 import ru.yandex.testopithecus.input.InputFiller
-import ru.yandex.testopithecus.ui.UiAction
-import ru.yandex.testopithecus.ui.UiElement
-import ru.yandex.testopithecus.ui.UiState
+import ru.yandex.testopithecus.ui.*
 
 class StateActionsGeneratorImpl : StateActionsGenerator {
     override fun getActions(state: UiState): List<UiAction> {
         val actions = mutableListOf<UiAction>()
         state.elements.stream()
                 .forEach { element -> addActionsToList(actions, element, state) }
-        actions.add(UiAction(null, "SKIP", mapOf()))
+        actions.add(skipAction())
         return actions
     }
 
@@ -24,10 +22,11 @@ class StateActionsGeneratorImpl : StateActionsGenerator {
     }
 
     private fun constructTapAction(element: UiElement): UiAction {
-        return UiAction(element.id, "TAP", mapOf())
+        return tapAction(element)
     }
+
     private fun constructInputAction(element: UiElement, state: UiState): UiAction {
-        element.attributes["text"] = InputFiller.suggestInput(element, state)
-        return UiAction(element.id, "INPUT", mapOf("text" to element.attributes["text"] as String))
+        val suggestedText = InputFiller.suggestInput(element, state)
+        return fillAction(element, suggestedText)
     }
 }

@@ -23,9 +23,9 @@ object AndroidElementParser {
         return UiElement(elementId, parseAttributes(element), parsePossibleActions(element))
     }
 
-    private fun parseAttributes(element: UiObject2): MutableMap<String, Any> {
+    private fun parseAttributes(element: UiObject2): Map<String, Any> {
         val rect = element.visibleBounds
-        return mutableMapOf(
+        return mapOf(
                 "text" to element.text,
                 "isLabel" to isLabelElement(element),
                 "rect" to TRectangle(rect.top, rect.left, rect.right, rect.bottom),

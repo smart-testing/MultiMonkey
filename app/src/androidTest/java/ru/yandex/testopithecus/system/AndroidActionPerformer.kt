@@ -14,10 +14,9 @@ class AndroidActionPerformer(
         private val element: UiObject2) : ActionPerformer {
     override fun perform(action: UiAction) {
         when (action.action) {
-          "TAP" -> element.click()
+            "TAP" -> element.click()
             "INPUT" -> {
                 element.text = action.attributes["text"]
-                element.click()
             }
             "SKIP" -> {
             }
