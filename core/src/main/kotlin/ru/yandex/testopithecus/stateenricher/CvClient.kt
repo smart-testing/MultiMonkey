@@ -17,6 +17,8 @@ class CvClient(private val cvServerAddress: String) {
                 .url(cvServerAddress)
                 .post(body)
                 .build()
-        client.newCall(request).execute().use { response -> return response.body()!!.string() }
+        client.newCall(request).execute().use { response ->
+            return response.body()?.string() ?: ""
+        }
     }
 }

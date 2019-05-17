@@ -59,10 +59,9 @@ object AndroidElementParser {
 
     fun takeScreenshot(dir: File, device: UiDevice): String {
         val scrFile = File(dir, "scr.png")
-//        val scrFile = File(context.filesDir, "scr.png")
         device.takeScreenshot(scrFile)
         val bytes = scrFile.readBytes()
-        val base64 = Base64.encodeToString(bytes, Base64.NO_WRAP)!!
+        val base64 = Base64.encodeToString(bytes, Base64.NO_WRAP) ?: ""
         assert(base64 != "")
         return base64
     }
