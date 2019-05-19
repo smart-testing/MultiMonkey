@@ -25,9 +25,8 @@ def server():
     if len(elements_json) < 1:
         return jsonify({"detected": []})
     elements: list = list(map(lambda x: Element(x["attributes"]), elements_json))
-    # todo отправлять только найденные
     filtered = remove_selected(screenshot, elements)
-    print('Got from client: ' + str(len(elements)) + ' elements. Filtered: ' + str(len(filtered)))
+    print(f"Got from client: {len(elements)} elements. Filtered: {len(filtered)}")
     return jsonify({"detected": filtered})
 
 
@@ -37,7 +36,7 @@ def button_alive():
     before: str = input_json["before"]
     after: str = input_json["after"]
     equals = compare_screenshots(before, after) != 0
-    print("Button-alive: ", equals)
+    print(f"Button-alive: {equals}")
     return jsonify({"button-alive": str(int(equals))})
 
 

@@ -4,11 +4,19 @@ import imutils
 import numpy as np
 from PIL import Image
 from io import BytesIO
+import json
 
 #
 # visualised = True
 # threshold = 0.9
-template_locations = ['template_small2.png']
+template_locations = []
+
+
+def update_template_locations():
+    with open('../config.json') as config_file:
+        config = json.load(config_file)
+        global template_locations
+        template_locations = config["templates"]
 
 
 class Rect:
@@ -18,9 +26,8 @@ class Rect:
         self.left: int = left
         self.right: int = right
 
-    def tostring(self):
-        return str(self.top) + " " + str(self.bottom) \
-               + " " + str(self.left) + " " + str(self.right)
+    def __str__(self):
+        return f"{self.top} {self.bottom} {self.left} {self.right}"
 
 
 def readb64(base64_string):
@@ -58,15 +65,17 @@ def match_template(screenshot, template, visualised=False, threshold=0.9):
             break
         edged = resized
         result = cv2.matchTemplate(edged, template, cv2.TM_CCOEFF_NORMED)
-        loc = np.where(result >= threshold)
+        # loc = np.where(result >= threshold)
         (_, maxVal, _, maxLoc) = cv2.minMaxLoc(result)
         if maxVal >= threshold and visualised:
             clone = np.dstack([edged, edged, edged])
             cv2.rectangle(clone, (maxLoc[0], maxLoc[1]),
                           (maxLoc[0] + tW, maxLoc[1] + tH), (0, 0, 255), 2)
+        print(maxVal, maxLoc)
         if maxVal >= threshold and (found is None or maxVal > found[0]):
             found = (maxVal, maxLoc, r)
-    if found is None: return None
+    if found is None:
+        return None
     (_, maxLoc, r) = found
     (startX, startY) = (int(maxLoc[0] * r), int(maxLoc[1] * r))
     (endX, endY) = (int((maxLoc[0] + tW) * r), int((maxLoc[1] + tH) * r))
@@ -81,21 +90,21 @@ def get_rectangles(elements: list):
     return rectangles
 
 
-def satisfies_intersection_threshold(area_in, area_a, area_b):
-    satisfies = True
-    if area_in / area_a < 0.8: satisfies = False
-    if area_in / area_b < 0.8: satisfies = False
-    return satisfies
+def satisfies_intersection_threshold(area_in, area_a, area_b, threshold=0.6):
+    return area_in / area_a >= threshold and area_in / area_b >= threshold
 
 
 def remove_selected(screenshot_base64: str, elements: list):
     screenshot = readb64(screenshot_base64)
     matched = []
     rectangles = get_rectangles(elements)
+    update_template_locations()
     for template_location in template_locations:
         template = cv2.imread(template_location)
+        assert template is not None
         result = match_template(screenshot, template)
-        if result is None: continue
+        if result is None:
+            continue
         (startX, startY), (endX, endY) = result
         result_rect = Rect(startY, endY, startX, endX)
         for r, e in zip(rectangles, elements):
@@ -104,4 +113,4 @@ def remove_selected(screenshot_base64: str, elements: list):
             area_intersect = compare_rectangles(r, result_rect)
             if satisfies_intersection_threshold(area_intersect, area_r, area_s):
                 matched.append(e)
-    return [ind for ind, val in list(filter(lambda x: x[1] in matched, enumerate(elements)))]
+    return [ind for ind, _ in list(filter(lambda x: x[1] in matched, enumerate(elements)))]
