@@ -1,6 +1,4 @@
 flask
-opencv
 opencv-python
-cv2
-matplotlib
+imutils
 numpy
