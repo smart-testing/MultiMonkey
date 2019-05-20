@@ -2,13 +2,14 @@ import base64
 import cv2
 import imutils
 import numpy as np
+import json
+import matplotlib.pyplot as plt
 from PIL import Image
 from io import BytesIO
-import json
 
 #
 # visualised = True
-# threshold = 0.9
+rect_threshold = 0.9
 template_locations = []
 
 
@@ -51,14 +52,34 @@ def compare_rectangles(rect1: Rect, rect2: Rect):
     return overlapArea
 
 
+def draw_image(img, scheme='', label='', visualised=True, filename=None):
+    if not visualised:
+        return
+    img_rgb = img.copy()
+    # if scheme == 'gray':
+    #     img_rgb = cv2.cvtColor(img_rgb, cv2.COLOR_GRAY2RGB)
+    # elif scheme == 'BGR':
+    #     img_rgb = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2RGB)
+    if filename is not None:
+        plt.imsave(filename, img_rgb)
+        return
+    plt.imshow(img_rgb)
+
+
 def match_template(screenshot, template, visualised=False, threshold=0.9):
+    save_folder = 'result_images/'
     template = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
+    draw_image(template, 'gray', visualised=visualised, filename=save_folder + 'template.png')
     (tH, tW) = template.shape[:2]
-    if visualised: cv2.imshow("Template", template)
+    # if visualised:
+    # cv2.imshow("Template", template)
     image = screenshot
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     found = None
-    for scale in np.linspace(0.2, 1.0, 20)[::-1]:
+    best_scale = -1
+    scales = np.linspace(0.2, 2, 20)
+    scales = np.append(scales, 1)
+    for scale in scales[::-1]:
         resized = imutils.resize(gray, width=int(gray.shape[1] * scale))
         r = gray.shape[1] / float(resized.shape[1])
         if resized.shape[0] < tH or resized.shape[1] < tW:
@@ -67,15 +88,19 @@ def match_template(screenshot, template, visualised=False, threshold=0.9):
         result = cv2.matchTemplate(edged, template, cv2.TM_CCOEFF_NORMED)
         # loc = np.where(result >= threshold)
         (_, maxVal, _, maxLoc) = cv2.minMaxLoc(result)
-        if maxVal >= threshold and visualised:
+        if visualised:
+            # if maxVal >= threshold and visualised:
             clone = np.dstack([edged, edged, edged])
             cv2.rectangle(clone, (maxLoc[0], maxLoc[1]),
                           (maxLoc[0] + tW, maxLoc[1] + tH), (0, 0, 255), 2)
-        print(maxVal, maxLoc)
+            draw_image(clone, 'gray', visualised=True, filename=f"{save_folder}rect_{scale}.png")
+        print(maxVal)
         if maxVal >= threshold and (found is None or maxVal > found[0]):
+            best_scale = scale
             found = (maxVal, maxLoc, r)
     if found is None:
         return None
+    print(f'Best scale found is: {best_scale}')
     (_, maxLoc, r) = found
     (startX, startY) = (int(maxLoc[0] * r), int(maxLoc[1] * r))
     (endX, endY) = (int((maxLoc[0] + tW) * r), int((maxLoc[1] + tH) * r))
@@ -90,8 +115,8 @@ def get_rectangles(elements: list):
     return rectangles
 
 
-def satisfies_intersection_threshold(area_in, area_a, area_b, threshold=0.6):
-    return area_in / area_a >= threshold and area_in / area_b >= threshold
+def satisfies_intersection_threshold(area_in, area_a, area_b, threshold=0.55):
+    return area_in / area_a >= 0.9 and area_in / area_b >= threshold
 
 
 def remove_selected(screenshot_base64: str, elements: list):
@@ -102,15 +127,15 @@ def remove_selected(screenshot_base64: str, elements: list):
     for template_location in template_locations:
         template = cv2.imread(template_location)
         assert template is not None
-        result = match_template(screenshot, template)
+        result = match_template(screenshot, template, visualised=True)
         if result is None:
             continue
         (startX, startY), (endX, endY) = result
         result_rect = Rect(startY, endY, startX, endX)
         for r, e in zip(rectangles, elements):
-            area_r = compare_rectangles(r, r)
-            area_s = compare_rectangles(result_rect, result_rect)
+            area_ui_rectangle = compare_rectangles(r, r)
+            area_cv_rectangle = compare_rectangles(result_rect, result_rect)
             area_intersect = compare_rectangles(r, result_rect)
-            if satisfies_intersection_threshold(area_intersect, area_r, area_s):
+            if satisfies_intersection_threshold(area_intersect, area_ui_rectangle, area_cv_rectangle):
                 matched.append(e)
     return [ind for ind, _ in list(filter(lambda x: x[1] in matched, enumerate(elements)))]
