@@ -19,7 +19,6 @@ import ru.yandex.testopithecus.utils.serializeUiState
 import android.view.Display
 
 
-
 class SimpleUiTest {
 
     private val device = UiDevice.getInstance(getInstrumentation())
@@ -28,21 +27,6 @@ class SimpleUiTest {
     @Test
     fun testApplication() {
         runMonkey(DEFAULT_PACKAGE, DEFAULT_APK)
-    }
-
-    @Test
-    fun testKek() {
-        Reinstaller.reinstall(device, DEFAULT_PACKAGE, DEFAULT_APK)
-        openApplication(DEFAULT_PACKAGE)
-        device.wait(Until.hasObject(By.pkg(DEFAULT_PACKAGE).depth(0)), AndroidMonkeyRunner.LONG_WAIT)
-        val elements = device.findObjects(By.pkg(DEFAULT_PACKAGE))
-        val uistate = AndroidElementParser.parse(elements)
-        System.err.println(serializeUiState(uistate))
-        elements[0].visibleBounds
-        System.err.println(device.displaySizeDp)
-
-//        print("stamp $elements")
-//        AndroidElementParser.takeScreenshot(context.filesDir, device)
     }
 
     @Test
