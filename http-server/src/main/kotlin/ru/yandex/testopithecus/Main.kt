@@ -51,6 +51,12 @@ fun Application.main() {
         }
     }
     routing {
+        get("/graph-json") {
+            val resp = graphVisualizer.graphJson
+            call.respondText(resp, ContentType.Application.Json)
+        }
+    }
+    routing {
         post("/generate-action") {
             val jsonState = JSONObject(call.receiveText())
             val uiState = deserializeState(jsonState)

@@ -1,16 +1,27 @@
-let graph = initGraph();
-fillGraph(graph);
-drawGraph(graph);
+document.addEventListener("DOMContentLoaded", function(event) {
+    const options = getOptions();
+    let graph = initGraph();
+    let json = {};
+    fillGraph(graph, json);
+    let network = drawGraph(graph, options);
 
-function initGraph() {
+    setInterval(function() {
+        $.ajax({
+            url: 'graph-json',
+            success: function(response) {
+                json = response;
+                const new_graph = initGraph();
+                fillGraph(new_graph, json);
+                graph.nodes.update(new_graph.nodes.get());
+                graph.edges.update(new_graph.edges.get());
+            }
+        })
+    }, 2000);
+
+});
+
+function getOptions() {
     return {
-        nodes: new vis.DataSet([]),
-        edges: new vis.DataSet([])
-    };
-}
-
-function drawGraph(graph) {
-    const options = {
         autoResize: true,
         height: '100%',
         width: '100%',
@@ -21,14 +32,23 @@ function drawGraph(graph) {
             smooth: false,
         },
         nodes: { chosen: false },
-        physics: false
+        physics: true,
     };
-    const container = document.getElementById('content');
-    const network = new vis.Network(container, graph, options);
 }
 
-function fillGraph(graph) {
-    let json = ${graphJson};
+function initGraph() {
+    return {
+        nodes: new vis.DataSet([]),
+        edges: new vis.DataSet([])
+    };
+}
+
+function drawGraph(graph, options) {
+    const container = document.getElementById('content');
+    return new vis.Network(container, graph, options);
+}
+
+function fillGraph(graph, json) {
     for (const key in json.vertices) {
         if (json.vertices.hasOwnProperty(key)) {
             let vertex = json.vertices[key];
