@@ -28,7 +28,8 @@ def prepare_test(screen_path, config):
 
 class TestButtonAlive(unittest.TestCase):
     """
-    Restart src/server.py before each test.
+    Restart 'src/server.py' before each test or set 'cache_scale' argument of 'remove_selected()' in
+    'server()' to False.
     """
 
     @classmethod

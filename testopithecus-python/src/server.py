@@ -25,7 +25,7 @@ def server():
     if len(elements_json) < 1:
         return jsonify({"detected": []})
     elements: list = list(map(lambda x: Element(x["attributes"]), elements_json))
-    filtered = remove_selected(screenshot, elements)
+    filtered = remove_selected(screenshot, elements, cache_scale=False)
     print(f"Got from client: {len(elements)} elements. Filtered: {len(filtered)}")
     return jsonify({"detected": filtered})
 

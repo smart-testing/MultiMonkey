@@ -11,6 +11,7 @@ from io import BytesIO
 # visualised = True
 rect_threshold = 0.9
 template_locations = []
+global_scale = None
 
 
 def update_template_locations():
@@ -66,7 +67,7 @@ def draw_image(img, scheme='', label='', visualised=True, filename=None):
     plt.imshow(img_rgb)
 
 
-def match_template(screenshot, template, visualised=False, threshold=0.9):
+def match_template(screenshot, template, visualised=False, threshold=0.9, cache_scale=True):
     save_folder = 'result_images/'
     template = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
     draw_image(template, 'gray', visualised=visualised, filename=save_folder + 'template.png')
@@ -77,8 +78,12 @@ def match_template(screenshot, template, visualised=False, threshold=0.9):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     found = None
     best_scale = -1
-    scales = np.linspace(0.2, 2, 20)
-    scales = np.append(scales, 1)
+    global global_scale
+    if cache_scale and (global_scale is not None):
+        scales = np.array([global_scale])
+    else:
+        scales = np.linspace(0.2, 2, 20)
+        scales = np.append(scales, 1)
     for scale in scales[::-1]:
         resized = imutils.resize(gray, width=int(gray.shape[1] * scale))
         r = gray.shape[1] / float(resized.shape[1])
@@ -100,6 +105,8 @@ def match_template(screenshot, template, visualised=False, threshold=0.9):
             found = (maxVal, maxLoc, r)
     if found is None:
         return None
+    if cache_scale:
+        global_scale = best_scale
     print(f'Best scale found is: {best_scale}')
     (_, maxLoc, r) = found
     (startX, startY) = (int(maxLoc[0] * r), int(maxLoc[1] * r))
@@ -119,7 +126,7 @@ def satisfies_intersection_threshold(area_in, area_a, area_b, threshold=0.55):
     return area_in / area_a >= 0.9 and area_in / area_b >= threshold
 
 
-def remove_selected(screenshot_base64: str, elements: list):
+def remove_selected(screenshot_base64: str, elements: list, cache_scale=True):
     screenshot = readb64(screenshot_base64)
     matched = []
     rectangles = get_rectangles(elements)
@@ -127,7 +134,7 @@ def remove_selected(screenshot_base64: str, elements: list):
     for template_location in template_locations:
         template = cv2.imread(template_location)
         assert template is not None
-        result = match_template(screenshot, template, visualised=True)
+        result = match_template(screenshot, template, visualised=True, cache_scale=cache_scale)
         if result is None:
             continue
         (startX, startY), (endX, endY) = result
