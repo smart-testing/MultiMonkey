@@ -18,12 +18,13 @@ def setup_config(filename):
 
 def prepare_test(screen_path, config):
     setup_config(config)
-    data = open(screen_path, 'rb').read()
-    response = requests.post('http://127.0.0.1:5000/', headers=headers, data=data)
-    input_json: dict = response.json()
-    detected: str = input_json["detected"]
-    print(f"Got from server: {detected}")
-    return detected
+    with open(screen_path, 'rb') as sc_path:
+        data = sc_path.read()
+        response = requests.post('http://127.0.0.1:5000/', headers=headers, data=data)
+        input_json: dict = response.json()
+        detected: str = input_json["detected"]
+        print(f"Got from server: {detected}")
+        return detected
 
 
 class TestButtonAlive(unittest.TestCase):
