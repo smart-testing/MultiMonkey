@@ -1,3 +1,3 @@
-curl request to filter UiElements stored in `src/elemenrs2.json` with template `template_small2.png` 
+Templates paths should be listed in 'config.json' file. To start the server run 'src/server.py'.
 
-`curl --header "Content-Type: application/json"   --header "Accept: application/json"   --request POST --data-binary  "@elements2.json" http://127.0.0.1:5000/ -i`
+This server takes global and elements from the UiState from http post request, performs template matching with a given template(s) and posts back a json with elements that should be filtered accoarding to 'config.json'.
