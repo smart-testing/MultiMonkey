@@ -26,7 +26,7 @@ class AndroidMonkeyRunner(
         useButtonLifeInspector: Boolean = false) {
 
     private val model: Monkey = StateModelMonkey(SimpleEnricher(url))
-    private val urlButtonLifeInspector = "http://${AndroidMonkeyRunner.ANDROID_LOCALHOST}:5000/button-alive"
+    private val urlButtonLifeInspector = "http://${ANDROID_LOCALHOST}:5000/button-alive"
     private val buttonLifeInspector: ButtonLifeInspector = ButtonLifeInspector(useButtonLifeInspector,
             ::takeScreenshot,
             CvClient(urlButtonLifeInspector))
@@ -70,7 +70,7 @@ class AndroidMonkeyRunner(
     }
 
     private fun generateActionHTTTP(uiState: UiState): UiAction {
-        val response = post(AndroidMonkeyRunner.URL, json = serializeUiState(uiState))
+        val response = post(URL, json = serializeUiState(uiState))
         return deserializeAction(response.jsonObject)
     }
 
