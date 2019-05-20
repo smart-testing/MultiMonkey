@@ -2,7 +2,6 @@ package ru.yandex.testopithecus
 
 import android.content.Context
 import android.content.Intent
-import android.util.DisplayMetrics
 import android.util.Log
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
@@ -16,13 +15,9 @@ import ru.yandex.testopithecus.exception.SessionFinishedException
 import ru.yandex.testopithecus.exception.TestFailException
 import ru.yandex.testopithecus.exception.TestOkException
 import ru.yandex.testopithecus.metrics.MetricsEvaluator
-import ru.yandex.testopithecus.system.AndroidElementParser
 import ru.yandex.testopithecus.system.AndroidMonkeyRunner
-import ru.yandex.testopithecus.system.AndroidMonkeyHttp
 import ru.yandex.testopithecus.system.AndroidScreenshotManager
 import ru.yandex.testopithecus.utils.Reinstaller
-import ru.yandex.testopithecus.utils.serializeUiState
-import android.view.Display
 
 
 class SimpleUiTest {
@@ -71,23 +66,7 @@ class SimpleUiTest {
     private fun runMonkey(mode: String, pckg: String, apk: String, file: String? = null) {
         Reinstaller.reinstall(device, pckg, apk)
         openApplication(pckg)
-        val monkey = AndroidMonkeyRunner(device, pckg, apk, useHTTP = true)
-        for (step in 0 until STEPS_NUMBER) {
-            Log.d(STEPS_LOG_TAG, "current step: $step")
-            openApplicationIfRequired(pckg)
-            try {
-                monkey.performAction()
-            } catch (e: SessionFinishedException) {
-                return
-            }
-        }
-    }
-
-    private fun runMonkeyScreenshots(pckg: String, apk: String) {
-        Reinstaller.reinstall(device, pckg, apk)
-        openApplication(pckg)
-        val monkey = AndroidMonkeyRunner(device, pckg, apk, screenshotDir = context.filesDir,
-                url = "http://${AndroidMonkeyRunner.ANDROID_LOCALHOST}:5000")
+        val monkey = AndroidMonkeyRunner(device, pckg, apk, useHTTP = true, mode = mode, file = file)
         for (step in 0 until STEPS_NUMBER) {
             Log.d(STEPS_LOG_TAG, "current step: $step")
             openApplicationIfRequired(pckg)
@@ -108,6 +87,22 @@ class SimpleUiTest {
                     AndroidScreenshotManager.parseScreenshotAndSave(e.actual, "actual")
                 }
                 fail("See logcat for more details")
+            }
+        }
+    }
+
+    private fun runMonkeyScreenshots(pckg: String, apk: String) {
+        Reinstaller.reinstall(device, pckg, apk)
+        openApplication(pckg)
+        val monkey = AndroidMonkeyRunner(device, pckg, apk, screenshotDir = context.filesDir,
+                url = "http://${AndroidMonkeyRunner.ANDROID_LOCALHOST}:5000")
+        for (step in 0 until STEPS_NUMBER) {
+            Log.d(STEPS_LOG_TAG, "current step: $step")
+            openApplicationIfRequired(pckg)
+            try {
+                monkey.performAction()
+            } catch (e: SessionFinishedException) {
+                return
             }
         }
     }

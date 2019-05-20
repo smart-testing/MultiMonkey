@@ -4,7 +4,8 @@ import androidx.test.uiautomator.By
 import androidx.test.uiautomator.StaleObjectException
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.Until
-import khttp.post
+import khttp.post as httpPost
+
 import ru.yandex.testopithecus.businesslogictesting.ButtonLifeInspector
 import ru.yandex.testopithecus.monkeys.state.StateModelMonkey
 import ru.yandex.testopithecus.stateenricher.CvClient
@@ -23,23 +24,38 @@ class AndroidMonkeyRunner(
         private val useHTTP: Boolean = false,
         private val screenshotDir: File? = null,
         url: String = "",
-        useButtonLifeInspector: Boolean = false) {
+        useButtonLifeInspector: Boolean = false,
+        mode: String = "",
+        file: String? = null) {
 
+    private val useScreenshots = screenshotDir != null
     private val model: Monkey = StateModelMonkey(SimpleEnricher(url))
-    private val urlButtonLifeInspector = "http://${ANDROID_LOCALHOST}:5000/button-alive"
+    private val urlButtonLifeInspector = "http://$ANDROID_LOCALHOST:5000/button-alive"
     private val buttonLifeInspector: ButtonLifeInspector = ButtonLifeInspector(useButtonLifeInspector,
             ::takeScreenshot,
             CvClient(urlButtonLifeInspector))
 
+    init {
+        if (useHTTP && url == "") {
+            httpPost("$URL$INIT$mode/${file ?: ""}")
+        }
+    }
+
     companion object {
         const val ANDROID_LOCALHOST = "10.0.2.2"
         const val LONG_WAIT = 1000.toLong()
-        private const val URL = "http://10.0.2.2:8080/generate-action"
+        private const val URL = "http://10.0.2.2:8080/"
+        private const val GENERATE_ACTION = "generate-action/"
+        private const val INIT = "init/"
     }
 
     fun performAction() {
         try {
-            performActionImpl()
+            if (useScreenshots) {
+                performActionScreenshotImpl()
+            } else {
+                performActionImpl()
+            }
         } catch (e: StaleObjectException) {
             System.err.println(e.localizedMessage)
         }
@@ -48,13 +64,18 @@ class AndroidMonkeyRunner(
     private fun performActionImpl() {
         val elements = device.findObjects(By.pkg(applicationPackage))
         val uiState: UiState
-        uiState = if (screenshotDir != null) {
-            device.wait(Until.hasObject(By.pkg(applicationPackage).depth(0)), AndroidMonkeyRunner.LONG_WAIT)
-            val screenshot = AndroidElementParser.takeScreenshot(screenshotDir, device)
-            AndroidElementParser.parseWithScreenshot(elements, screenshot)
-        } else {
-            AndroidElementParser.parse(elements)
-        }
+        uiState = AndroidElementParser.parse(elements)
+        val action = generateAction(uiState)
+        val id = action.id?.toInt()
+        val element = id?.let { elements[id] }
+        AndroidActionPerformer(device, applicationPackage, apk, element).perform(action)
+    }
+
+    private fun performActionScreenshotImpl() {
+        val elements = device.findObjects(By.pkg(applicationPackage))
+        device.wait(Until.hasObject(By.pkg(applicationPackage).depth(0)), LONG_WAIT)
+        val screenshot = AndroidElementParser.takeScreenshot(screenshotDir!!, device)
+        val uiState = AndroidElementParser.parseWithScreenshot(elements, screenshot)
         val action = generateAction(uiState)
         val id = action.id?.toInt()
         val element = id?.let { elements[id] }
@@ -69,13 +90,13 @@ class AndroidMonkeyRunner(
         return AndroidElementParser.takeScreenshot(screenshotDir!!, device)
     }
 
-    private fun generateActionHTTTP(uiState: UiState): UiAction {
-        val response = post(URL, json = serializeUiState(uiState))
+    private fun generateActionHTTP(uiState: UiState): UiAction {
+        val response = httpPost(URL + GENERATE_ACTION, json = serializeUiState(uiState))
         return deserializeAction(response.jsonObject)
     }
 
     private fun generateAction(uiState: UiState): UiAction {
-        if (useHTTP) return generateActionHTTTP(uiState)
+        if (useHTTP) return generateActionHTTP(uiState)
         return model.generateAction(uiState)
     }
 }
