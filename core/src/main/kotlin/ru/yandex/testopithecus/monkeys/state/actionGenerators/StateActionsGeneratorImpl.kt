@@ -16,9 +16,8 @@ class StateActionsGeneratorImpl : StateActionsGenerator {
         if (element.possibleActions.contains("TAP")) {
             actions.add(tapAction(element))
         }
-        if (element.possibleActions.contains("FILL")) {
-            actions.add(fillAction(element))
+        if (element.possibleActions.contains("INPUT")) {
+            actions.add(inputAction(element, "text"))
         }
     }
-
 }

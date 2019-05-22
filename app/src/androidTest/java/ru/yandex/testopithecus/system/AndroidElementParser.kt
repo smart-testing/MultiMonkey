@@ -29,6 +29,12 @@ object AndroidElementParser {
                 Pair("x", center.x),
                 Pair("y", center.y)
         )
+        if (element.resourceName != null) {
+            attributes["name"] = element.resourceName
+        }
+        if (element.text != null) {
+            attributes["text"] = element.text
+        }
         return attributes
     }
 
@@ -38,7 +44,7 @@ object AndroidElementParser {
             possibleActions.add("TAP")
         }
         if (element.className.contains("EditText")) {
-            possibleActions.add("FILL")
+            possibleActions.add("INPUT")
         }
         return possibleActions
     }

@@ -13,7 +13,7 @@ fun restartAction() = UiAction(null, "RESTART", mapOf())
 
 fun tapAction(element: UiElement) = UiAction(element.id, "TAP", mapOf())
 
-fun fillAction(element: UiElement) = UiAction(element.id, "FILL", mapOf())
+fun inputAction(element: UiElement, text: String) = UiAction(element.id, "INPUT", mapOf("text" to text))
 
 fun skipAction() = UiAction(null, "SKIP", mapOf())
 
