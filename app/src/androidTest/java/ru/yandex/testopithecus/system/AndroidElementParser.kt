@@ -29,7 +29,8 @@ object AndroidElementParser {
                 "text" to element.text,
                 "isLabel" to isLabelElement(element),
                 "rect" to TRectangle(rect.top, rect.left, rect.right, rect.bottom),
-                "id" to element.resourceName)
+                "id" to element.resourceName
+        )
     }
 
     private fun parsePossibleActions(element: UiObject2): List<String> {

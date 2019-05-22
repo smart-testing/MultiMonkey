@@ -13,14 +13,14 @@ import ru.yandex.testopithecus.monkeys.state.identifier.StateIdGenerator
 class StateModelMonkey : Monkey {
 
     private val model = StateModel()
-    private val stateIdGenerator : StateIdGenerator<StateId> = ElementsStateIdGenerator()
+    private val stateIdGenerator : StateIdGenerator = ElementsStateIdGenerator()
     private val stateActionsGenerator : StateActionsGenerator = StateActionsGeneratorImpl()
 
     override fun generateAction(uiState: UiState): UiAction {
         val stateId : StateId = stateIdGenerator.getId(uiState)
         if (!model.hasState(stateId)) {
             val uiActions = stateActionsGenerator.getActions(uiState)
-            model.registerState(stateId, uiActions)
+            model.registerState(stateId, uiState, uiActions)
         }
         return model.generateAction(stateId)
     }

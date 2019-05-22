@@ -27,6 +27,7 @@ class StateActionsGeneratorImpl : StateActionsGenerator {
 
     private fun constructInputAction(element: UiElement, state: UiState): UiAction {
         val suggestedText = InputFiller.suggestInput(element, state)
-        return fillAction(element, suggestedText)
+        return inputAction(element, suggestedText)
     }
+
 }

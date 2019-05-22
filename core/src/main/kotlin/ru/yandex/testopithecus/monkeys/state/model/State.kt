@@ -1,13 +1,29 @@
 package ru.yandex.testopithecus.monkeys.state.model
 
+import ru.yandex.testopithecus.monkeys.mbt.MbtElement
 import ru.yandex.testopithecus.monkeys.state.identifier.StateId
+import ru.yandex.testopithecus.ui.UiState
+import java.lang.IllegalArgumentException
 
-class State(val id: StateId) {
+class State(val id: StateId, val uiState: UiState) {
     var metric: Int? = null
+    private var mbt: MbtElement? = null
 
     class FictiveStateId: StateId
 
+    fun hasMbt(): Boolean {
+        return mbt != null
+    }
+
+    fun getMbt(): MbtElement {
+        return mbt ?: throw IllegalArgumentException()
+    }
+
+    fun setMbt(mbt: MbtElement) {
+        this.mbt = mbt
+    }
+
     companion object {
-        val NULL_STATE = State(FictiveStateId())
+        val NULL_STATE = State(FictiveStateId(), UiState(listOf(), mapOf()))
     }
 }
