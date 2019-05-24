@@ -5,7 +5,7 @@ import ru.yandex.testopithecus.ui.UiElement
 import ru.yandex.testopithecus.ui.UiState
 
 
-class ElementsStateIdGenerator : StateIdGenerator<StateId> {
+class ElementsStateIdGenerator : StateIdGenerator {
 
     override fun getId(state: UiState): StateId {
         return DefaultStateId(state)

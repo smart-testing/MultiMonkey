@@ -15,7 +15,7 @@ import ru.yandex.testopithecus.ui.UiState
 class StateModelMonkey(private val enricher: Enricher = EmptyEnricher()) : Monkey {
 
     private val model = StateModel()
-    private val stateIdGenerator: StateIdGenerator<StateId> = ElementsStateIdGenerator()
+    private val stateIdGenerator: StateIdGenerator = ElementsStateIdGenerator()
     private val stateActionsGenerator: StateActionsGenerator = StateActionsGeneratorImpl()
 
     private fun enrichState(uiState: UiState): UiState {
@@ -27,7 +27,7 @@ class StateModelMonkey(private val enricher: Enricher = EmptyEnricher()) : Monke
         val stateId: StateId = stateIdGenerator.getId(uiStateLocal)
         if (!model.hasState(stateId)) {
             val uiActions = stateActionsGenerator.getActions(uiStateLocal)
-            model.registerState(stateId, uiActions)
+            model.registerState(stateId, uiStateLocal, uiActions)
         }
         return model.generateAction(stateId)
     }

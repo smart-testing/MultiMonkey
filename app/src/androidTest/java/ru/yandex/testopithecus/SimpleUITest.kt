@@ -129,7 +129,7 @@ class SimpleUiTest {
         const val STEPS_LOG_TAG = "STEP_COUNTER"
         private const val LOG_TAG = "MONKEY"
         private const val METRICS_LOG_TAG = "METRICS"
-        private const val STEPS_NUMBER = 10000
+        private const val STEPS_NUMBER = 400
         private const val LONG_WAIT = 5000L
         private const val DEFAULT_PACKAGE = "com.avjindersinghsekhon.minimaltodo"
         private const val DEFAULT_APK = "minimaltodo.apk"

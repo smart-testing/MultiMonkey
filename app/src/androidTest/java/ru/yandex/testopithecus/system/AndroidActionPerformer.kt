@@ -20,7 +20,7 @@ class AndroidActionPerformer(
         Log.d("ACTION PERFORMER", action.action)
         when (action.action) {
             "TAP" -> element?.click()
-            "FILL" -> element!!.text = "aaa"
+            "INPUT" -> element?.text = action.attributes["text"]
             "SKIP" -> {
             }
             "SCREENSHOT" -> {
