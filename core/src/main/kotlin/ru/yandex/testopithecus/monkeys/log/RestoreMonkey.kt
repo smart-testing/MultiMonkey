@@ -126,7 +126,7 @@ class RestoreMonkey(private val filename: String) : Monkey {
         return restartAction()
     }
 
-    override fun feedback() {
+    override fun feedback(feedback: UiFeedback) {
     }
 
     fun appendToLog(line: String) {

@@ -2,6 +2,8 @@ package ru.yandex.testopithecus.monkeys.state.model
 
 import org.jgrapht.Graph
 import org.jgrapht.graph.DirectedPseudograph
+import org.json.JSONArray
+import org.json.JSONObject
 import ru.yandex.testopithecus.monkeys.mbt.MbtElement
 import ru.yandex.testopithecus.monkeys.mbt.minimalTodoExample.application.ApplicationModel
 import ru.yandex.testopithecus.monkeys.mbt.ModelAction
@@ -10,10 +12,11 @@ import ru.yandex.testopithecus.ui.UiAction
 import ru.yandex.testopithecus.monkeys.state.identifier.StateId
 import ru.yandex.testopithecus.monkeys.state.model.strategies.metric.DistanceToUnknownState
 import ru.yandex.testopithecus.monkeys.state.model.strategies.metric.Metric
-import ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy.MinimizeMetricStrategy
+import ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy.MBTPriorityWalkStrategy
 import ru.yandex.testopithecus.monkeys.state.model.strategies.walkStrategy.WalkStrategy
 import ru.yandex.testopithecus.ui.UiState
 
+import khttp.post as httpPost
 
 class StateModel {
 
@@ -21,9 +24,9 @@ class StateModel {
     private val uiActions: MutableMap<Action, UiAction> = mutableMapOf()
     private val modelActions: MutableMap<Action, ModelAction> = mutableMapOf()
 
-    private val graph: Graph<State, Action> = DirectedPseudograph(null, { Action() }, false)
+    private val graph: Graph<State, Action> = DirectedPseudograph(null, { Action(false) }, false)
 
-    private val strategy: WalkStrategy = MinimizeMetricStrategy()
+    private val strategy: WalkStrategy = MBTPriorityWalkStrategy()
     private val metric: Metric = DistanceToUnknownState()
 
     private var previousAction: Action? = null
@@ -46,7 +49,7 @@ class StateModel {
         graph.addVertex(state)
 
         stateUiActions.forEach {
-            val action = Action()
+            val action = Action(false)
             graph.addEdge(state, State.NULL_STATE, action)
             uiActions[action] = it
         }
@@ -62,14 +65,16 @@ class StateModel {
 
     fun generateAction(id: StateId): UiAction {
         val state = states.getOrElse(id) { throw NoSuchElementException() }
-
-        // temporary fix until feedback impl
-        processFeedback(state)
-
-        metric.updateMetric(graph, state)
         val action = strategy.getAction(graph, state) ?: throw NoSuchElementException()
         previousAction = action
         return getUiAction(action, state.uiState)
+    }
+
+    fun feedback(id: StateId) {
+        val state = states.getOrElse(id) { throw NoSuchElementException() }
+        processFeedback(state)
+        dumpGraph()
+        metric.updateMetric(graph, state)
     }
 
     private fun processFeedback(state: State) {
@@ -109,12 +114,45 @@ class StateModel {
         if (state.hasMbt()) {
             val mbt = state.getMbt()
             for (modelAction in mbt.component.actions().filter { it.canBePerformed(mbt.model) }) {
-                val action = Action()
+                val action = Action(true)
                 graph.addEdge(state, State.NULL_STATE, action)
                 modelActions[action] = modelAction
             }
         }
     }
+
+    private fun dumpGraph(): JSONObject {
+        val json = JSONObject()
+        val vertices = JSONArray()
+        for (state in graph.vertexSet()) {
+            val vertex = JSONObject()
+            vertex.put("index", state.index)
+            vertex.put("isModel", state.hasMbt())
+            vertices.put(vertex)
+        }
+        val edges = JSONArray()
+        for (action in graph.edgeSet()) {
+            val edge = JSONObject()
+            edge.put("source", graph.getEdgeSource(action).index)
+            edge.put("target", graph.getEdgeTarget(action).index)
+            edge.put("isModel", isModelAction(action))
+            edge.put("label", getLabelForAction(action))
+            edges.put(edge)
+        }
+        json.put("vertices", vertices)
+        json.put("edges", edges)
+        httpPost("http://10.0.2.2:8080/graph-visualize", json = json)
+        return json
+    }
+
+    fun getLabelForAction(action: Action): String {
+        if (uiActions.contains(action)) {
+            val uiAction = uiActions.getOrElse(action) { throw Exception() }
+            return uiAction.action
+        }
+        return ""
+    }
+
 }
 
 fun <V, E> Graph<V, E>.changeEdge(edge: E, source: V, target: V) {
