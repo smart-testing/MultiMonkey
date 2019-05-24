@@ -20,7 +20,7 @@ class MinimizeMetricStrategy: WalkStrategy {
             return -1
         }
         if (secondValue == null) {
-            return -1
+            return 1
         }
         return firstValue - secondValue
     }

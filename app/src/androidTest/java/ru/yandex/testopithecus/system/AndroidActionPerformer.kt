@@ -15,14 +15,13 @@ class AndroidActionPerformer(
         private val device: UiDevice,
         private val pckg: String,
         private val apk: String,
-        private val element: UiObject2) : ActionPerformer {
+        private val element: UiObject2?) : ActionPerformer {
+
     override fun perform(action: UiAction) {
         Log.d("ACTION PERFORMER", action.action)
         when (action.action) {
-            "TAP" -> element.click()
-            "INPUT" -> {
-                element.text = action.attributes["text"]
-            }
+            "TAP" -> element?.click()
+            "INPUT" -> element?.text = action.attributes["text"]
             "SKIP" -> {
             }
             "SCREENSHOT" -> {

@@ -16,6 +16,7 @@ import ru.yandex.testopithecus.exception.TestFailException
 import ru.yandex.testopithecus.exception.TestOkException
 import ru.yandex.testopithecus.metrics.MetricsEvaluator
 import ru.yandex.testopithecus.system.AndroidMonkeyHttp
+import ru.yandex.testopithecus.system.AndroidMonkeyImpl
 import ru.yandex.testopithecus.system.AndroidScreenshotManager
 import ru.yandex.testopithecus.utils.Reinstaller
 
@@ -60,7 +61,7 @@ class SimpleUiTest {
     private fun runMonkey(mode: String, pckg: String, apk: String, file: String? = null) {
         Reinstaller.reinstall(device, pckg, apk)
         openApplication(pckg)
-        val monkey = AndroidMonkeyHttp(mode, device, pckg, apk, file)
+        val monkey = AndroidMonkeyImpl(device, pckg, apk)
         for (step in 0 until STEPS_NUMBER) {
             Log.d(STEPS_LOG_TAG, "current step: $step")
             openApplicationIfRequired(pckg)
@@ -108,7 +109,7 @@ class SimpleUiTest {
         const val STEPS_LOG_TAG = "STEP_COUNTER"
         private const val LOG_TAG = "MONKEY"
         private const val METRICS_LOG_TAG = "METRICS"
-        private const val STEPS_NUMBER = 10000
+        private const val STEPS_NUMBER = 400
         private const val LONG_WAIT = 5000L
         private const val DEFAULT_PACKAGE = "com.avjindersinghsekhon.minimaltodo"
         private const val DEFAULT_APK = "minimaltodo.apk"
