@@ -81,14 +81,13 @@ object InputFiller : InputGenerator {
     }
     private fun getFromConfig(uiElement: UiElement?) : String {
         if (uiElement == null) {
-            return "stub1"
+            return ""
         }
         for (attr in uiElement.attributes.keys) {
             if (configs.containsKey(attr) && configs.getValue(attr).containsKey(uiElement.attributes[attr])) {
                 return configs[attr]?.get(uiElement.attributes[attr]) ?: "do not have a value for attribute: $attr"
             }
         }
-        return "stub2" +
-                ""
+        return ""
     }
 }
