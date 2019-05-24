@@ -2,7 +2,7 @@ package ru.yandex.testopithecus.monkeys.state
 
 import ru.yandex.testopithecus.monkeys.state.actionGenerators.StateActionsGenerator
 import ru.yandex.testopithecus.monkeys.state.actionGenerators.StateActionsGeneratorImpl
-import ru.yandex.testopithecus.monkeys.state.identifier.ElementsStateIdGenerator
+import ru.yandex.testopithecus.monkeys.state.identifier.SmartElementsStateIdGenerator
 import ru.yandex.testopithecus.monkeys.state.identifier.StateId
 import ru.yandex.testopithecus.monkeys.state.identifier.StateIdGenerator
 import ru.yandex.testopithecus.monkeys.state.model.StateModel
@@ -10,6 +10,7 @@ import ru.yandex.testopithecus.stateenricher.EmptyEnricher
 import ru.yandex.testopithecus.stateenricher.Enricher
 import ru.yandex.testopithecus.ui.Monkey
 import ru.yandex.testopithecus.ui.UiAction
+import ru.yandex.testopithecus.ui.UiFeedback
 import ru.yandex.testopithecus.ui.UiState
 
 class StateModelMonkey(private val enricher: Enricher = EmptyEnricher()) : Monkey {

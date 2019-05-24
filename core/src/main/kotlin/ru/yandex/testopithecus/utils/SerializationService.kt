@@ -6,6 +6,16 @@ import ru.yandex.testopithecus.ui.UiAction
 import ru.yandex.testopithecus.ui.UiElement
 import ru.yandex.testopithecus.ui.UiState
 
+fun serializeFeedback(uiFeedback: UiFeedback): JSONObject {
+    val json = JSONObject()
+    json.put("status", uiFeedback.status)
+    json.put("state", serializeUiState(uiFeedback.state))
+    return json
+}
+
+fun deserializeFeedback(json: JSONObject): UiFeedback {
+    return UiFeedback(json.getString("status"), deserializeState(json.getJSONObject("state")))
+}
 
 fun deserializeState(json: JSONObject): UiState {
     val elements = deserializeElements(json.getJSONArray("elements"))
