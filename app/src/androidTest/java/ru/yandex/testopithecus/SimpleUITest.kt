@@ -91,8 +91,7 @@ class SimpleUiTest {
         }
     }
 
-
-private fun runMonkeyScreenshots(pckg: String, apk: String) {
+    private fun runMonkeyScreenshots(pckg: String, apk: String) {
         Reinstaller.reinstall(device, pckg, apk)
         openApplication(pckg)
         val monkey = AndroidMonkeyRunner(device, pckg, apk, screenshotDir = context.filesDir,

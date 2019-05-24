@@ -1,9 +1,6 @@
 package ru.yandex.testopithecus.system
 
-import androidx.test.uiautomator.By
-import androidx.test.uiautomator.StaleObjectException
-import androidx.test.uiautomator.UiDevice
-import androidx.test.uiautomator.Until
+import androidx.test.uiautomator.*
 import khttp.post as httpPost
 
 import ru.yandex.testopithecus.businesslogictesting.ButtonLifeInspector
@@ -12,8 +9,10 @@ import ru.yandex.testopithecus.stateenricher.CvClient
 import ru.yandex.testopithecus.stateenricher.SimpleEnricher
 import ru.yandex.testopithecus.ui.Monkey
 import ru.yandex.testopithecus.ui.UiAction
+import ru.yandex.testopithecus.ui.UiFeedback
 import ru.yandex.testopithecus.ui.UiState
 import ru.yandex.testopithecus.utils.deserializeAction
+import ru.yandex.testopithecus.utils.serializeFeedback
 import ru.yandex.testopithecus.utils.serializeUiState
 import java.io.File
 
@@ -46,44 +45,56 @@ class AndroidMonkeyRunner(
         const val LONG_WAIT = 1000.toLong()
         private const val URL = "http://10.0.2.2:8080/"
         private const val GENERATE_ACTION = "generate-action/"
+        private const val FEEDBACK_URL = "feedback/"
         private const val INIT = "init/"
     }
 
     fun performAction() {
-        try {
-            if (useScreenshots) {
-                performActionScreenshotImpl()
-            } else {
-                performActionImpl()
+        val (action, element) = generateActionImpl()
+        AndroidActionPerformer(device, applicationPackage, apk, element).perform(action)
+        performFeedbackImpl()
+    }
+
+    private fun generateActionImpl(): Pair<UiAction, UiObject2?> {
+        while (true) {
+            try {
+                val elements = device.findObjects(By.pkg(applicationPackage))
+                var uiState: UiState
+                if (useScreenshots) {
+                    val screenshot = AndroidElementParser.takeScreenshot(screenshotDir!!, device)
+                    uiState = AndroidElementParser.parseWithScreenshot(elements, screenshot)
+                } else {
+                    uiState = AndroidElementParser.parse(elements)
+                }
+                val action = generateAction(uiState)
+                val id = action.id?.toInt()
+                val element = id?.let { elements[id] }
+                if (useScreenshots) {
+                    //ToDo обработать SKIP
+                    buttonLifeInspector.loadScreenshotBeforeAction()
+                    AndroidActionPerformer(device, applicationPackage, apk, element).perform(action)
+                    buttonLifeInspector.loadScreenshotAfterAction()
+                    buttonLifeInspector.assertButtonLives()
+                }
+                return action to element
+            } catch (e: StaleObjectException) {
+                System.err.println(e.localizedMessage)
             }
-        } catch (e: StaleObjectException) {
-            System.err.println(e.localizedMessage)
         }
     }
 
-    private fun performActionImpl() {
-        val elements = device.findObjects(By.pkg(applicationPackage))
-        val uiState: UiState
-        uiState = AndroidElementParser.parse(elements)
-        val action = generateAction(uiState)
-        val id = action.id?.toInt()
-        val element = id?.let { elements[id] }
-        AndroidActionPerformer(device, applicationPackage, apk, element).perform(action)
-    }
-
-    private fun performActionScreenshotImpl() {
-        val elements = device.findObjects(By.pkg(applicationPackage))
-        device.wait(Until.hasObject(By.pkg(applicationPackage).depth(0)), LONG_WAIT)
-        val screenshot = AndroidElementParser.takeScreenshot(screenshotDir!!, device)
-        val uiState = AndroidElementParser.parseWithScreenshot(elements, screenshot)
-        val action = generateAction(uiState)
-        val id = action.id?.toInt()
-        val element = id?.let { elements[id] }
-        //ToDo обработать SKIP
-        buttonLifeInspector.loadScreenshotBeforeAction()
-        AndroidActionPerformer(device, applicationPackage, apk, element).perform(action)
-        buttonLifeInspector.loadScreenshotAfterAction()
-        buttonLifeInspector.assertButtonLives()
+    private fun performFeedbackImpl() {
+        var feedbackSend = false
+        while (!feedbackSend) {
+            try {
+                val elements = device.findObjects(By.pkg(applicationPackage))
+                val uiState = AndroidElementParser.parse(elements)
+                feedback(UiFeedback("OK", uiState))
+                feedbackSend = true
+            } catch (e: StaleObjectException) {
+                System.err.println(e.localizedMessage)
+            }
+        }
     }
 
     private fun takeScreenshot(): String {
@@ -95,8 +106,20 @@ class AndroidMonkeyRunner(
         return deserializeAction(response.jsonObject)
     }
 
+    private fun feedbackHTTP(feedback: UiFeedback) {
+        httpPost(URL + FEEDBACK_URL, json = serializeFeedback(feedback))
+    }
+
     private fun generateAction(uiState: UiState): UiAction {
         if (useHTTP) return generateActionHTTP(uiState)
         return model.generateAction(uiState)
+    }
+
+    fun feedback(feedback: UiFeedback) {
+        if (useHTTP) {
+            feedbackHTTP(feedback)
+        } else {
+            model.feedback(feedback)
+        }
     }
 }
