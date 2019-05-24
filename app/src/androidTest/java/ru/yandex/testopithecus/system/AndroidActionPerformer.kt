@@ -16,6 +16,7 @@ class AndroidActionPerformer(
         private val pckg: String,
         private val apk: String,
         private val element: UiObject2?) : ActionPerformer {
+
     override fun perform(action: UiAction) {
         Log.d("ACTION PERFORMER", action.action)
         when (action.action) {

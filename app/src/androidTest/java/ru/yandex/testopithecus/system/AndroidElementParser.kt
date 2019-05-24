@@ -2,6 +2,7 @@ package ru.yandex.testopithecus.system
 
 import android.util.Base64
 import androidx.test.uiautomator.*
+import ru.yandex.testopithecus.rect.TRectangle
 import ru.yandex.testopithecus.ui.UiElement
 import ru.yandex.testopithecus.ui.UiState
 import java.io.File
@@ -41,6 +42,7 @@ object AndroidElementParser {
         )
         if (element.resourceName != null) {
             attributes["name"] = element.resourceName
+            attributes["id"] = element.resourceName
         }
         if (element.text != null) {
             attributes["text"] = element.text
@@ -49,16 +51,18 @@ object AndroidElementParser {
         attributes["bottom"] = bottom.toString()
         attributes["left"] = left.toString()
         attributes["right"] = right.toString()
+        val rect = element.visibleBounds
+        attributes["isLabel"] = isLabelElement(element)
         return attributes
     }
 
     private fun parsePossibleActions(element: UiObject2): List<String> {
         val possibleActions = mutableListOf<String>()
-        if (element.isClickable) {
-            possibleActions.add("TAP")
-        }
-        if (element.className.contains("EditText")) {
+        if (isInputElement(element)) {
             possibleActions.add("INPUT")
+        }
+        if (isTapElement(element)) {
+            possibleActions.add("TAP")
         }
         return possibleActions
     }
@@ -78,5 +82,18 @@ object AndroidElementParser {
 
     private fun buildGlobalWithScreenshot(screenshot: String): Map<String, Any> {
         return mapOf("screenshot" to screenshot)
+    }
+
+    private fun isLabelElement(element: UiObject2): Boolean {
+        return element.text != null && element.text.isNotEmpty() && !element.isClickable
+                && (element.className == "android.widget.TextView" || element.className == "TextInputLayout")
+    }
+
+    private fun isTapElement(element: UiObject2): Boolean {
+        return element.isClickable && (element.className != "android.widget.EditText")
+    }
+
+    private fun isInputElement(element: UiObject2): Boolean {
+        return element.className == "android.widget.EditText"
     }
 }

@@ -91,7 +91,8 @@ class SimpleUiTest {
         }
     }
 
-    private fun runMonkeyScreenshots(pckg: String, apk: String) {
+
+private fun runMonkeyScreenshots(pckg: String, apk: String) {
         Reinstaller.reinstall(device, pckg, apk)
         openApplication(pckg)
         val monkey = AndroidMonkeyRunner(device, pckg, apk, screenshotDir = context.filesDir,
@@ -107,19 +108,19 @@ class SimpleUiTest {
         }
     }
 
-    private fun openApplicationIfRequired(pckg: String) {
-        if (device.currentPackageName != pckg) {
-            openApplication(pckg)
+    private fun openApplicationIfRequired(pkg: String) {
+        if (device.currentPackageName != pkg) {
+            openApplication(pkg)
         }
     }
 
-    private fun openApplication(pckg: String) {
+    private fun openApplication(pkg: String) {
         device.pressHome()
-        val intent = context.packageManager.getLaunchIntentForPackage(pckg)
-                ?: throw IllegalArgumentException("No application '$pckg'")
+        val intent = context.packageManager.getLaunchIntentForPackage(pkg)
+                ?: throw IllegalArgumentException("No application '$pkg'")
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         context.startActivity(intent)
-        device.wait(Until.hasObject(By.pkg(pckg).depth(0)), LONG_WAIT)
+        device.wait(Until.hasObject(By.pkg(pkg).depth(0)), LONG_WAIT)
     }
 
     companion object {
