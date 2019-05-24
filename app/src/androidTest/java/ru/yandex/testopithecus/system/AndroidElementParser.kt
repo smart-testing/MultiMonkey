@@ -52,9 +52,7 @@ object AndroidElementParser {
         attributes["left"] = left.toString()
         attributes["right"] = right.toString()
         val rect = element.visibleBounds
-        attributes["text"] = element.text
         attributes["isLabel"] = isLabelElement(element)
-        attributes["rect"] = TRectangle(rect.top, rect.left, rect.right, rect.bottom)
         return attributes
     }
 

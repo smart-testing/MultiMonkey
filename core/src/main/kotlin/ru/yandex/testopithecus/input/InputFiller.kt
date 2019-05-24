@@ -12,7 +12,7 @@ object InputFiller : InputGenerator {
             "id" to mapOf("content9a9a1b96221c466eb24d2e48dadd4536" to "Hi there!"),
             "name" to mapOf("subj-16ab49096a46dad6e71262103da54c526a0026f9" to "Поэзия"),
             "class" to mapOf("cke_wysiwyg_div cke_reset cke_enable_context_menu cke_editable cke_editable_themed cke_contents_ltr cke_show_borders" to "Hi there"),
-            "placeholder" to mapOf("Поиск" to "Анна Керн"),
+            "placeholder" to mapOf("Поиск" to "Анна Керн", "Title" to "PIZZA", "Description" to "PASTA"),
             "text" to mapOf(
                     "To" to "pushkin@yandex.ru",
                     "Subject" to "Поэзия",
@@ -25,7 +25,9 @@ object InputFiller : InputGenerator {
                     "Введите пароль" to "apktest",
                     "Введите логин, почту или телефон" to "apkTestAndroid",
                     "Phone number or login" to "apkTestAndroid",
-                    "Password" to "apktest"))
+                    "Password" to "apktest",
+                    "Title" to "PIZZA",
+                    "Description" to "PASTA"))
 
     override fun suggestInput(input: UiElement, state: UiState): String {
         var res = suggestForMarkedInput(input)
@@ -41,10 +43,10 @@ object InputFiller : InputGenerator {
 
     private fun suggestForUnmarkedInput(unmarkedInput: UiElement, allTextLabels: Collection<UiElement>): String {
         val markedTextViews = findMarkedTextLabels(allTextLabels)
-        val r = unmarkedInput.attributes["rect"] as TRectangle
+        val r = deserializeRectangle(unmarkedInput.attributes)
         val nearestTextLabel = markedTextViews.stream().min { e1: UiElement, e2: UiElement ->
-            val r1 = e1.attributes["rect"] as TRectangle
-            val r2 = e2.attributes["rect"] as TRectangle
+            val r1 = deserializeRectangle(e1.attributes)
+            val r2 = deserializeRectangle(e2.attributes)
             val min1 = RectComparison.minDistance(r, r1)
             val min2 = RectComparison.minDistance(r, r2)
             when {
@@ -54,6 +56,14 @@ object InputFiller : InputGenerator {
             }
         }.orElse(null)
         return getFromConfig(nearestTextLabel)
+    }
+
+    private fun deserializeRectangle(attributes: Map<String, Any>): TRectangle {
+        val top = (attributes["top"] as String).toInt()
+        val bottom = (attributes["bottom"] as String).toInt()
+        val left = (attributes["left"] as String).toInt()
+        val right = (attributes["right"] as String).toInt()
+        return TRectangle(top, left, right, bottom)
     }
 
     private fun findMarkedTextLabels(allTextLabels: Collection<UiElement>): List<UiElement> {
@@ -69,12 +79,16 @@ object InputFiller : InputGenerator {
     private fun suggestForMarkedInput(input: UiElement): String {
         return getFromConfig(input)
     }
-    private fun getFromConfig(uiElement: UiElement) : String {
+    private fun getFromConfig(uiElement: UiElement?) : String {
+        if (uiElement == null) {
+            return "stub1"
+        }
         for (attr in uiElement.attributes.keys) {
             if (configs.containsKey(attr) && configs.getValue(attr).containsKey(uiElement.attributes[attr])) {
                 return configs[attr]?.get(uiElement.attributes[attr]) ?: "do not have a value for attribute: $attr"
             }
         }
-        return ""
+        return "stub2" +
+                ""
     }
 }
