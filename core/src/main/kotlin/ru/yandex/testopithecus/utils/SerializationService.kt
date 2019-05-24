@@ -4,6 +4,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import ru.yandex.testopithecus.ui.UiAction
 import ru.yandex.testopithecus.ui.UiElement
+import ru.yandex.testopithecus.ui.UiFeedback
 import ru.yandex.testopithecus.ui.UiState
 
 fun serializeFeedback(uiFeedback: UiFeedback): JSONObject {

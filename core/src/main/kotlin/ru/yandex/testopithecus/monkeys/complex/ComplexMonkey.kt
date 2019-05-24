@@ -8,6 +8,7 @@ import ru.yandex.testopithecus.monkeys.complex.complex_action.splitter.SimpleCom
 import ru.yandex.testopithecus.monkeys.state.StateModelMonkey
 import ru.yandex.testopithecus.ui.Monkey
 import ru.yandex.testopithecus.ui.UiAction
+import ru.yandex.testopithecus.ui.UiFeedback
 import ru.yandex.testopithecus.ui.UiState
 
 
@@ -25,8 +26,8 @@ class ComplexMonkey: Monkey {
         return complexActionSplitter.getNextAction(uiState)
     }
 
-    override fun feedback() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun feedback(feedback: UiFeedback) {
+        baseMonkey.feedback(feedback)
     }
 
     private fun parseAction(action: UiAction, state: UiState): Pair<ElementDescription?, ActionDescription> {

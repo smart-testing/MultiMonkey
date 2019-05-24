@@ -76,6 +76,5 @@ class ReplayMonkey(private val filename: String, private val logFile: File) : Mo
         return -1
     }
 
-    override fun feedback() {
-    }
+    override fun feedback(feedback: UiFeedback) {}
 }
