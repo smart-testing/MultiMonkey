@@ -5,22 +5,16 @@ import ru.yandex.testopithecus.stateenricher.CvClient
 import ru.yandex.testopithecus.utils.deserializeJSONObject
 import java.lang.RuntimeException
 
-class ButtonLifeInspector(private val disabled: Boolean = true,
-                          private val screenshotPerformer: () -> String,
-                          private val cvClient: CvClient = CvClient("")) {
+class ButtonLifeInspector(private val cvClient: CvClient = CvClient("")) {
 
     private var before: String = ""
     private var after: String = ""
 
-    fun loadScreenshotBeforeAction() {
-        if (disabled) return
-        val screenshot = screenshotPerformer()
+    fun loadScreenshotBeforeAction(screenshot: String) {
         before = screenshot
     }
 
-    fun loadScreenshotAfterAction() {
-        if (disabled) return
-        val screenshot = screenshotPerformer()
+    fun loadScreenshotAfterAction(screenshot: String) {
         after = screenshot
     }
 
@@ -31,7 +25,6 @@ class ButtonLifeInspector(private val disabled: Boolean = true,
     }
 
     fun assertButtonLives() {
-        if (disabled) return
         if (before == "" || after == "") throw RuntimeException("ButtonLifeInspector: either \"before\" or \"after\" is empty")
         val request = createRequest()
         after = ""

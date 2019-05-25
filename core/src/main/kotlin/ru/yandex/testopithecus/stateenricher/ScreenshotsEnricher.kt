@@ -5,7 +5,7 @@ import ru.yandex.testopithecus.ui.UiState
 import ru.yandex.testopithecus.utils.deserializeJSONObject
 import ru.yandex.testopithecus.utils.serializeUiState
 
-class SimpleEnricher(cvServerAddress: String) : Enricher {
+class ScreenshotsEnricher(cvServerAddress: String, enricher: Enricher) : EnricherDecorator(enricher) {
 
     private val cvClient = if (cvServerAddress != "") CvClient(cvServerAddress) else null
 
@@ -28,6 +28,7 @@ class SimpleEnricher(cvServerAddress: String) : Enricher {
     override fun enrichState(uiState: UiState): UiState {
         if (cvClient == null) return uiState
         val toFilter = performRequest(uiState)
-        return applyEnrichment(uiState, toFilter)
+        val result = applyEnrichment(uiState, toFilter)
+        return super.enrichState(result)
     }
 }

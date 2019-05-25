@@ -3,10 +3,10 @@ package ru.yandex.testopithecus.system
 import androidx.test.uiautomator.*
 import khttp.post as httpPost
 
-import ru.yandex.testopithecus.businesslogictesting.ButtonLifeInspector
 import ru.yandex.testopithecus.monkeys.state.StateModelMonkey
-import ru.yandex.testopithecus.stateenricher.CvClient
-import ru.yandex.testopithecus.stateenricher.SimpleEnricher
+import ru.yandex.testopithecus.stateenricher.ButtonLifeEnricher
+import ru.yandex.testopithecus.stateenricher.EmptyEnricher
+import ru.yandex.testopithecus.stateenricher.ScreenshotsEnricher
 import ru.yandex.testopithecus.ui.Monkey
 import ru.yandex.testopithecus.ui.UiAction
 import ru.yandex.testopithecus.ui.UiFeedback
@@ -23,16 +23,12 @@ class AndroidMonkeyRunner(
         private val useHTTP: Boolean = false,
         private val screenshotDir: File? = null,
         url: String = "",
-        useButtonLifeInspector: Boolean = false,
         mode: String = "",
         file: String? = null) {
 
     private val useScreenshots = screenshotDir != null
-    private val model: Monkey = StateModelMonkey(SimpleEnricher(url))
-    private val urlButtonLifeInspector = "http://$ANDROID_LOCALHOST:5000/button-alive"
-    private val buttonLifeInspector: ButtonLifeInspector = ButtonLifeInspector(useButtonLifeInspector,
-            ::takeScreenshot,
-            CvClient(urlButtonLifeInspector))
+    private val model: Monkey = StateModelMonkey(ScreenshotsEnricher(url,
+            ButtonLifeEnricher(urlButtonLifeInspector, EmptyEnricher())))
 
     init {
         if (useHTTP && url == "") {
@@ -42,7 +38,8 @@ class AndroidMonkeyRunner(
 
     companion object {
         const val ANDROID_LOCALHOST = "10.0.2.2"
-        const val LONG_WAIT = 1000.toLong()
+        private const val urlButtonLifeInspector = "http://$ANDROID_LOCALHOST:5000/button-alive"
+        private const val LONG_WAIT = 1000.toLong()
         private const val URL = "http://10.0.2.2:8080/"
         private const val GENERATE_ACTION = "generate-action/"
         private const val FEEDBACK_URL = "feedback/"
@@ -60,22 +57,15 @@ class AndroidMonkeyRunner(
             try {
                 val elements = device.findObjects(By.pkg(applicationPackage))
                 var uiState: UiState
-                if (useScreenshots) {
+                uiState = if (useScreenshots) {
                     val screenshot = AndroidElementParser.takeScreenshot(screenshotDir!!, device)
-                    uiState = AndroidElementParser.parseWithScreenshot(elements, screenshot)
+                    AndroidElementParser.parseWithScreenshot(elements, screenshot)
                 } else {
-                    uiState = AndroidElementParser.parse(elements)
+                    AndroidElementParser.parse(elements)
                 }
                 val action = generateAction(uiState)
                 val id = action.id?.toInt()
                 val element = id?.let { elements[id] }
-                if (useScreenshots) {
-                    //ToDo обработать SKIP
-                    buttonLifeInspector.loadScreenshotBeforeAction()
-                    AndroidActionPerformer(device, applicationPackage, apk, element).perform(action)
-                    buttonLifeInspector.loadScreenshotAfterAction()
-                    buttonLifeInspector.assertButtonLives()
-                }
                 return action to element
             } catch (e: StaleObjectException) {
                 System.err.println(e.localizedMessage)
