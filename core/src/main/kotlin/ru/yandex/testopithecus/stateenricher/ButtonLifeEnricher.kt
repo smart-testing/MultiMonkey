@@ -17,12 +17,13 @@ class ButtonLifeEnricher(cvServerAddress: String, enricher: Enricher) : Enricher
         if (screenshot == "") {
             throw RuntimeException("ButtonLifeEnricher: \"screenshot\" in UiState is empty")
         }
-        if (buttonState == ButtonState.UNPRESSED) {
+        buttonState = if (buttonState == ButtonState.UNPRESSED) {
             buttonLifeInspector.loadScreenshotBeforeAction(screenshot)
-            buttonState = ButtonState.PRESSED
+            ButtonState.PRESSED
         } else {
             buttonLifeInspector.loadScreenshotAfterAction(screenshot)
             buttonLifeInspector.assertButtonLives()
+            ButtonState.UNPRESSED
         }
     }
 

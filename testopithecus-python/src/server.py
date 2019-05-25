@@ -36,8 +36,8 @@ def button_alive():
     before: str = input_json["before"]
     after: str = input_json["after"]
     equals = compare_screenshots(before, after) != 0
-    print(f"Button-alive: {equals}")
-    return jsonify({"button-alive": str(int(equals))})
+    print(f"Button-alive: {not equals}")
+    return jsonify({"button-alive": str(int(not equals))})
 
 
 if __name__ == '__main__':
