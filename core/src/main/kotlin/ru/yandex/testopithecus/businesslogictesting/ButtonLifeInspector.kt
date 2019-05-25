@@ -32,6 +32,8 @@ class ButtonLifeInspector(private val cvClient: CvClient = CvClient("")) {
         val response = cvClient.post(request)
         print(response)
         val isAlive = deserializeJSONObject(JSONObject(response))["button-alive"] as String
-        assert(isAlive.toInt() == 1)
+        if (isAlive.toInt() != 1){
+            throw RuntimeException("Button is not responding")
+        }
     }
 }

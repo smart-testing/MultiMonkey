@@ -39,7 +39,7 @@ fun deserializeElement(json: JSONObject): UiElement {
     return UiElement(id, attributes, possibleActions)
 }
 
-fun deserializeJSONObject(jsonObject: JSONObject): Map<String, Any> {
+fun deserializeJSONObject(jsonObject: JSONObject): MutableMap<String, Any> {
     val map = mutableMapOf<String, Any>()
     for (key in jsonObject.keys()) {
         map[key] = deserialize(jsonObject[key])

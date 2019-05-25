@@ -22,7 +22,9 @@ class ButtonLifeEnricher(cvServerAddress: String, enricher: Enricher) : Enricher
             ButtonState.PRESSED
         } else {
             buttonLifeInspector.loadScreenshotAfterAction(screenshot)
-            buttonLifeInspector.assertButtonLives()
+            if (uiState.global["actionSkip"] as String == "false") {
+                buttonLifeInspector.assertButtonLives()
+            }
             ButtonState.UNPRESSED
         }
     }

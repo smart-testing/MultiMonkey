@@ -25,7 +25,7 @@ class State(val id: StateId, val uiState: UiState) {
     class FictiveStateId: StateId
 
     companion object {
-        val NULL_STATE = State(FictiveStateId(), UiState(listOf(), mapOf()))
+        val NULL_STATE = State(FictiveStateId(), UiState(listOf(), mutableMapOf()))
         var counter = 0
     }
 }

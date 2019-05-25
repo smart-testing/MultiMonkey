@@ -16,10 +16,12 @@ import ru.yandex.testopithecus.ui.UiState
 class StateModelMonkey(private val enricher: Enricher = EmptyEnricher()) : Monkey {
 
     private val model = StateModel()
-    private val stateIdGenerator : StateIdGenerator = SmartElementsStateIdGenerator()
-    private val stateActionsGenerator : StateActionsGenerator = StateActionsGeneratorImpl()
+    private val stateIdGenerator: StateIdGenerator = SmartElementsStateIdGenerator()
+    private val stateActionsGenerator: StateActionsGenerator = StateActionsGeneratorImpl()
+    private var actionSkip = false
 
     private fun enrichState(uiState: UiState): UiState {
+        uiState.global["actionSkip"] = actionSkip.toString()
         return enricher.enrichState(uiState)
     }
 
@@ -30,7 +32,9 @@ class StateModelMonkey(private val enricher: Enricher = EmptyEnricher()) : Monke
             val uiActions = stateActionsGenerator.getActions(uiStateLocal)
             model.registerState(stateId, uiStateLocal, uiActions)
         }
-        return model.generateAction(stateId)
+        val action = model.generateAction(stateId)
+        actionSkip = action.action == "SKIP"
+        return action
     }
 
     override fun feedback(feedback: UiFeedback) {

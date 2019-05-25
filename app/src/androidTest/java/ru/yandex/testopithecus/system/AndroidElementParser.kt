@@ -29,14 +29,14 @@ object AndroidElementParser {
         return UiElement(elementId, parseAttributes(element), parsePossibleActions(element))
     }
 
-    private fun parseAttributes(element: UiObject2): Map<String, Any> {
+    private fun parseAttributes(element: UiObject2): MutableMap<String, Any> {
         val attributes = mutableMapOf<String, Any>()
         val center = element.visibleCenter
         val top = element.visibleBounds.top
         val bottom = element.visibleBounds.bottom
         val left = element.visibleBounds.left
         val right = element.visibleBounds.right
-        attributes["position"] = mapOf(
+        attributes["position"] = mutableMapOf(
                 Pair("x", center.x),
                 Pair("y", center.y)
         )
@@ -76,12 +76,12 @@ object AndroidElementParser {
         return base64
     }
 
-    private fun buildGlobal(): Map<String, Any> {
-        return mapOf()
+    private fun buildGlobal(): MutableMap<String, Any> {
+        return mutableMapOf()
     }
 
-    private fun buildGlobalWithScreenshot(screenshot: String): Map<String, Any> {
-        return mapOf("screenshot" to screenshot)
+    private fun buildGlobalWithScreenshot(screenshot: String): MutableMap<String, Any> {
+        return mutableMapOf("screenshot" to screenshot)
     }
 
     private fun isLabelElement(element: UiObject2): Boolean {
