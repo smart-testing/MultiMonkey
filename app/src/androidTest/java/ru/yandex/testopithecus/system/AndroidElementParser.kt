@@ -2,30 +2,33 @@ package ru.yandex.testopithecus.system
 
 import android.util.Base64
 import androidx.test.uiautomator.*
-import ru.yandex.testopithecus.rect.TRectangle
 import ru.yandex.testopithecus.ui.UiElement
 import ru.yandex.testopithecus.ui.UiState
 import java.io.File
 import java.util.stream.Collectors
 
 object AndroidElementParser {
-    fun parse(elements: List<UiObject2>): UiState {
-        return UiState(parseElements(elements), buildGlobal())
-    }
 
-    fun parseWithScreenshot(elements: List<UiObject2>, screenshot: String): UiState {
-        return UiState(parseElements(elements), buildGlobalWithScreenshot(screenshot))
+    fun generateUiState(device: UiDevice, applicationPackage: String, screenshotDir: File? = null):
+            Pair<UiState, List<UiObject2>> {
+        val elements = device.findObjects(By.pkg(applicationPackage))
+        val screenshot = if (screenshotDir != null) {
+            takeScreenshot(screenshotDir, device)
+        } else ""
+        return Pair(UiState(parseElements(elements),
+                if (screenshot == "") buildGlobal()
+                else buildGlobal(screenshot)), elements)
     }
 
     private fun parseElements(elements: List<UiObject2>): List<UiElement> {
         var id = 0
         return elements.stream()
-                .map { element -> parse(id.toString(), element) }
+                .map { element -> generateUiState(id.toString(), element) }
                 .peek { id++ }
                 .collect(Collectors.toList())
     }
 
-    private fun parse(elementId: String, element: UiObject2): UiElement {
+    private fun generateUiState(elementId: String, element: UiObject2): UiElement {
         return UiElement(elementId, parseAttributes(element), parsePossibleActions(element))
     }
 
@@ -51,7 +54,6 @@ object AndroidElementParser {
         attributes["bottom"] = bottom.toString()
         attributes["left"] = left.toString()
         attributes["right"] = right.toString()
-        val rect = element.visibleBounds
         attributes["isLabel"] = isLabelElement(element)
         return attributes
     }
@@ -67,7 +69,7 @@ object AndroidElementParser {
         return possibleActions
     }
 
-    fun takeScreenshot(dir: File, device: UiDevice): String {
+    private fun takeScreenshot(dir: File, device: UiDevice): String {
         val scrFile = File(dir, "scr.png")
         device.takeScreenshot(scrFile)
         val bytes = scrFile.readBytes()
@@ -76,12 +78,8 @@ object AndroidElementParser {
         return base64
     }
 
-    private fun buildGlobal(): MutableMap<String, Any> {
-        return mutableMapOf()
-    }
-
-    private fun buildGlobalWithScreenshot(screenshot: String): MutableMap<String, Any> {
-        return mutableMapOf("screenshot" to screenshot)
+    private fun buildGlobal(screenshot: String = ""): MutableMap<String, Any> {
+        return if (screenshot == "") mutableMapOf() else mutableMapOf("screenshot" to screenshot)
     }
 
     private fun isLabelElement(element: UiObject2): Boolean {
