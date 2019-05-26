@@ -1,49 +1,26 @@
 package ru.yandex.testopithecus.system
 
-import androidx.test.uiautomator.*
-import khttp.post as httpPost
-
-import ru.yandex.testopithecus.monkeys.state.StateModelMonkey
-import ru.yandex.testopithecus.stateenricher.ButtonLifeEnricher
-import ru.yandex.testopithecus.stateenricher.EmptyEnricher
-import ru.yandex.testopithecus.stateenricher.ScreenshotsEnricher
-import ru.yandex.testopithecus.ui.Monkey
+import androidx.test.uiautomator.By
+import androidx.test.uiautomator.StaleObjectException
+import androidx.test.uiautomator.UiDevice
+import androidx.test.uiautomator.UiObject2
 import ru.yandex.testopithecus.ui.UiAction
 import ru.yandex.testopithecus.ui.UiFeedback
 import ru.yandex.testopithecus.ui.UiState
-import ru.yandex.testopithecus.utils.deserializeAction
-import ru.yandex.testopithecus.utils.serializeFeedback
-import ru.yandex.testopithecus.utils.serializeUiState
 import java.io.File
+import khttp.post as httpPost
 
 class AndroidMonkeyRunner(
         private val device: UiDevice,
         private val applicationPackage: String,
         private val apk: String,
-        private val useHTTP: Boolean = false,
-        private val screenshotDir: File? = null,
-        url: String = "",
-        mode: String = "",
-        file: String? = null) {
+        private val actionGenerator: AndroidActionGenerator,
+        private val screenshotDir: File? = null) {
 
     private val useScreenshots = screenshotDir != null
-    private val model: Monkey = StateModelMonkey(ScreenshotsEnricher(url,
-            ButtonLifeEnricher(urlButtonLifeInspector, EmptyEnricher())))
-
-    init {
-        if (useHTTP && url == "") {
-            httpPost("$URL$INIT$mode/${file ?: ""}")
-        }
-    }
 
     companion object {
         const val ANDROID_LOCALHOST = "10.0.2.2"
-        private const val urlButtonLifeInspector = "http://$ANDROID_LOCALHOST:5000/button-alive"
-        private const val LONG_WAIT = 1000.toLong()
-        private const val URL = "http://10.0.2.2:8080/"
-        private const val GENERATE_ACTION = "generate-action/"
-        private const val FEEDBACK_URL = "feedback/"
-        private const val INIT = "init/"
     }
 
     fun performAction() {
@@ -91,25 +68,11 @@ class AndroidMonkeyRunner(
         return AndroidElementParser.takeScreenshot(screenshotDir!!, device)
     }
 
-    private fun generateActionHTTP(uiState: UiState): UiAction {
-        val response = httpPost(URL + GENERATE_ACTION, json = serializeUiState(uiState))
-        return deserializeAction(response.jsonObject)
-    }
-
-    private fun feedbackHTTP(feedback: UiFeedback) {
-        httpPost(URL + FEEDBACK_URL, json = serializeFeedback(feedback))
-    }
-
     private fun generateAction(uiState: UiState): UiAction {
-        if (useHTTP) return generateActionHTTP(uiState)
-        return model.generateAction(uiState)
+        return actionGenerator.generateAction(uiState)
     }
 
-    fun feedback(feedback: UiFeedback) {
-        if (useHTTP) {
-            feedbackHTTP(feedback)
-        } else {
-            model.feedback(feedback)
-        }
+    private fun feedback(feedback: UiFeedback) {
+        actionGenerator.feedback(feedback)
     }
 }
