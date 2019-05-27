@@ -11,7 +11,7 @@ object Reinstaller {
         Log.i(LOG_TAG, "clearing $pckg")
         Log.i(LOG_TAG, device.executeShellCommand("pm clear $pckg"))
         Log.i(LOG_TAG, "installing $pckg")
-        Log.i(LOG_TAG, device.executeShellCommand("pm install -t -r /data/local/tmp/apks/$apk"))
+        Log.i(LOG_TAG, device.executeShellCommand("pm install -t -r /data/local/tmp/$apk"))
     }
 
     private const val LOG_TAG = "REINSTALLER"

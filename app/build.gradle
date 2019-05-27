@@ -45,8 +45,10 @@ dependencies {
 }
 
 task putTestedApks(type: Exec) {
-    commandLine 'adb', 'push', 'src/androidTest/apks/crash', '/data/local/tmp'
     commandLine 'adb', 'push', 'src/androidTest/apks/nocrash', '/data/local/tmp'
 }
 
+task putBrokenApks(type: Exec) {
+    commandLine 'adb', 'push', 'src/androidTest/apks/crash', '/data/local/tmp'
+}
 

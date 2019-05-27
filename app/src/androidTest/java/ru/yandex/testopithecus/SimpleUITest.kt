@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
+import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
@@ -35,22 +36,32 @@ class SimpleUiTest {
 
     @Test
     fun restoreActions() {
-        runMonkey(LOG_MODE, DEFAULT_PACKAGE, DEFAULT_APK, "minimaltodo")
+        runMonkey(LOG_MODE, DEFAULT_PACKAGE, DEFAULT_DIR + DEFAULT_APK, "minimaltodo")
     }
 
     @Test
     fun replayTest() {
-        runMonkey(REPLAY_MODE, DEFAULT_PACKAGE, DEFAULT_APK, "minimaltodo")
+        runMonkey(REPLAY_MODE, DEFAULT_PACKAGE, DEFAULT_DIR + DEFAULT_APK, "minimaltodo")
     }
 
     @Test
     fun testApplication() {
-        runMonkey(STATE_MODEL_MODE, DEFAULT_PACKAGE, DEFAULT_APK)
+        runMonkey(STATE_MODEL_MODE, DEFAULT_PACKAGE, DEFAULT_DIR + DEFAULT_APK)
+    }
+
+    @Test
+    fun testApplicationWithMetrics() {
+        val extras = InstrumentationRegistry.getArguments()
+        val pckg = extras["pckg"] as String
+        val apk = extras["apk"] as String
+        Log.i(LOG_TAG, "pckg: $pckg")
+        Log.i(LOG_TAG, "apk: $apk")
+        runMonkey(STATE_MODEL_MODE, pckg, "crash/$apk")
     }
 
     @Test
     fun testApplicationWithScreenshots() {
-        runMonkeyScreenshots(DEFAULT_PACKAGE, DEFAULT_APK)
+        runMonkeyScreenshots(DEFAULT_PACKAGE, DEFAULT_DIR + DEFAULT_APK)
     }
 
     private fun runMonkey(mode: String, pckg: String, apk: String, file: String? = null) {
@@ -119,9 +130,10 @@ class SimpleUiTest {
         private const val REPLAY_MODE = "replay"
         const val STEPS_LOG_TAG = "STEP_COUNTER"
         private const val LOG_TAG = "MONKEY"
-        private const val STEPS_NUMBER = 10
+        private const val STEPS_NUMBER = 1000
         private const val LONG_WAIT = 5000L
         private const val DEFAULT_PACKAGE = "com.avjindersinghsekhon.minimaltodo"
+        private const val DEFAULT_DIR = "nocrash/"
         private const val DEFAULT_APK = "minimaltodo.apk"
     }
 }
