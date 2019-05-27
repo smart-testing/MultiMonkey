@@ -14,7 +14,6 @@ import ru.yandex.testopithecus.exception.ServerErrorException
 import ru.yandex.testopithecus.exception.SessionFinishedException
 import ru.yandex.testopithecus.exception.TestFailException
 import ru.yandex.testopithecus.exception.TestOkException
-import ru.yandex.testopithecus.metrics.MetricsEvaluator
 import ru.yandex.testopithecus.monkeys.state.StateModelMonkey
 import ru.yandex.testopithecus.stateenricher.EmptyEnricher
 import ru.yandex.testopithecus.stateenricher.ScreenshotsEnricher
@@ -54,19 +53,6 @@ class SimpleUiTest {
     fun testApplicationWithScreenshots() {
         runMonkeyScreenshots(DEFAULT_PACKAGE, DEFAULT_APK)
     }
-
-    @Test
-    fun calculateMetrics() {
-        for ((apk, pckg) in apps) {
-            Reinstaller.reinstall(device, pckg, apk)
-            val evaluator = MetricsEvaluator()
-            evaluator.start()
-            runMonkey(STATE_MODEL_MODE, pckg, apk)
-            val result = evaluator.result(true)
-            Log.i(METRICS_LOG_TAG, result.toString())
-        }
-    }
-
 
     private fun runMonkey(mode: String, pckg: String, apk: String, file: String? = null) {
         Reinstaller.reinstall(device, pckg, apk)
@@ -134,15 +120,9 @@ class SimpleUiTest {
         private const val REPLAY_MODE = "replay"
         const val STEPS_LOG_TAG = "STEP_COUNTER"
         private const val LOG_TAG = "MONKEY"
-        private const val METRICS_LOG_TAG = "METRICS"
         private const val STEPS_NUMBER = 400
         private const val LONG_WAIT = 5000L
         private const val DEFAULT_PACKAGE = "com.avjindersinghsekhon.minimaltodo"
         private const val DEFAULT_APK = "minimaltodo.apk"
-        private val apps = mapOf(
-                "minimaltodo.apk" to "com.avjindersinghsekhon.minimaltodo",
-                "activitydiary.apk" to "de.rampro.activitydiary.debug",
-                "brainstonz.apk" to "eu.veldsoft.brainstonz"
-        )
     }
 }

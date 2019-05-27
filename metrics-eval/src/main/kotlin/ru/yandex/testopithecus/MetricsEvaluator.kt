@@ -1,7 +1,5 @@
-package ru.yandex.testopithecus.metrics
+package ru.yandex.testopithecus
 
-import android.util.Log
-import ru.yandex.testopithecus.SimpleUiTest
 import java.io.BufferedReader
 import java.io.InputStream
 import java.time.LocalDateTime
@@ -24,7 +22,7 @@ class MetricsEvaluator {
 
         while (true) {
             val line = logcat.readLine()
-            if (Thread.interrupted() || line == null) {
+            if (Thread.interrupted() || line == null || line.contains("MONKEY_FINISH_LOG_TAG")) {
                 break
             }
             val timestamp = line.substring(0, pattern.length)
@@ -55,7 +53,7 @@ class MetricsEvaluator {
                     startTime = curTime
                     nextCrashLine = 3
                 }
-                line.contains(SimpleUiTest.STEPS_LOG_TAG) -> curStep++
+                line.contains("STEPS_LOG_TAG") -> curStep++
                 nextCrashLine == 0 -> {
                     val crashLine = line.substringAfter("AndroidRuntime:")
                     if (uniqueCrashes.add(crashLine)) {
@@ -67,11 +65,11 @@ class MetricsEvaluator {
     }
 
     fun start() {
-        val proc = Runtime.getRuntime().exec("logcat -v time -v year")
+        val proc = Runtime.getRuntime().exec("adb logcat -v time -v year")
         start(proc.inputStream)
     }
 
-    fun start(input: InputStream) {
+    private fun start(input: InputStream) {
         logcat = input.bufferedReader()
         worker.start()
     }
@@ -79,7 +77,6 @@ class MetricsEvaluator {
     fun result(interrupt: Boolean): Metrics {
         if (interrupt) {
             worker.interrupt()
-            Log.i(LOG_TAG, "interrupting worker")
         }
         worker.join()
         if (metrics.crashes > 0) {
@@ -87,9 +84,5 @@ class MetricsEvaluator {
             metrics.meanTime /= metrics.crashes
         }
         return metrics
-    }
-
-    companion object {
-        private const val LOG_TAG = "METRICS_EVALUATOR"
     }
 }

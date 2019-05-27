@@ -1,4 +1,4 @@
-package ru.yandex.testopithecus.metrics
+package ru.yandex.testopithecus
 
 data class Metrics(
         var crashes: Int = 0,
