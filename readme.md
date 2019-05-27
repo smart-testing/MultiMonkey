@@ -24,11 +24,11 @@
 - Файл `Testopithecus.swift` нужно положить в папку с XCUI тестами, написать UI тест, который будет вызывать код этого файла.
 - Подробнее можно посмотреть [тут](https://github.com/smart-testing/Unwrap/tree/develop/UnwrapUITests) 
 
-### Как записать действия, восcоздать экшены' и запустить регресс
+### Как записать действия, восcоздать экшены и запустить регресс
 * Подготовка
-    - Складываем apk, который хотим протестировать, в `src/androidTest/apks/`
+    - Складываем apk, который хотим протестировать, в `src/androidTest/apks/nocrash`
     - Выполняем в терминале команду `gradle putTestedApks`
-    - Запускаем сервер командой `cd http-server && gradle run`
+    - Запускаем сервер командой `cd http-server && ../gradlew run`
     - Открываем файл `SimpleUITest.kt`
     - Записываем package приложения в поле `DEFAULT_PACKAGE`
     - Записываем имя apk в поле `DEFAULT_APK`
@@ -45,3 +45,13 @@
     - Запускаем `replayTest()`
     - Если тест зеленый, всё ОК
     - Иначе ищем в logcat логи с тегом `MONKEY`
+
+### Как посчтать метрику
+
+- Складываем apk, который хотим протестировать, в `src/androidTest/apks/crash`
+- Выполняем в терминале команду `gradle putBrokenApks`
+- Собираем проект
+- Запускаем сервер командой `cd http-server && ../gradlew run`
+- Открываем файл `MetricsMain.kt`
+- Дописываем в мапу `apps` название apk и package всех тестируемых приложений
+- Запускаем MetricsMain.main()
