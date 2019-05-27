@@ -1,9 +1,9 @@
 package ru.yandex.testopithecus.system
 
-import androidx.test.uiautomator.By
 import androidx.test.uiautomator.StaleObjectException
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiObject2
+import ru.yandex.testopithecus.ui.Monkey
 import ru.yandex.testopithecus.ui.UiAction
 import ru.yandex.testopithecus.ui.UiFeedback
 import ru.yandex.testopithecus.ui.UiState
@@ -14,7 +14,7 @@ class AndroidMonkeyRunner(
         private val device: UiDevice,
         private val applicationPackage: String,
         private val apk: String,
-        private val actionGenerator: AndroidActionGenerator,
+        private val monkey: Monkey,
         private val screenshotDir: File? = null) {
 
     companion object {
@@ -58,10 +58,10 @@ class AndroidMonkeyRunner(
     }
 
     private fun generateAction(uiState: UiState): UiAction {
-        return actionGenerator.generateAction(uiState)
+        return monkey.generateAction(uiState)
     }
 
     private fun feedback(feedback: UiFeedback) {
-        actionGenerator.feedback(feedback)
+        monkey.feedback(feedback)
     }
 }

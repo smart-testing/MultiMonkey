@@ -18,7 +18,6 @@ import ru.yandex.testopithecus.monkeys.state.StateModelMonkey
 import ru.yandex.testopithecus.stateenricher.EmptyEnricher
 import ru.yandex.testopithecus.stateenricher.ScreenshotsEnricher
 import ru.yandex.testopithecus.system.AndroidMonkeyHttp
-import ru.yandex.testopithecus.system.AndroidMonkeyImpl
 import ru.yandex.testopithecus.system.AndroidMonkeyRunner
 import ru.yandex.testopithecus.system.AndroidScreenshotManager
 import ru.yandex.testopithecus.utils.Reinstaller
@@ -57,7 +56,7 @@ class SimpleUiTest {
     private fun runMonkey(mode: String, pckg: String, apk: String, file: String? = null) {
         Reinstaller.reinstall(device, pckg, apk)
         openApplication(pckg)
-        val monkey = AndroidMonkeyRunner(device, pckg, apk, actionGenerator = AndroidMonkeyHttp(mode = mode, file = file))
+        val monkey = AndroidMonkeyRunner(device, pckg, apk, monkey = AndroidMonkeyHttp(mode = mode, file = file))
         for (step in 0 until STEPS_NUMBER) {
             Log.d(STEPS_LOG_TAG, "current step: $step")
             openApplicationIfRequired(pckg)
@@ -87,7 +86,7 @@ class SimpleUiTest {
         openApplication(pckg)
         val cvServerAddress = "http://${AndroidMonkeyRunner.ANDROID_LOCALHOST}:5000"
         val model = StateModelMonkey(ScreenshotsEnricher(cvServerAddress, EmptyEnricher()))
-        val monkey = AndroidMonkeyRunner(device, pckg, apk, screenshotDir = context.filesDir, actionGenerator = AndroidMonkeyImpl(model))
+        val monkey = AndroidMonkeyRunner(device, pckg, apk, screenshotDir = context.filesDir, monkey = model)
         for (step in 0 until STEPS_NUMBER) {
             Log.d(STEPS_LOG_TAG, "current step: $step")
             openApplicationIfRequired(pckg)
