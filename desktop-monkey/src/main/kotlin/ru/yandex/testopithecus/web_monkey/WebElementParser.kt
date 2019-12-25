@@ -14,6 +14,7 @@ object WebElementParser {
     private fun parseElements(elements: List<WebElement>): List<UiElement> {
         var id = 0
         return elements.stream()
+                .peek{x -> x.isDisplayed}
                 .map { element -> parse(id.toString(), element) }
                 .peek { id++ }
                 .collect(Collectors.toList())
@@ -23,25 +24,41 @@ object WebElementParser {
         return UiElement(elementId, parseAttributes(element), parsePossibleActions(element))
     }
 
-    private fun parseAttributes(element: WebElement): Map<String, Any> {
-        val attributes = mutableMapOf<String, Any>()
+    private fun parseAttributes(element: WebElement): MutableMap<String, Any> {
         val center = element.location
-        attributes["position"] = mapOf(
-                Pair("x", center.x),
-                Pair("y", center.y)
-        )
-        return attributes
+        return mutableMapOf("text" to element.text,
+                "isLabel" to isLabelElement(element),
+                "rect" to RectSelenium(element.rect),
+                "placeholder" to element.getAttribute("placeholder"),
+                "class" to element.getAttribute("class"),
+                "center" to center)
     }
 
     private fun parsePossibleActions(element: WebElement): List<String> {
         val possibleActions = mutableListOf<String>()
-        if (element.tagName == "a" || element.tagName == "button") {
+        if (isTapElement(element)) {
             possibleActions.add("TAP")
+        }
+        if (isInputElement(element)) {
+            possibleActions.add("INPUT")
         }
         return possibleActions
     }
 
     private fun buildGlobal(): Map<String, Any> {
         return mapOf()
+    }
+    private fun isLabelElement(element : WebElement) : Boolean {
+        return (element.tagName == "div" || element.tagName == "span" || element.tagName == "label") && element.text.isNotEmpty()
+    }
+    private fun isInputElement(element : WebElement) : Boolean {
+        val type = element.getAttribute("type")
+        return (element.tagName == "input" &&  (type == "password" || type == "text")
+                || element.tagName == "div" && (element.getAttribute("contenteditable") == "true"))
+    }
+    private fun isTapElement(element : WebElement) : Boolean {
+        val type = element.getAttribute("type")
+        return element.tagName == "a" || element.tagName == "button"
+                || (element.tagName == "input" && (type == "submit" || type == "reset" || type == "radio" || type == "checkbox" || type == "button"))
     }
 }
